@@ -1,12 +1,10 @@
 import React from 'react';
-import Header from './header/Header.react';
-import Button from './uikit/Button';
+import Header from './Header.react';
 
 function App(){
   return (
     <div>
       <Header />
-      <Button />
     </div>
   )
 }

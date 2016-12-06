@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import CourseApp from './components/CourseApp.react';
+import App from './components/App.react';
 
 ReactDOM.render(
-  <CourseApp />,
-  document.getElementById('courseApp')
+  <App />,
+  document.getElementById('app')
 )

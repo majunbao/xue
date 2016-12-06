@@ -2,7 +2,7 @@ import React from 'react';
 
 class Button extends React.Component {
   render() {
-    return <button>按钮</button>
+    return <button>{this.props.children}</button>
   }
 }
 
