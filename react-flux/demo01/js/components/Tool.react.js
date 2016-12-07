@@ -1,11 +1,12 @@
 import React from 'react';
 
+
 class Tool extends React.Component {
   render() {
     return(
-      <div>
+      <div className="toolbar-item">
         <button>xxx</button>
-        <span>导出</span>
+        <span>{this.props.children}</span>
       </div>
     )
   }

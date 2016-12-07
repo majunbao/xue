@@ -4,3 +4,10 @@
   background: linear-gradient(rgba(255, 255, 255, 0.27), rgba(179, 188, 200, 0.27));
   background-color: #F3F5F7;
 }
+.toolbar-item {
+  display: inline-block;
+  text-align: center;
+}
+.toolbar-item span{
+  display: block;
+}

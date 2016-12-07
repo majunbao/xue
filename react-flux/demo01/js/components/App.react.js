@@ -1,10 +1,12 @@
 import React from 'react';
-import Header from './Header.react';
+import {Button, Icon, Select, Text} from './UIKit';
+
 
 function App(){
   return (
     <div>
-      <Header />
+      <Button primary>知道</Button>
+      <Button success>我怎么</Button>
     </div>
   )
 }
