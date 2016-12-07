@@ -7,3 +7,6 @@ class Icon extends React.Component {
     )
   }
 }
+
+// ×
+// ✓

@@ -5,17 +5,20 @@ class Button extends React.Component {
     super(props);
 
     this.state = {
-      class: 'button'
+      class: `button
+        ${this.props.primary ? 'button-blue' : ''}
+        ${this.props.success ? 'button-green' : ''}
+        ${this.props.sm ? 'button-small' : ''}
+      `.replace(/\s+/g, ' ') // replace 优化代码格式
     }
   }
 
-  render() {
-    let className = `button
-      ${this.props.primary ? 'button-blue' : ''}
-      ${this.props.success ? 'button-green' : ''}
-    `.replace(/\s+/g, ' '); // replace 优化代码格式
+  componentDidMount() {
+    
+  }
 
-    return <button className={className}>{this.props.children}</button>
+  render() {
+    return <button className={this.state.class}>{this.props.children}</button>
   }
 }
 

@@ -1,0 +1,23 @@
+.select{
+  display: inline-block;
+  position: relative;
+}
+.select .select-box {
+  line-height: 30px;
+  height: 30px;
+  padding: 0 15px;
+  display: inline-block;
+}
+.select .select-box:hover {
+  cursor: pointer;
+}
+.select .select-option {
+  position: absolute;
+  top: 100%;
+  text-align: center;
+}
+.select .select-option li {
+  padding:0 15px;
+  line-height: 30px;
+  height: 30px;
+}
