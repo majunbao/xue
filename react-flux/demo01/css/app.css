@@ -1,13 +1,31 @@
-.app-header{
+body {
+  background-color: #F3F5F7;
+  overflow: hidden;
+}
+.app-toolbar {
   width: 100%;
   height: 60px;
   background: linear-gradient(rgba(255, 255, 255, 0.27), rgba(179, 188, 200, 0.27));
   background-color: #F3F5F7;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
 }
-.toolbar-item {
+
+.app-navigator {
   display: inline-block;
-  text-align: center;
+  position: absolute;
+  top: 60px;
 }
-.toolbar-item span{
-  display: block;
+
+.app-canvas {
+  display: inline-block;
+  min-width: 1024px;
+  min-height: 768px;
+  background-color: #fff;
+}
+
+.app-inspector {
+  display: inline-block;
 }

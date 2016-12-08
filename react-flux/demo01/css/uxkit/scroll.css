@@ -1,0 +1,42 @@
+.scroll-container {
+  position: relative;
+  /*display: inline-block;*/
+}
+
+.scroll-container .scroll-view {
+  
+}
+
+.scroll-container .scroll-x {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: #eee;
+}
+
+.scroll-container .scroll-x span {
+  width: 10px;
+  height: 100%;
+  background-color: #333;
+  display: block;
+}
+
+.scroll-container .scroll-y {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #eee;
+}
+
+.scroll-container .scroll-y span {
+  width: 100%;
+  height: 30px;
+  background-color: #333;
+  display: block;
+}
