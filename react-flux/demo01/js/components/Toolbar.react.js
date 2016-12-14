@@ -5,10 +5,10 @@ class Toolbar extends React.Component {
     return(
       <div className="app-toolbar align-justify" key="Toolbar">
         <ToolbarButtonGroup>
-          <ToolbarButton />
-          <ToolbarButton />
-          <ToolbarSelect />
-          <ToolbarButton />
+          <ToolbarButton icon="save" text="保存" />
+          <ToolbarButton icon="export" text="导出" />
+          <ToolbarSelect icon="" text="缩放" />
+          <ToolbarButton icon="preview" text="预览" />
         </ToolbarButtonGroup>
 
         {" "}
@@ -41,7 +41,7 @@ class Toolbar extends React.Component {
 class ToolbarButtonGroup extends React.Component {
   render() {
     return(
-      <div className="inline">
+      <div className="toolbar-button-group">
         {this.props.children}
       </div>
     )
@@ -52,9 +52,9 @@ class ToolbarButtonGroup extends React.Component {
 class ToolbarButton extends React.Component {
   render() {
     return(
-      <div className="inline">
-        <button>xxx</button><br />
-        <span>导出</span>
+      <div className="toolbar-icon">
+        <a className={'toolbar-icon-'+this.props.icon}></a>
+        <span>{this.props.text}</span>
       </div>
     )
   }

@@ -76,3 +76,37 @@ body {
 }
 .app-inspector {
 }
+
+.toolbar-button-group {
+  display: inline-block;
+  border-radius: 6px;
+}
+.toolbar-icon {
+  display: inline-block;
+  text-align: center;
+}
+[class^=toolbar-icon-] {
+  display: block;
+  width: 64px;
+  height: 28px;
+  background-color: #fff;
+  border: 1px solid #CBCDD1;
+  border-right: 0;
+  position: relative;
+}
+[class^=toolbar-icon-]:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background: url(../images/toolbar-icon@2x.png) no-repeat 0 0;
+  background-size: 247px auto;
+}
+.toolbar-icon span{
+  display: block;
+}
+.toolbar-icon-save:after {
+  background-position: 0 -4px;
+}
