@@ -3,7 +3,7 @@ import React from 'react';
 class Toolbar extends React.Component {
   render() {
     return(
-      <div className="app-toolbar align-justify" key="Toolbar">
+      <div className="app-toolbar" key="Toolbar">
         <ToolbarButtonGroup>
           <ToolbarButton icon="save" text="保存" />
           <ToolbarButton icon="export" text="导出" />
@@ -27,10 +27,8 @@ class Toolbar extends React.Component {
         {" "}
 
         <ToolbarButtonGroup>
-          <ToolbarButton />
-          <ToolbarButton />
-          <ToolbarButton />
-          <ToolbarButton />
+          <ToolbarButton icon="style" text="格式" />
+          <ToolbarButton icon="doc" text="文稿" />
         </ToolbarButtonGroup>
       </div>
     )
@@ -64,19 +62,8 @@ class ToolbarButton extends React.Component {
 class ToolbarSelect extends React.Component {
   render() {
     return(
-      <div className="inline">
-        <select>
-          <option>25%</option>
-          <option>50%</option>
-          <option>75%</option>
-          <option>100%</option>
-          <option>125%</option>
-          <option>150%</option>
-          <option>200%</option>
-          <option>300%</option>
-          <option>400%</option>
-          <option>适合窗口</option>
-        </select><br />
+      <div className="toolbar-icon">
+        <a className={'toolbar-icon-'+this.props.icon}></a>
         <span>导出</span>
       </div>
     )

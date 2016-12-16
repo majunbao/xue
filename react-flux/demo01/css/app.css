@@ -9,14 +9,16 @@ body {
 }
 /*布局*/
 .app-layout{
+  user-select: none;
+}
+.app-layout:hover{
+  cursor: default;
 }
 .app-layout-top{
-  background-color: #233;
   width: 100%;
   height: 60px;
 }
 .app-layout-main{
-  background-color: #eee;
   position: absolute;
   top: 60px;
   right: 0;
@@ -30,18 +32,16 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 200px;
-  background-color: #444;
+  width: 180px;
 }
 .app-layout-center{
   position: absolute;
   top: 0;
   right: 270px;
   bottom: 0;
-  left: 200px;
+  left: 180px;
   min-width: 1024px;
   min-height: 760px;
-  background-color: #E0E9EF;
 }
 .app-layout-right{
   position: absolute;
@@ -56,9 +56,42 @@ body {
 .app-toolbar {
   background: linear-gradient(rgba(255, 255, 255, 0.27), rgba(179, 188, 200, 0.27));
   background-color: #F3F5F7;
+  height: 100%;
+  text-align: justify;
+  position: relative;
+}
+.app-toolbar:before {
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  height: 1px;
+  background-color: #CACDD3;
+  display: block;
+}
+.app-toolbar:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
 }
 
 .app-navigator {
+  position: absolute;
+  height: 100%;
+}
+.app-navigator:after {
+  content: "";
+  right:0;
+  top:0;
+  bottom: 0;
+  position: absolute;
+  width: 1px;
+  background-color: #D9DCE1;
+}
+.app-navigator .navigator-item {
+  /*padding:10px 10px 0 10px;*/
+  margin: 10px;
 }
 .app-navigator img{
   width: 100%;
@@ -80,33 +113,61 @@ body {
 .toolbar-button-group {
   display: inline-block;
   border-radius: 6px;
+  margin: 10px 10px 0 10px;
 }
+
 .toolbar-icon {
   display: inline-block;
   text-align: center;
 }
 [class^=toolbar-icon-] {
   display: block;
-  width: 64px;
+  width: 45px;
   height: 28px;
   background-color: #fff;
   border: 1px solid #CBCDD1;
-  border-right: 0;
+  border-right-width: 0;
   position: relative;
+}
+[class^=toolbar-icon-]:hover {
+  cursor: pointer;
+}
+[class^=toolbar-icon-]:active {
+  opacity: 0.6;
+  background-color: #ddd;
 }
 [class^=toolbar-icon-]:after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1px;
+  left: 12px;
   width: 22px;
   height: 22px;
   background: url(../images/toolbar-icon@2x.png) no-repeat 0 0;
   background-size: 247px auto;
 }
+.toolbar-button-group .toolbar-icon:last-child [class^=toolbar-icon-]{
+  border-right-width: 1px;
+  border-radius:0 5px 5px 0; 
+}
 .toolbar-icon span{
   display: block;
+  color: #666;
+  font-size: 11px;
+  margin-top: 2px;
 }
 .toolbar-icon-save:after {
-  background-position: 0 -4px;
+  background-position: 2px 0px;
+}
+.toolbar-icon-export:after {
+  background-position: -24px 0;
+}
+.toolbar-icon-preview:after {
+  background-position: -66px 0;
+}
+.toolbar-icon-style:after {
+  background-position: -96px 0;
+}
+.toolbar-icon-doc:after {
+  background-position: -122px 0;
 }

@@ -15,8 +15,8 @@ class Navigator extends React.Component {
 class NavigatorThumbnail extends React.Component {
   render(){
     return(
-      <div>
-        <img src="images/5add5025e64f20a036ce1b6af3add92ecbf92693.jpeg" />
+      <div className="navigator-item">
+        <img src="images/preview-nav.png" />
       </div>
     )
   }
