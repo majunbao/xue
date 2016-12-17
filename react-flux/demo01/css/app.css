@@ -113,7 +113,7 @@ body {
 .toolbar-button-group {
   display: inline-block;
   border-radius: 6px;
-  margin: 10px 10px 0 10px;
+  margin: 7px 10px 0 10px;
 }
 
 .toolbar-icon {
@@ -148,7 +148,10 @@ body {
 }
 .toolbar-button-group .toolbar-icon:last-child [class^=toolbar-icon-]{
   border-right-width: 1px;
-  border-radius:0 5px 5px 0; 
+  border-radius:0 4px 4px 0; 
+}
+.toolbar-button-group .toolbar-icon:first-child [class^=toolbar-icon-]{
+  border-radius:4px 0 0 4px;
 }
 .toolbar-icon span{
   display: block;
@@ -170,4 +173,52 @@ body {
 }
 .toolbar-icon-doc:after {
   background-position: -122px 0;
+}
+
+.toolbar-tool {
+  display: inline-block;
+  text-align: center;
+  margin:0 7px;
+}
+.toolbar-tool span {
+  display: block;
+  color: #666;
+  font-size: 11px;
+}
+[class^=toolbar-tool-] {
+  width: 25px;
+  height: 22px;
+  background: url(../images/toolbar-icon@2x.png) no-repeat 0 -40px;
+  background-size: 247px auto;
+  display: inline-block;
+}
+[class^=toolbar-tool-]:hover {
+  cursor: pointer;
+}
+[class^=toolbar-tool-]:active {
+  opacity: 0.6;
+}
+.toolbar-tool-text {
+  background-position-x: 2px;
+}
+.toolbar-tool-shape {
+  background-position-x: -27px;
+}
+.toolbar-tool-table {
+  background-position-x: -60px;
+}
+.toolbar-tool-template {
+  background-position-x: -94px;
+}
+.toolbar-tool-study {
+  background-position-x: -128px;
+}
+.toolbar-tool-test {
+  background-position-x: -156px;
+}
+.toolbar-tool-file {
+  background-position-x: -186px;
+}
+.toolbar-tool-resource {
+  background-position-x: -216px;
 }

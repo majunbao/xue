@@ -14,14 +14,14 @@ class Toolbar extends React.Component {
         {" "}
 
         <ToolbarButtonGroup>
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
-          <ToolbarTool />
+          <ToolbarTool icon="text" text="文字" />
+          <ToolbarTool icon="shape" text="形状" />
+          <ToolbarTool icon="table" text="表格" />
+          <ToolbarTool icon="template" text="教学模版" />
+          <ToolbarTool icon="study" text="教学模版" />
+          <ToolbarTool icon="test" text="互动试题" />
+          <ToolbarTool icon="file" text="插入文件" />
+          <ToolbarTool icon="resource" text="调用资源" />
         </ToolbarButtonGroup>
 
         {" "}
@@ -74,9 +74,9 @@ class ToolbarSelect extends React.Component {
 class ToolbarTool extends React.Component {
   render() {
     return(
-      <div className="inline">
-        <button>xxx</button><br />
-        <span>文字</span>
+      <div className="toolbar-tool">
+        <a className={'toolbar-tool-'+this.props.icon}></a>
+        <span>{this.props.text}</span>
       </div>
     )
   }
