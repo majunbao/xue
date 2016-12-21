@@ -3,6 +3,7 @@ import AppDispatcher from './AppDispatcher';
 import Immutable from 'immutable';
 
 class AppStore extends ReduceStore {
+  
   constructor() {
     super(AppDispatcher);
   }

@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>js 拖动效果</title>
+  <style type="text/css">
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .moving {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    cursor: move
+  }
+  
+  .maindiv {
+    width: 960px;
+    border: 1px solid #069;
+    padding: 1px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+  }
+  
+  .bigdiv {
+    width: 960px;
+    height: 1000px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #mmdiv {
+    width: 300px;
+    height: 100px;
+    left: 30px;
+    top: 50px;
+    border: 2px solid #999;
+    overflow: hidden;
+    padding: 1px;
+  }
+  
+  #mmdiv h3 {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    cursor: move;
+    background-color: #999;
+  }
+  
+  #mmdiv h3 span {
+    margin-left: 20px;
+  }
+  </style>
+  <script type="text/javascript">
+  var base = {
+    getId: function(id) {
+      return document.getElementById(id);
+    },
+    addEvent: function(elem, type, fn) {
+      if (elem.addEventListener) {
+        elem.addEventListener(type, fn, false);
+      } else if (elem.attachEvent) {
+        elem.attachEvent("on" + type, fn);
+      } else {
+        elem["on" + type] = fn;
+      }
+    },
+    removeEvent: function(elem, type, fn) {
+      if (elem.removeEventListener) {
+        elem.removeEventListener(type, fn, false);
+      } else if (elem.detachEvent) {
+        elem.detachEvent("on" + type, fn);
+      } else {
+        elem["on" + type] = null;
+      }
+    },
+    unDefaultEvent: function(event) {
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      }
+    },
+    page: function(event) {
+      return {
+        x: event.pageX || event.clientX + document.documentElement.scrollLeft,
+        y: event.pageY || event.clientY + document.documentElement.scrollTop
+      };
+    },
+    unSelection: function() {
+      if (document.selection && document.selection.empty) {
+        document.selection.empty();
+      } else if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+      }
+    }
+  };
+
+  function Drag() {
+    this.dragInit.apply(this, arguments);
+  }
+
+  Drag.prototype = {
+    dragInit: function(obj, options) {
+      this.obj = obj;
+      this.obj.style.position = "absolute";
+      this.setOptions(options);
+      this.handle = this.options.handle || obj;
+      this.bigcont = this.options.bigcont || document.documentElement;
+      this.moveCss = this.options.moveCss;
+      this.lock = this.options.lock;
+      this.lockX = this.options.lockX;
+      this.lockY = this.options.lockY;
+      var _this = this;
+      base.addEvent(this.handle, "mousedown", function(event) {
+        _this.startDrap(event);
+      });
+    },
+    setOptions: function(options) {
+      this.options = {
+        handle: "",
+        bigcont: "",
+        lock: false,
+        lockX: false,
+        lockY: false,
+        moveCss: ""
+      };
+
+      for (var p in options) {
+        this.options[p] = options[p];
+      }
+    },
+    startDrap: function(event) {
+      base.unDefaultEvent(event);
+      var _this = this;
+
+      this.disX = base.page(event).x - this.obj.offsetLeft;
+      this.disY = base.page(event).y - this.obj.offsetTop;
+
+      this.mousemoveHandle = function(event) {
+        _this.move(event);
+      };
+
+      this.mouseupHandle = function() {
+        _this.stopDrag();
+      };
+
+      base.addEvent(document, "mousemove", this.mousemoveHandle);
+
+      base.addEvent(document, "mouseup", this.mouseupHandle);
+
+      base.unSelection();
+
+      if (this.obj.setCapture) {
+        this.obj.setCapture(true);
+      }
+    },
+    move: function(event) {
+      base.unDefaultEvent(event);
+      this.obj.className = this.moveCss;
+
+      var x = base.page(event).x - this.disX;
+      var y = base.page(event).y - this.disY;
+
+      var range = {
+        minX: this.bigcont.scrollLeft,
+        minY: this.bigcont.scrollTop,
+        maxX: this.bigcont.scrollWidth - this.obj.offsetWidth,
+        maxY: this.bigcont.scrollHeight - this.obj.offsetHeight
+      };
+
+      x = Math.max(x, range.minX);
+      x = Math.min(x, range.maxX);
+      y = Math.max(y, range.minY);
+      y = Math.min(y, range.maxY);
+
+      if (true == this.lockX && true == this.lockY) {} else if (true == this.lockX) {
+        this.obj.style.left = x + "px";
+      } else if (true == this.lockY) {
+
+        this.obj.style.top = y + "px";
+      } else {
+        this.obj.style.left = x + "px";
+        this.obj.style.top = y + "px";
+      }
+
+    },
+    stopDrag: function() {
+      this.obj.className = "";
+      base.removeEvent(document, "mousemove", this.mousemoveHandle);
+      base.removeEvent(document, "mouseup", this.mouseupHandle);
+      if (this.obj.releaseCapture) {
+        this.obj.releaseCapture(true);
+      }
+    }
+  };
+
+  base.addEvent(window, "load", function() {
+    var tmp = base.getId("mmdiv");
+    var bigdiv = base.getId("bigdiv");
+    var tit = tmp.getElementsByTagName("h3")[0];
+    var b = new Drag(tmp, {
+      "handle": tit,
+      "bigcont": bigdiv,
+      "lockX": false,
+      "lockY": false
+    });
+    var btn = document.getElementsByTagName("input");
+
+    btn[0].onclick = function() {
+
+      b.lockX = false;
+      b.lockY = false;
+    }
+
+    btn[1].onclick = function() {
+
+      b.lockX = true;
+      b.lockY = false;
+    }
+    btn[2].onclick = function() {
+
+      b.lockX = false;
+      b.lockY = true;
+    }
+    btn[3].onclick = function() {
+
+      b.lockX = true;
+      b.lockY = true;
+    }
+  });
+  </script>
+</head>
+
+<body>
+  <div class="maindiv">
+    <div>
+      <input type="button" value="范围拖动" />
+      <input type="button" value="水平拖动" />
+      <input type="button" value="垂直拖动" />
+      <input type="button" value="静止" />
+    </div>
+    <div id="bigdiv" class="bigdiv" style="background-color: #EEE">
+      <div id="mmdiv">
+        <h3><span>拖动我</span></h3>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
