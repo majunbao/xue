@@ -1,3 +1,4 @@
+import AppActions from './AppActions';
 import AppView from './AppView';
 import AppDispatcher from './AppDispatcher';
 import AppStore from './AppStore';
@@ -11,7 +12,9 @@ function getStores() {
 
 function getState() {
   return {
-    value: AppStore.getState()
+    value: AppStore.getState(),
+
+    onTest: AppActions.test
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Hello(props) {
   return(
-    <div>{props.value}</div>
+    <div onClick={props.onTest}>Test{props.value}</div>
   )
 }
 

@@ -46,12 +46,22 @@ class DragTestGroup extends React.Component {
     super(props);
     this.state = {
       data:  props.data
-    }
+    },
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  onDragEnd(e,data,pid){
+    console.log((data.y))
+    this.state.data.splice(1,1, this.state.data[0])
+    this.setState({
+      data: this.state.data
+    })
   }
 
   render() {
+    let that = this;
     let d = this.state.data.map(function(v,i){
-      return <DragTest top={`${i*110}px`} text={v.content} />
+      return <DragTest top={`${i*110}px`} text={v.content} dragEnd={that.onDragEnd} pid={i} />
     })
     return (
       <div>{d}</div>
@@ -72,28 +82,18 @@ class DragTest extends React.Component {
   }
 
   onDrag(event,data) {
-    this.setState({
+    this.setState({ 
       x: this.state.x += data.deltaX,
       y: this.state.y += data.deltaY
     })
   }
 
-  onStop(event, data) {
-    if(this.state.x>100 || this.state.y>100) {
-      this.setState({
-        data: [
-          {
-            content: '2222'
-          }
-        ]
-      })
-    }else{
-      this.setState({
-        x: 0,
-        y: 0
-      })
-    }
-    
+  onStop(event, data, pid) {
+    this.setState({
+      x: 0,
+      y: 0
+    })
+    this.props.dragEnd(event, data, pid)
   }
 
   onStart(event, data) {
@@ -103,7 +103,7 @@ class DragTest extends React.Component {
 
   render() {
     return (
-      <DraggableCore onDrag={this.onDrag} onStop={this.onStop} onStart={this.onStart}>
+      <DraggableCore onDrag={this.onDrag} onStop={(e,d) => {this.onStop(e,d, this.props.pid)}} onStart={this.onStart}>
         <p style={{transform:`translate(${this.state.x}px, ${this.state.y}px)`,top: this.props.top}}>{this.props.text}</p>
       </DraggableCore>
     )

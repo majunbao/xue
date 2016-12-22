@@ -6,7 +6,6 @@ class Navigator extends React.Component {
       <div className="app-navigator">
         <NavigatorThumbnail />
         <NavigatorThumbnail />
-        <NavigatorThumbnail />
       </div>
     )
   }

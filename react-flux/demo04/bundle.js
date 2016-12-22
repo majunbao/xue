@@ -10091,15 +10091,25 @@
 
 	    _this.state = {
 	      data: props.data
-	    };
+	    }, _this.onDragEnd = _this.onDragEnd.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(DragTestGroup, [{
+	    key: 'onDragEnd',
+	    value: function onDragEnd(e, data, pid) {
+	      console.log(data.y);
+	      this.state.data.splice(1, 1, this.state.data[0]);
+	      this.setState({
+	        data: this.state.data
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var that = this;
 	      var d = this.state.data.map(function (v, i) {
-	        return _react2.default.createElement(DragTest, { top: i * 110 + 'px', text: v.content });
+	        return _react2.default.createElement(DragTest, { top: i * 110 + 'px', text: v.content, dragEnd: that.onDragEnd, pid: i });
 	      });
 	      return _react2.default.createElement(
 	        'div',
@@ -10140,19 +10150,12 @@
 	    }
 	  }, {
 	    key: 'onStop',
-	    value: function onStop(event, data) {
-	      if (this.state.x > 100 || this.state.y > 100) {
-	        this.setState({
-	          data: [{
-	            content: '2222'
-	          }]
-	        });
-	      } else {
-	        this.setState({
-	          x: 0,
-	          y: 0
-	        });
-	      }
+	    value: function onStop(event, data, pid) {
+	      this.setState({
+	        x: 0,
+	        y: 0
+	      });
+	      this.props.dragEnd(event, data, pid);
 	    }
 	  }, {
 	    key: 'onStart',
@@ -10162,9 +10165,13 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this3 = this;
+
 	      return _react2.default.createElement(
 	        _reactDraggable.DraggableCore,
-	        { onDrag: this.onDrag, onStop: this.onStop, onStart: this.onStart },
+	        { onDrag: this.onDrag, onStop: function onStop(e, d) {
+	            _this3.onStop(e, d, _this3.props.pid);
+	          }, onStart: this.onStart },
 	        _react2.default.createElement(
 	          'p',
 	          { style: { transform: 'translate(' + this.state.x + 'px, ' + this.state.y + 'px)', top: this.props.top } },
@@ -28684,6 +28691,11 @@
 	  sort: function sort() {
 	    _AppDispatcher2.default.dispatch({
 	      type: 'sort'
+	    });
+	  },
+	  dragEnd: function dragEnd() {
+	    _AppDispatcher2.default.dispatch({
+	      type: 'dragend'
 	    });
 	  }
 	};

@@ -6,16 +6,6 @@ const AppActions = {
       type: 'test',
       text: text
     })
-  },
-  sort() {
-    AppDispatcher.dispatch({
-      type: 'sort'
-    })
-  },
-  dragEnd() {
-    AppDispatcher.dispatch({
-      type: 'dragend'
-    })
   }
 }
 
