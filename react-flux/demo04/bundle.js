@@ -9991,6 +9991,8 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(7);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -10001,8 +10003,29 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	function AppView(props) {
-	  return _react2.default.createElement(Test, props);
+	  var SideArray = [{
+	    content: '111111'
+	  }, {
+	    content: '222222'
+	  }, {
+	    content: '333333'
+	  }];
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'out' },
+	    _react2.default.createElement(
+	      DragTestGroup,
+	      { data: SideArray },
+	      'w'
+	    )
+	  );
 	}
 
 	function Test(props) {
@@ -10011,8 +10034,9 @@
 	      _reactDraggable2.default,
 	      {
 	        key: index,
-	        onStop: function onStop() {
-	          return console.log(2);
+	        onStop: function onStop(e, a, c) {
+	          a.x = 318;
+	          a.y = 56;
 	        },
 	        defaultPosition: { x: 50, y: 20 }
 	      },
@@ -10056,6 +10080,102 @@
 	    )
 	  );
 	}
+
+	var DragTestGroup = function (_React$Component) {
+	  _inherits(DragTestGroup, _React$Component);
+
+	  function DragTestGroup(props) {
+	    _classCallCheck(this, DragTestGroup);
+
+	    var _this = _possibleConstructorReturn(this, (DragTestGroup.__proto__ || Object.getPrototypeOf(DragTestGroup)).call(this, props));
+
+	    _this.state = {
+	      data: props.data
+	    };
+	    return _this;
+	  }
+
+	  _createClass(DragTestGroup, [{
+	    key: 'render',
+	    value: function render() {
+	      var d = this.state.data.map(function (v, i) {
+	        return _react2.default.createElement(DragTest, { top: i * 110 + 'px', text: v.content });
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        d
+	      );
+	    }
+	  }]);
+
+	  return DragTestGroup;
+	}(_react2.default.Component);
+
+	var DragTest = function (_React$Component2) {
+	  _inherits(DragTest, _React$Component2);
+
+	  function DragTest(props) {
+	    _classCallCheck(this, DragTest);
+
+	    var _this2 = _possibleConstructorReturn(this, (DragTest.__proto__ || Object.getPrototypeOf(DragTest)).call(this, props));
+
+	    _this2.state = {
+	      x: 0,
+	      y: 0
+	    };
+	    _this2.onDrag = _this2.onDrag.bind(_this2);
+	    _this2.onStop = _this2.onStop.bind(_this2);
+	    _this2.onStart = _this2.onStart.bind(_this2);
+	    return _this2;
+	  }
+
+	  _createClass(DragTest, [{
+	    key: 'onDrag',
+	    value: function onDrag(event, data) {
+	      this.setState({
+	        x: this.state.x += data.deltaX,
+	        y: this.state.y += data.deltaY
+	      });
+	    }
+	  }, {
+	    key: 'onStop',
+	    value: function onStop(event, data) {
+	      if (this.state.x > 100 || this.state.y > 100) {
+	        this.setState({
+	          data: [{
+	            content: '2222'
+	          }]
+	        });
+	      } else {
+	        this.setState({
+	          x: 0,
+	          y: 0
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'onStart',
+	    value: function onStart(event, data) {
+	      this.setState({});
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactDraggable.DraggableCore,
+	        { onDrag: this.onDrag, onStop: this.onStop, onStart: this.onStart },
+	        _react2.default.createElement(
+	          'p',
+	          { style: { transform: 'translate(' + this.state.x + 'px, ' + this.state.y + 'px)', top: this.props.top } },
+	          this.props.text
+	        )
+	      );
+	    }
+	  }]);
+
+	  return DragTest;
+	}(_react2.default.Component);
 
 	exports.default = AppView;
 
