@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    li{display: block;background-color: #e3e;height: 100px;width: 100px;margin-bottom: 10px}
+  </style>
+</head>
+<body>
+  <ul>
+    <li draggable="true"></li>
+    <li draggable="true">222</li>
+    <li>333</li>
+    <li>444</li>
+  </ul>
+  <script>
+  var origin;
+    Array.prototype.forEach.call(document.getElementsByTagName('li'),function(li){
+      li.addEventListener('drop', function(e){
+        console.log(1)
+      })
+      li.addEventListener('click', function(e){
+        e.preventDefault()
+      })
+      li.addEventListener('dragover', function(e){
+        e.preventDefault()
+      })
+    })
+  </script>
+  http://codepen.io/kentwilliam/pen/xAKdj
+</body>
+</html>
