@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    *{margin:0;padding:0;}
+    #drag {
+      background-color: #eee;
+      width: 100px;
+      height: 600px;
+    }
+    #drag ul li{
+      background-color: #888;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      font-size: 22px;
+    }
+    #drag ul li:hover{
+      cursor: move;
+    }
+    #drag ul li:nth-child(1){
+      background-color: red;
+    }
+    #drag ul li:nth-child(2){
+      background-color: blue;
+    }
+    #drag ul li:nth-child(3){
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="drag">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+
+  <script>
+    var x,y,dx=0,dy=0;
+    var dragFun = function(e){
+      if(e.srcElement.localName == 'li'){
+        dx = e.pageX - x;
+        dy = e.pageY - y;
+        e.srcElement.style.transform='translate('+dx+'px,'+dy+'px)'
+      }
+    }
+    document.addEventListener('mousedown', function(e){
+      if(e.srcElement.localName == 'li'){
+        x = e.pageX - dx,
+        y = e.pageY - dy  
+      }
+      document.addEventListener('mousemove', dragFun ,false)
+    });
+
+    document.addEventListener('mouseup', function(e){
+      document.removeEventListener('mousemove', dragFun);
+
+    })
+    
+  </script>
+  <script src="./bundle.js"></script>
+</body>
+</html>

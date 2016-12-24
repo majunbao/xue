@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    *{margin:0;padding:0;}
+    #drag {
+      background-color: #eee;
+      width: 100px;
+      height: 600px;
+    }
+    #drag ul li{
+      background-color: #888;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      font-size: 22px;
+    }
+    #drag ul li:hover{
+      cursor: move;
+    }
+    #drag ul li:nth-child(1){
+      background-color: red;
+    }
+    #drag ul li:nth-child(2){
+      background-color: blue;
+    }
+    #drag ul li:nth-child(3){
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="drag">
+    <ul>
+      
+    </ul>
+  </div>
+
+  <script>
+    var store = ["a","b","c"]
+    function darg(element){
+      if(!element) return;
+      function dargHandle(element){
+        var x, y, dx=0,dy=0;
+        var dragCore = function(e){
+          dx = e.pageX - x;
+          dy = e.pageY - y;
+          element.style.transform = 'translate('+dx+'px,'+dy+'px)';
+        }
+        element.addEventListener('mousedown', function(e){
+          x = e.pageX - dx;
+          y = e.pageY - dy;
+          document.addEventListener('mousemove', dragCore, false);
+        },false);
+        element.addEventListener('mouseup', function(e){
+          document.removeEventListener('mousemove', dragCore);
+          if(dy>100){
+            store[1] = Math.random();
+            render(store)
+          }
+        },false);
+      };
+      if(element.length>0){
+        Array.prototype.forEach.call(element, function(node){
+          dargHandle(node)
+        })
+      }else{
+        dargHandle(element)
+      }
+    }
+    
+    function render(store){
+      var result = '';
+      function create(text){
+        return '<li>' + text + '</li>';
+      }
+      store.forEach(function(item){
+        result += create(item);
+      })
+
+      document.getElementsByTagName('ul')[0].innerHTML = result;
+      darg(document.getElementsByTagName('li'));
+    }
+
+    render(store);
+  </script>
+  <script src="./bundle.js"></script>
+</body>
+</html>
