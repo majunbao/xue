@@ -56,38 +56,86 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var App = function (_Component) {
-	  _inherits(App, _Component);
+	var Clock = function (_Component) {
+	  _inherits(Clock, _Component);
 
-	  function App() {
-	    _classCallCheck(this, App);
+	  function Clock() {
+	    var _ref;
 
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Clock);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Clock.__proto__ || Object.getPrototypeOf(Clock)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      time: "blue"
+	    }, _this.d = function () {
+	      _this.setState({
+	        time: 'red'
+	      });
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
+	  // constructor() {
+	  //     super();
+	  //     // set initial time:
+	  //     this.state.time = Date.now();
+	  //     this.d = this.d.bind(this)
+	  // }
 
-	  _createClass(App, [{
+
+	  _createClass(Clock, [{
 	    key: 'render',
 	    value: function render(props, state) {
-	      // return <div>{props.children}</div>
-	      return (0, _preact.cloneElement)(props.children[0], {
-	        style: { background: 'red' },
-	        onClick: function onClick() {
-	          return console.log(2);
-	        }
+	      // return <span>{ this.state.time }<a onCLick={this.d}> sdf</a></span>;
+	      return (0, _preact.cloneElement)((0, _preact.h)(
+	        'div',
+	        null,
+	        'sss'
+	      ), {
+	        style: {
+	          color: state.time
+	        },
+	        onMouseDown: this.d
 	      });
 	    }
 	  }]);
 
-	  return App;
+	  return Clock;
+	}(_preact.Component);
+
+	var T = function (_Component2) {
+	  _inherits(T, _Component2);
+
+	  function T() {
+	    _classCallCheck(this, T);
+
+	    return _possibleConstructorReturn(this, (T.__proto__ || Object.getPrototypeOf(T)).apply(this, arguments));
+	  }
+
+	  _createClass(T, [{
+	    key: 'render',
+	    value: function render() {
+	      return (0, _preact.h)(
+	        'div',
+	        null,
+	        'sdf'
+	      );
+	    }
+	  }]);
+
+	  return T;
 	}(_preact.Component);
 
 	(0, _preact.render)((0, _preact.h)(
-	  App,
+	  Clock,
 	  null,
 	  (0, _preact.h)(
-	    'p',
+	    'div',
 	    null,
-	    'wssss'
+	    'sdf'
 	  )
 	), document.body);
 
