@@ -3,18 +3,30 @@ import {addEvent, removeEvent} from './UXDom';
 
 class UXEvent extends Component {
   state = {
-    color: 'red',
-    transform: "translate(20px, 20px)"
+    transform: "translate(0px, 0px)",
   }
+
+  style = {
+    fontSize: "20px",
+    color: "red"
+  }
+
+  x = 0;
+  y = 0;
+  dx = 0;
+  dy = 0;
+
 
   handleDragStart = (e) => {
     const ownerDocument = document;
-
-
+    
+    this.x = e.pageX - this.dx;
+    this.y = e.pageY - this.dy;
 
     addEvent(ownerDocument, 'mousemove', this.handleDrag);
     addEvent(ownerDocument, 'mouseup', () => {
       removeEvent(ownerDocument, 'mousemove', this.handleDrag);
+      this.handleDragStop();
     });
   }
 
@@ -23,20 +35,20 @@ class UXEvent extends Component {
   }
 
   handleDrag = (e) => {
-    console.log(this)
-    console.log(e.pageX);
-    
+    this.dx = e.pageX - this.x;
+    this.dy = e.pageY - this.y;
+    this.setState({
+      transform: `translate(${this.dx}px, ${this.dy}px)`
+    });
   }
 
   onMouseDown = (e) => {
-    this.setState({
-      color: 'yellow'
-    })
-    this.handleDragStart()
+    this.props.onMouseDown && this.props.onMouseDown(e);
+    this.handleDragStart(e);
   }
 
   onMouseUp = () => {
-    this.handleDragStop();
+    
   }
 
   onMouseMove = () => {
@@ -49,7 +61,7 @@ class UXEvent extends Component {
       onMouseDown: this.onMouseDown,
       onMouseMove: this.onMouseMove,
       onMouseUp: this.onMouseUp,
-      style: state
+      style: {...this.style, ...state}
     });
   }
 }

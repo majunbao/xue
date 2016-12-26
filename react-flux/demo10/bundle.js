@@ -46,96 +46,21 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _preact = __webpack_require__(1);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _UXEvent = __webpack_require__(2);
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var _UXEvent2 = _interopRequireDefault(_UXEvent);
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Clock = function (_Component) {
-	  _inherits(Clock, _Component);
-
-	  function Clock() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
-	    _classCallCheck(this, Clock);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Clock.__proto__ || Object.getPrototypeOf(Clock)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      time: "blue"
-	    }, _this.d = function () {
-	      _this.setState({
-	        time: 'red'
-	      });
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-	  // constructor() {
-	  //     super();
-	  //     // set initial time:
-	  //     this.state.time = Date.now();
-	  //     this.d = this.d.bind(this)
-	  // }
-
-
-	  _createClass(Clock, [{
-	    key: 'render',
-	    value: function render(props, state) {
-	      // return <span>{ this.state.time }<a onCLick={this.d}> sdf</a></span>;
-	      return (0, _preact.cloneElement)((0, _preact.h)(
-	        'div',
-	        null,
-	        'sss'
-	      ), {
-	        style: {
-	          color: state.time
-	        },
-	        onMouseDown: this.d
-	      });
-	    }
-	  }]);
-
-	  return Clock;
-	}(_preact.Component);
-
-	var T = function (_Component2) {
-	  _inherits(T, _Component2);
-
-	  function T() {
-	    _classCallCheck(this, T);
-
-	    return _possibleConstructorReturn(this, (T.__proto__ || Object.getPrototypeOf(T)).apply(this, arguments));
-	  }
-
-	  _createClass(T, [{
-	    key: 'render',
-	    value: function render() {
-	      return (0, _preact.h)(
-	        'div',
-	        null,
-	        'sdf'
-	      );
-	    }
-	  }]);
-
-	  return T;
-	}(_preact.Component);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _preact.render)((0, _preact.h)(
-	  Clock,
+	  _UXEvent2.default,
 	  null,
 	  (0, _preact.h)(
-	    'div',
+	    'button',
 	    null,
-	    'sdf'
+	    'nihao'
 	  )
 	), document.body);
 
@@ -626,6 +551,129 @@
 	    exports.options = options;
 	});
 	//# sourceMappingURL=preact.js.map
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _preact = __webpack_require__(1);
+
+	var _UXDom = __webpack_require__(3);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var UXEvent = function (_Component) {
+	  _inherits(UXEvent, _Component);
+
+	  function UXEvent() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, UXEvent);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXEvent.__proto__ || Object.getPrototypeOf(UXEvent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      transform: "translate(0px, 0px)"
+	    }, _this.style = {
+	      fontSize: "20px",
+	      color: "red"
+	    }, _this.x = 0, _this.y = 0, _this.dx = 0, _this.dy = 0, _this.handleDragStart = function (e) {
+	      var ownerDocument = document;
+
+	      _this.x = e.pageX - _this.dx;
+	      _this.y = e.pageY - _this.dy;
+
+	      (0, _UXDom.addEvent)(ownerDocument, 'mousemove', _this.handleDrag);
+	      (0, _UXDom.addEvent)(ownerDocument, 'mouseup', function () {
+	        (0, _UXDom.removeEvent)(ownerDocument, 'mousemove', _this.handleDrag);
+	        _this.handleDragStop();
+	      });
+	    }, _this.handleDragStop = function (e) {
+	      var ownerDocument = document;
+	    }, _this.handleDrag = function (e) {
+	      _this.dx = e.pageX - _this.x;
+	      _this.dy = e.pageY - _this.y;
+	      _this.setState({
+	        transform: 'translate(' + _this.dx + 'px, ' + _this.dy + 'px)'
+	      });
+	    }, _this.onMouseDown = function (e) {
+	      _this.props.onMouseDown && _this.props.onMouseDown(e);
+	      _this.handleDragStart(e);
+	    }, _this.onMouseUp = function () {}, _this.onMouseMove = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(UXEvent, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.cloneElement)(props.children[0], {
+	        onClick: this.props.click,
+	        onMouseDown: this.onMouseDown,
+	        onMouseMove: this.onMouseMove,
+	        onMouseUp: this.onMouseUp,
+	        style: _extends({}, this.style, state)
+	      });
+	    }
+	  }]);
+
+	  return UXEvent;
+	}(_preact.Component);
+
+	exports.default = UXEvent;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addEvent = addEvent;
+	exports.removeEvent = removeEvent;
+	function addEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  if (el.attchEvent) {
+	    el.attchEvent('on' + event, handler);
+	  } else if (el.addEventListener) {
+	    el.addEventListener(event, handler, false);
+	  } else {
+	    el['on'] = handler;
+	  }
+	}
+
+	function removeEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  if (el.detachEvent) {
+	    el.detachEvent('on' + event, handler);
+	  } else if (el.removeEventListener) {
+	    el.removeEventListener(event, handler, false);
+	  } else {
+	    el['on'] = null;
+	  }
+	}
 
 /***/ }
 /******/ ]);
