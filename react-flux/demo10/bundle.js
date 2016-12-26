@@ -46,23 +46,50 @@
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _preact = __webpack_require__(1);
 
-	var _drag = __webpack_require__(2);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _drag2 = _interopRequireDefault(_drag);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function Test() {
-	  return (0, _preact.h)(
-	    'div',
+	var App = function (_Component) {
+	  _inherits(App, _Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      // return <div>{props.children}</div>
+	      return (0, _preact.cloneElement)(props.children[0], {
+	        style: { background: 'red' },
+	        onClick: function onClick() {
+	          return console.log(2);
+	        }
+	      });
+	    }
+	  }]);
+
+	  return App;
+	}(_preact.Component);
+
+	(0, _preact.render)((0, _preact.h)(
+	  App,
+	  null,
+	  (0, _preact.h)(
+	    'p',
 	    null,
-	    (0, _preact.h)(_drag.DragGroup, null)
-	  );
-	}
-
-	(0, _preact.render)((0, _preact.h)(Test, null), document.getElementById('root'));
+	    'wssss'
+	  )
+	), document.body);
 
 /***/ },
 /* 1 */
@@ -551,170 +578,6 @@
 	    exports.options = options;
 	});
 	//# sourceMappingURL=preact.js.map
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.DragGroup = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _preact = __webpack_require__(1);
-
-	var _Sidebar = __webpack_require__(3);
-
-	var _Sidebar2 = _interopRequireDefault(_Sidebar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Drag = function (_Component) {
-	  _inherits(Drag, _Component);
-
-	  function Drag() {
-	    _classCallCheck(this, Drag);
-
-	    var _this = _possibleConstructorReturn(this, (Drag.__proto__ || Object.getPrototypeOf(Drag)).call(this));
-
-	    _this.x = 0;
-	    _this.y = 0;
-	    _this.dx = 0;
-	    _this.dy = 0;
-	    _this.dargStart = _this.dargStart.bind(_this);
-	    _this.dargStop = _this.dargStop.bind(_this);
-	    _this.dargHandle = _this.dargHandle.bind(_this);
-	    _this.state = {
-	      style: {}
-	    };
-
-	    return _this;
-	  }
-
-	  _createClass(Drag, [{
-	    key: 'dargHandle',
-	    value: function dargHandle(e) {
-	      this.dx = e.pageX - this.x;
-	      this.dy = e.pageY - this.y;
-	      this.base.style.transform = 'translate(' + this.dx + 'px,' + this.dy + 'px)';
-	    }
-	  }, {
-	    key: 'dargStart',
-	    value: function dargStart(e) {
-	      e.preventDefault();
-	      this.x = e.pageX - this.dx;
-	      this.y = e.pageY - this.dy;
-	      document.addEventListener('mousemove', this.dargHandle, false);
-	    }
-	  }, {
-	    key: 'dargStop',
-	    value: function dargStop(e) {
-	      document.removeEventListener('mousemove', this.dargHandle, false);
-
-	      this.props.onSort({
-	        node: this.base,
-	        dargEvent: e
-	      });
-
-	      this.dx = 0;
-	      this.dy = 0;
-	      this.base.style.transform = '';
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render(props, state) {
-	      console.log(props.children);
-	      // return <div onMouseDown={this.dargStart} onMouseUp={this.dargStop}>{props.children}</div>;
-	      return (0, _preact.cloneElement)(props.children);
-	    }
-	  }]);
-
-	  return Drag;
-	}(_preact.Component);
-
-	var DragGroup = function (_Component2) {
-	  _inherits(DragGroup, _Component2);
-
-	  function DragGroup() {
-	    _classCallCheck(this, DragGroup);
-
-	    var _this2 = _possibleConstructorReturn(this, (DragGroup.__proto__ || Object.getPrototypeOf(DragGroup)).call(this));
-
-	    _this2.dargSort = _this2.dargSort.bind(_this2);
-	    _this2.height = 100;
-	    _this2.state = {
-	      list: _Sidebar2.default
-	    };
-	    return _this2;
-	  }
-
-	  // 拖拽排序 核心
-
-
-	  _createClass(DragGroup, [{
-	    key: 'dargSort',
-	    value: function dargSort(obj) {
-	      var newState = this.state.list.slice(0);
-	      console.log(obj.dargEvent);
-	      // if(parseInt(dy/this.height)>=this.state.list.length){
-	      //   console.log(2)
-	      // }else {
-	      //   newState[index] = newState.splice(parseInt(dy/this.height)+index, 1, newState[index])[0];
-	      //   this.setState({
-	      //     list: newState
-	      //   });  
-	      // };
-	    }
-	  }, {
-	    key: 'dargStart',
-	    value: function dargStart(obj) {}
-	  }, {
-	    key: 'render',
-	    value: function render(props, state) {
-	      // let group = this.state.list.map((text, i) => {
-	      //   return <Drag index={i} style={{top: this.height*i + 'px'}} onSort={this.dargSort} onStart={this.dargStart}><img src={text} width="100" height="100" /></Drag>
-	      // });
-	      // return <div style={{overflow: 'auto', height: '400px', position: 'relative'}}>{group}</div>
-	      return (0, _preact.h)(
-	        Drag,
-	        null,
-	        (0, _preact.h)(
-	          'p',
-	          null,
-	          'sdf'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return DragGroup;
-	}(_preact.Component);
-
-	exports.DragGroup = DragGroup;
-	exports.default = Drag;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var sidebar = ["./images/83.jpg", "./images/50b58PICzJM_1024.jpg", "./images/tooopen_sy_123059936785.jpg", "./images/83.jpg", "./images/50b58PICzJM_1024.jpg", "./images/tooopen_sy_123059936785.jpg"];
-
-	exports.default = sidebar;
 
 /***/ }
 /******/ ]);

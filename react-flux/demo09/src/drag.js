@@ -1,4 +1,4 @@
-import {h, render, Component} from 'preact';
+import {h, render, Component, cloneElement} from 'preact';
 
 import SidebarStore from './store/Sidebar';
 
@@ -12,12 +12,10 @@ class Drag extends Component {
     this.dargStart = this.dargStart.bind(this);
     this.dargStop = this.dargStop.bind(this);
     this.dargHandle = this.dargHandle.bind(this);
-    this.style = {
-      width: '100px',
-      height: '100px',
-      fontSize: '30px',
-      color: '#fff'
-    };
+    this.state = {
+      style: {}
+    }
+
   }
 
   dargHandle(e) {
@@ -36,7 +34,10 @@ class Drag extends Component {
   dargStop(e) {
     document.removeEventListener('mousemove', this.dargHandle, false);
 
-    this.props.onSort(this.props.index, this.dx, this.dy);
+    this.props.onSort({
+      node: this.base,
+      dargEvent: e
+    });
 
     this.dx = 0;
     this.dy = 0;
@@ -44,7 +45,9 @@ class Drag extends Component {
   }
 
   render(props, state){
-    return <div draggable="true" onDrag={function(){console.log(1)}} OnDragDrop={()=>{console.log(1)}} style={this.style} onMouseDown={this.dargStart} onMouseUp={this.dargStop}>{props.children}</div>;
+    console.log(props.children)
+    // return <div onMouseDown={this.dargStart} onMouseUp={this.dargStop}>{props.children}</div>;
+    return cloneElement(props.children)
   }
 }
 
@@ -59,25 +62,30 @@ class DragGroup extends Component {
   }
 
   // 拖拽排序 核心
-  dargSort(index, dx, dy) {
+  dargSort(obj) {
     let newState = this.state.list.slice(0);
-    if(parseInt(dy/this.height)>=this.state.list.length){
-      console.log(2)
-    }else {
-      newState[index] = newState.splice(parseInt(dy/this.height)+index, 1, newState[index])[0];
-      this.setState({
-        list: newState
-      });  
-    };
-    console.log(parseInt(dy/this.height), index)
+    console.log(obj.dargEvent)
+    // if(parseInt(dy/this.height)>=this.state.list.length){
+    //   console.log(2)
+    // }else {
+    //   newState[index] = newState.splice(parseInt(dy/this.height)+index, 1, newState[index])[0];
+    //   this.setState({
+    //     list: newState
+    //   });  
+    // };
     
   }
 
+  dargStart(obj) {
+
+  }
+
   render(props, state) {
-    let group = this.state.list.map((text, i) => {
-      return <Drag index={i} onSort={this.dargSort}><img src={text} width="100" height="100" /></Drag>
-    });
-    return <div>{group}</div>
+    // let group = this.state.list.map((text, i) => {
+    //   return <Drag index={i} style={{top: this.height*i + 'px'}} onSort={this.dargSort} onStart={this.dargStart}><img src={text} width="100" height="100" /></Drag>
+    // });
+    // return <div style={{overflow: 'auto', height: '400px', position: 'relative'}}>{group}</div>
+    return <Drag><p>sdf</p></Drag>
   }
 }
 export {DragGroup};
