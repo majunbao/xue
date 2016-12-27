@@ -2,14 +2,6 @@ import {h, render, Component, cloneElement} from 'preact';
 import {addEvent, removeEvent} from './UXDom';
 
 class UXEvent extends Component {
-  state = {
-    transform: "translate(0px, 0px)",
-  }
-
-  style = {
-    fontSize: "20px",
-    color: "red"
-  }
 
   x = 0;
   y = 0;
@@ -28,42 +20,38 @@ class UXEvent extends Component {
       removeEvent(ownerDocument, 'mousemove', this.handleDrag);
       this.handleDragStop();
     });
-  }
+  };
 
   handleDragStop = (e) => {
     const ownerDocument = document;
-  }
+  };
 
   handleDrag = (e) => {
     this.dx = e.pageX - this.x;
     this.dy = e.pageY - this.y;
-    this.setState({
-      transform: `translate(${this.dx}px, ${this.dy}px)`
-    });
-  }
+    this.props.onDrag({
+      x: e.pageX,
+      y: e.pageY,
+      dx: this.dx,
+      dy: this.dy,
+      event: e,
+      node: this.base
+    })
+  };
 
   onMouseDown = (e) => {
-    this.props.onMouseDown && this.props.onMouseDown(e);
-    this.handleDragStart(e);
-  }
-
-  onMouseUp = () => {
-    
-  }
-
-  onMouseMove = () => {
-
-  }
+    typeof this.props.onMouseDown == 'function' && this.props.onMouseDown(e);
+    typeof this.props.onDrag == 'function' && this.handleDragStart(e);
+  };
 
   render(props, state) {
     return cloneElement(props.children[0],{
-      onClick: this.props.click,
+      onClick: this.props.onClick,
       onMouseDown: this.onMouseDown,
-      onMouseMove: this.onMouseMove,
-      onMouseUp: this.onMouseUp,
-      style: {...this.style, ...state}
+      onMouseMove: this.props.onMouseMove,
+      onMouseUp: this.props.onMouseUp
     });
-  }
+  };
 }
 
 export default UXEvent;

@@ -1,5 +1,7 @@
 import {h, render, Component, cloneElement} from 'preact';
 
-import UXEvent from './UXKit/UXEvent';
+import Layout from './views/Layout';
 
-render(<UXEvent><button>nihao</button></UXEvent>, document.body);
+import './styles/app.css';
+
+render(<Layout />, document.body);

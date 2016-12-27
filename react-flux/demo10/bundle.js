@@ -48,21 +48,15 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXEvent = __webpack_require__(2);
+	var _Layout = __webpack_require__(2);
 
-	var _UXEvent2 = _interopRequireDefault(_UXEvent);
+	var _Layout2 = _interopRequireDefault(_Layout);
+
+	__webpack_require__(3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _preact.render)((0, _preact.h)(
-	  _UXEvent2.default,
-	  null,
-	  (0, _preact.h)(
-	    'button',
-	    null,
-	    'nihao'
-	  )
-	), document.body);
+	(0, _preact.render)((0, _preact.h)(_Layout2.default, null), document.body);
 
 /***/ },
 /* 1 */
@@ -568,112 +562,251 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXDom = __webpack_require__(3);
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var UXEvent = function (_Component) {
-	  _inherits(UXEvent, _Component);
+	var Layout = function (_Component) {
+	  _inherits(Layout, _Component);
 
-	  function UXEvent() {
+	  function Layout() {
 	    var _ref;
 
 	    var _temp, _this, _ret;
 
-	    _classCallCheck(this, UXEvent);
+	    _classCallCheck(this, Layout);
 
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXEvent.__proto__ || Object.getPrototypeOf(UXEvent)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      transform: "translate(0px, 0px)"
-	    }, _this.style = {
-	      fontSize: "20px",
-	      color: "red"
-	    }, _this.x = 0, _this.y = 0, _this.dx = 0, _this.dy = 0, _this.handleDragStart = function (e) {
-	      var ownerDocument = document;
-
-	      _this.x = e.pageX - _this.dx;
-	      _this.y = e.pageY - _this.dy;
-
-	      (0, _UXDom.addEvent)(ownerDocument, 'mousemove', _this.handleDrag);
-	      (0, _UXDom.addEvent)(ownerDocument, 'mouseup', function () {
-	        (0, _UXDom.removeEvent)(ownerDocument, 'mousemove', _this.handleDrag);
-	        _this.handleDragStop();
-	      });
-	    }, _this.handleDragStop = function (e) {
-	      var ownerDocument = document;
-	    }, _this.handleDrag = function (e) {
-	      _this.dx = e.pageX - _this.x;
-	      _this.dy = e.pageY - _this.y;
-	      _this.setState({
-	        transform: 'translate(' + _this.dx + 'px, ' + _this.dy + 'px)'
-	      });
-	    }, _this.onMouseDown = function (e) {
-	      _this.props.onMouseDown && _this.props.onMouseDown(e);
-	      _this.handleDragStart(e);
-	    }, _this.onMouseUp = function () {}, _this.onMouseMove = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Layout.__proto__ || Object.getPrototypeOf(Layout)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      top: 0,
+	      right: 0,
+	      bottom: 0,
+	      left: 0,
+	      minHeight: '550px'
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
-	  _createClass(UXEvent, [{
+	  _createClass(Layout, [{
 	    key: 'render',
 	    value: function render(props, state) {
-	      return (0, _preact.cloneElement)(props.children[0], {
-	        onClick: this.props.click,
-	        onMouseDown: this.onMouseDown,
-	        onMouseMove: this.onMouseMove,
-	        onMouseUp: this.onMouseUp,
-	        style: _extends({}, this.style, state)
-	      });
+	      return (0, _preact.h)(
+	        'div',
+	        { className: 'uk-view', style: _extends({}, state) },
+	        (0, _preact.h)(Top, null),
+	        (0, _preact.h)(Left, null),
+	        (0, _preact.h)(
+	          Center,
+	          null,
+	          (0, _preact.h)(Canvas, null)
+	        ),
+	        (0, _preact.h)(Right, null)
+	      );
 	    }
 	  }]);
 
-	  return UXEvent;
+	  return Layout;
 	}(_preact.Component);
 
-	exports.default = UXEvent;
+	var Top = function (_Component2) {
+	  _inherits(Top, _Component2);
+
+	  function Top() {
+	    var _ref2;
+
+	    var _temp2, _this2, _ret2;
+
+	    _classCallCheck(this, Top);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_ref2 = Top.__proto__ || Object.getPrototypeOf(Top)).call.apply(_ref2, [this].concat(args))), _this2), _this2.state = {
+	      top: 0,
+	      right: 0,
+	      bottom: 0,
+	      left: 0,
+	      height: '60px',
+	      background: '#242424'
+	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+	  }
+
+	  _createClass(Top, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        { style: _extends({}, state) },
+	        'nihao'
+	      );
+	    }
+	  }]);
+
+	  return Top;
+	}(_preact.Component);
+
+	var Left = function (_Component3) {
+	  _inherits(Left, _Component3);
+
+	  function Left() {
+	    var _ref3;
+
+	    var _temp3, _this3, _ret3;
+
+	    _classCallCheck(this, Left);
+
+	    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	      args[_key3] = arguments[_key3];
+	    }
+
+	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_ref3 = Left.__proto__ || Object.getPrototypeOf(Left)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
+	      top: '60px',
+	      bottom: 0,
+	      left: 0,
+	      background: '#aaacb9',
+	      width: '200px'
+	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
+	  }
+
+	  _createClass(Left, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        { className: 'uk-view', style: _extends({}, state) },
+	        'nihao'
+	      );
+	    }
+	  }]);
+
+	  return Left;
+	}(_preact.Component);
+
+	var Right = function (_Component4) {
+	  _inherits(Right, _Component4);
+
+	  function Right() {
+	    var _ref4;
+
+	    var _temp4, _this4, _ret4;
+
+	    _classCallCheck(this, Right);
+
+	    for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+	      args[_key4] = arguments[_key4];
+	    }
+
+	    return _ret4 = (_temp4 = (_this4 = _possibleConstructorReturn(this, (_ref4 = Right.__proto__ || Object.getPrototypeOf(Right)).call.apply(_ref4, [this].concat(args))), _this4), _this4.state = {
+	      top: '60px',
+	      right: 0,
+	      bottom: 0,
+	      background: '#F6F6F6',
+	      width: '270px'
+	    }, _temp4), _possibleConstructorReturn(_this4, _ret4);
+	  }
+
+	  _createClass(Right, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        { className: 'uk-view', style: _extends({}, state) },
+	        'nihao'
+	      );
+	    }
+	  }]);
+
+	  return Right;
+	}(_preact.Component);
+
+	var Center = function (_Component5) {
+	  _inherits(Center, _Component5);
+
+	  function Center() {
+	    var _ref5;
+
+	    var _temp5, _this5, _ret5;
+
+	    _classCallCheck(this, Center);
+
+	    for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+	      args[_key5] = arguments[_key5];
+	    }
+
+	    return _ret5 = (_temp5 = (_this5 = _possibleConstructorReturn(this, (_ref5 = Center.__proto__ || Object.getPrototypeOf(Center)).call.apply(_ref5, [this].concat(args))), _this5), _this5.state = {
+	      top: '60px',
+	      right: '270px',
+	      bottom: 0,
+	      left: '200px',
+	      background: '#57585D'
+	    }, _temp5), _possibleConstructorReturn(_this5, _ret5);
+	  }
+
+	  _createClass(Center, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        { className: 'uk-view', style: _extends({}, state) },
+	        props.children
+	      );
+	    }
+	  }]);
+
+	  return Center;
+	}(_preact.Component);
+
+	var Canvas = function (_Component6) {
+	  _inherits(Canvas, _Component6);
+
+	  function Canvas() {
+	    var _ref6;
+
+	    var _temp6, _this6, _ret6;
+
+	    _classCallCheck(this, Canvas);
+
+	    for (var _len6 = arguments.length, args = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+	      args[_key6] = arguments[_key6];
+	    }
+
+	    return _ret6 = (_temp6 = (_this6 = _possibleConstructorReturn(this, (_ref6 = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref6, [this].concat(args))), _this6), _this6.state = {
+	      width: '768px',
+	      height: '576px',
+	      top: '50%',
+	      left: '50%',
+	      background: '#fff',
+	      marginTop: '-288px',
+	      marginLeft: '-383.5px'
+	    }, _temp6), _possibleConstructorReturn(_this6, _ret6);
+	  }
+
+	  _createClass(Canvas, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        { className: 'uk-view', style: _extends({}, state) },
+	        'nihao'
+	      );
+	    }
+	  }]);
+
+	  return Canvas;
+	}(_preact.Component);
+
+	exports.default = Layout;
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.addEvent = addEvent;
-	exports.removeEvent = removeEvent;
-	function addEvent(el, event, handler) {
-	  if (!el) {
-	    return;
-	  };
-	  if (el.attchEvent) {
-	    el.attchEvent('on' + event, handler);
-	  } else if (el.addEventListener) {
-	    el.addEventListener(event, handler, false);
-	  } else {
-	    el['on'] = handler;
-	  }
-	}
-
-	function removeEvent(el, event, handler) {
-	  if (!el) {
-	    return;
-	  };
-	  if (el.detachEvent) {
-	    el.detachEvent('on' + event, handler);
-	  } else if (el.removeEventListener) {
-	    el.removeEventListener(event, handler, false);
-	  } else {
-	    el['on'] = null;
-	  }
-	}
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
