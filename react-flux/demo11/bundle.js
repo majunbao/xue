@@ -695,17 +695,7 @@
 	        (0, _preact.h)(
 	          Center,
 	          { style: { left: state.left, top: state.top, right: state.right } },
-	          (0, _preact.h)(Canvas, null),
-	          (0, _preact.h)(
-	            'button',
-	            { onClick: this.Test },
-	            '1'
-	          ),
-	          (0, _preact.h)(
-	            'button',
-	            { onClick: this.Test1 },
-	            '2'
-	          )
+	          (0, _preact.h)(Canvas, null)
 	        ),
 	        (0, _preact.h)(
 	          Right,
@@ -713,7 +703,16 @@
 	          (0, _preact.h)(
 	            'div',
 	            null,
-	            'nihao'
+	            (0, _preact.h)(
+	              'button',
+	              { onClick: this.Test },
+	              '1'
+	            ),
+	            (0, _preact.h)(
+	              'button',
+	              { onClick: this.Test1 },
+	              '2'
+	            )
 	          )
 	        )
 	      );

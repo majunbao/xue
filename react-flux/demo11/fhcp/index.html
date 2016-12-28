@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>index.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/ui.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="./js/template/riotui.css"></script>
+    <script src="./js/common/jquery.js"></script>
+    <script src="./js/common/arttemplate.js"></script>
+    <script src="./js/common/riot.js"></script>
+    <script src="./js/util/fhcpConst.js"></script>
+    <script src="./js/util/fhcp.js"></script>
+    <script src="./js/template/riotui.js"></script>
+    <script src="./indexNavPage.js"></script>
+    <script src="./js/template/shape.js"></script>
+    <script src="./index.js"></script>
+  </head>
+  
+  <body>
+    <!-- 头部 -->
+	<div id="headDiv">
+		<article>
+			<a class="button">文本</a><a class="button">形状</a><a class="button">表格</a><a class="button" onclick="alert(Fhcp.getLog())">日志</a>
+			<ui-img src="image/icon.png" hover="image/icon-hover.png" active="image/icon-active.png"  width="30" height="30"></ui-img>
+		</article>
+	</div>
+	<div id="contDiv">
+		<div id="leftDiv">
+		    <div id="leftMainContent">
+			 	<div id="leftMainDiv">
+			 
+			    </div>
+			    <div id="leftMainBottomDiv">
+			 
+			    </div>
+			</div>
+		
+			<div id="leftcloseDiv"></div>
+		</div>
+		<div id="centerDiv"></div>
+		<div id="rightDiv"></div>
+	</div>
+
+	<!-- 菜單 -->
+	<div id="menu" class="rmenu">
+		<div class="menuitems">
+			<a href="#" onclick="Index_NavPage.createNavPage()">新建页面</a>
+		</div>
+	</div>
+
+	<div id="navEleRmenu" class="rmenu">
+		<div class="menuitems">
+			<a href="#" onclick="Index_NavPage.delNavPageByRightClick()">删除页面</a>
+		</div>
+	</div>
+	<!---->
+	
+</body>
+</html>
+
+<!-- 导航元素模板 -->
+<script id="tp_navPageEle" type="text/html">
+    <div id="{{uuid}}" seq="{{seq}}" class="navPage">
+		<div class="navPageLeft">{{seq}}</div>
+		<div class="navPageContent">{{uuid}}</div>
+	</div>
+</script>
+
+<!-- 图形元素模板-->
+<script id="shapeEle" type="text/html">
+    <div  id="{{id}}" class="fhShape"">
+        <div id ="helpTopLeftEle" class="fhShape_moveHelp"></div>
+        <div id ="helpTopCenterEle" class="fhShape_moveHelp"></div>
+        <div id ="helpTopRightEle" class="fhShape_moveHelp"></div>
+        <div id ="helpLeftEle" class="fhShape_moveHelp"></div>
+        <div id ="helpRightEle" class="fhShape_moveHelp"></div>
+        <div id ="helpBottomLeftEle" class="fhShape_moveHelp"></div>
+        <div id ="helpBottomCenterEle" class="fhShape_moveHelp"></div>
+        <div id ="helpBottomRightEle" class="fhShape_moveHelp"></div>
+        <canvas id="shapeCanvasEle" class="shapeCanvas" ></canvas>
+        <!--<canvas id="shapeCanvas" ></canvas> -->
+    </div>
+</script>
+
+ <script>
+    initApp();
+ </script>

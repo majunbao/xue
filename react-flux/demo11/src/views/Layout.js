@@ -35,10 +35,13 @@ class Layout extends Component {
         <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
         <Center style={{left: state.left, top: state.top, right: state.right}}>
           <Canvas />
-          <button onClick={this.Test}>1</button>
-          <button onClick={this.Test1}>2</button>
         </Center>
-        <Right style={{width: state.right, top: state.top}}><div>nihao</div></Right>
+        <Right style={{width: state.right, top: state.top}}>
+          <div>
+            <button onClick={this.Test}>1</button>
+            <button onClick={this.Test1}>2</button>
+          </div>
+        </Right>
       </div>
     )
   }

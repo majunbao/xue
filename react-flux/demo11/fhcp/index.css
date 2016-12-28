@@ -1,0 +1,183 @@
+body{
+
+}
+
+
+#headDiv{
+	background-color:#f3f3f3;
+	height:50px;
+	width: 100%;
+}
+
+#contDiv{
+	 background-color:#e3e6ed;
+	 position: absolute;
+     width: 100%;
+     top:50px;/*¿ØÖÆ¾àÀë¸¸´°Ìå¸ß¶È%*/
+     bottom: 0px;/*¿ØÖÆ¸ß¶È100%*/
+}
+
+
+#leftDiv{
+	background-color:#E8F2FE;
+	width:200px;
+	height:100%;
+
+}
+
+#leftMainContent{
+	width:188px;
+	height:100%;
+	float: left;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+#leftMainBottomDiv{
+	width:188px;
+	height:100px;
+}
+#leftMainDiv{
+	width:170px;
+	overflow-y:auto;
+	margin-left: auto;/*Ë®Æ½¾ÓÖÐ*/
+	margin-right:auto;
+}
+
+#leftcloseDiv{
+	border-left:solid 1px #bc939b;
+	border-right:solid 1px #bc939b;
+	width:10px;
+	height:100%;
+	float: left;
+}
+
+
+#centerDiv{
+	height:100%;
+	left:200px;
+	top:0px;
+	bottom: 0px;
+	right: 0px;
+	position: absolute;
+}
+
+
+
+
+/*×ó²¿ÓÒ¼ü²Ëµ¥*/
+.rmenu {
+	width: 100px;
+	border: 1px solid gray;
+	padding: 2px;
+	visibility: hidden;
+	position: absolute;
+	z-index:3;
+}
+
+.rmenu.menuitems {
+	margin: 1px 0;
+}
+
+.rmenu.menuitems a {
+	text-decoration: none;
+}
+
+.rmenu.menuitems:hover {
+	background-color: #c0c0c0;
+}
+
+
+.navPage{
+    width:98%;
+	height:100px;
+	background-color :#c0c0c0;
+	/*border-bottom:solid 1px red;*/
+	position:relative;
+
+}
+.navPage:hover{
+  background-color: #69e0a1;
+}
+
+.navPage:active{
+  background-color: #2da867;
+}
+
+.navPageSel{
+    width:98%;
+	height:100px;
+	/*border-bottom:solid 1px red;*/
+	background-color :#FFCCCC;
+	position:relative;
+}
+.navPageSel:hover{
+  background-color: #69e0a1;
+}
+
+.navPageSel:active{
+  background-color: #FFCCCC;
+}
+
+
+.navPageLeft{
+	width:20px;
+	left:0px;
+	top:0px;
+	bottom: 0px;
+	position: absolute;
+	z-index:1;
+	height:100px;
+	
+	-moz-user-select:none;/*»ðºü*/
+    -webkit-user-select:none;/*webkitä¯ÀÀÆ÷*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*ÔçÆÚä¯ÀÀÆ÷*/
+     user-select:none;
+}
+.navPageContent{
+	left:20px;
+	top:4px;
+	right:4px;
+	bottom: 4px;
+	position: absolute;
+	z-index:1;
+	background-color :#ffffff;
+	
+	-moz-user-select:none;/*»ðºü*/
+    -webkit-user-select:none;/*webkitä¯ÀÀÆ÷*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*ÔçÆÚä¯ÀÀÆ÷*/
+     user-select:none;
+}
+
+
+.fhShape{
+
+	border: 1px solid gray;
+	width:100px;
+	height:100px;
+	top:200px;
+	left :50px;
+	position: absolute;
+}
+.shapeCanvas{
+	z-index:1;
+	top:0;
+	left :0;
+	bottom:0;
+	righy:0;
+    position: absolute;
+}
+.fhShapeMove{
+    background-color: #69e0a1;
+	border: 1px solid gray;
+	position: absolute;
+}
+.fhShape_moveHelp{
+	z-index:2;
+    background-color: #69e0a1;
+	border: 1px solid gray;
+	width:10px;
+	height:10px;
+	position: absolute;
+}
