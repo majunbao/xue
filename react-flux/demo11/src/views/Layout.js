@@ -1,5 +1,7 @@
 import {h, render, Component, cloneElement} from 'preact';
 
+import {UXDrag} from '../uxkit/UXkit';
+
 class Layout extends Component {
   state = {
     top: this.props.style.top,
@@ -34,7 +36,13 @@ class Layout extends Component {
         <Top style={{height: state.top}}><div>t2op</div></Top>
         <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
         <Center style={{left: state.left, top: state.top, right: state.right}}>
-          <Canvas />
+          <Canvas>
+            <UXDrag><svg width="200" height="200"><rect x="10" y="10" height="100" width="100" stroke="#006600" fill="#00cc00"></rect></svg></UXDrag>
+            <UXDrag><svg width="200" height="200"><circle cx="66" cy="60" r="54"  stroke="#006600" fill="#00cc00"></circle></svg></UXDrag>
+            <UXDrag><svg width="200" height="200"><ellipse cx="66" cy="60" rx="54" ry="40"  stroke="#006600" fill="#00cc00"></ellipse></svg></UXDrag>
+            <UXDrag><svg width="200" height="200"><polyline points="10,2 50,2, 32,52, 10,2"  stroke="#006600" fill="#00cc00" /></svg></UXDrag>
+            <UXDrag><svg width="200" height="200"><line x1="10" y1="60" x2="94" y2="40"  stroke="#006600" /></svg></UXDrag>
+          </Canvas>
         </Center>
         <Right style={{width: state.right, top: state.top}}>
           <div>
@@ -110,18 +118,19 @@ class Center extends Component {
 }
 
 class Canvas extends Component {
-  state = {
+  style = {
     width: '768px',
     height: '576px',
     top: '50%',
     left: '50%',
+    overflow: 'visible',
     background: '#fff',
     marginTop: '-288px',
     marginLeft: '-383.5px'
   }
 
   render(props, state) {
-    return <div className="uk-view" style={{...state}}>ss</div>
+    return <div className="uk-view" style={{...this.style, ...props.style}}>{props.children}</div>
   }
 }
 

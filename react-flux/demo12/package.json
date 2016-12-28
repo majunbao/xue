@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "preact": "^7.1.0",
+    "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.0-rc.2"
+  }
+}

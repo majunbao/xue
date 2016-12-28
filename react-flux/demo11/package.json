@@ -3,7 +3,6 @@
     "watch": "webpack ./src/root.js ./bundle.js --watch"
   },
   "dependencies": {
-    "flux": "^3.1.2",
     "preact": "^7.1.0"
   },
   "devDependencies": {
