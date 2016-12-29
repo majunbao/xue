@@ -52,7 +52,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(4);
+	__webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -625,7 +625,11 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXkit = __webpack_require__(10);
+	var _Canvas = __webpack_require__(4);
+
+	var _Canvas2 = _interopRequireDefault(_Canvas);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -698,53 +702,9 @@
 	          Center,
 	          { style: { left: state.left, top: state.top, right: state.right } },
 	          (0, _preact.h)(
-	            Canvas,
+	            Main,
 	            null,
-	            (0, _preact.h)(
-	              _UXkit.UXDrag,
-	              null,
-	              (0, _preact.h)(
-	                'svg',
-	                { width: '200', height: '200' },
-	                (0, _preact.h)('rect', { x: '10', y: '10', height: '100', width: '100', stroke: '#006600', fill: '#00cc00' })
-	              )
-	            ),
-	            (0, _preact.h)(
-	              _UXkit.UXDrag,
-	              null,
-	              (0, _preact.h)(
-	                'svg',
-	                { width: '200', height: '200' },
-	                (0, _preact.h)('circle', { cx: '66', cy: '60', r: '54', stroke: '#006600', fill: '#00cc00' })
-	              )
-	            ),
-	            (0, _preact.h)(
-	              _UXkit.UXDrag,
-	              null,
-	              (0, _preact.h)(
-	                'svg',
-	                { width: '200', height: '200' },
-	                (0, _preact.h)('ellipse', { cx: '66', cy: '60', rx: '54', ry: '40', stroke: '#006600', fill: '#00cc00' })
-	              )
-	            ),
-	            (0, _preact.h)(
-	              _UXkit.UXDrag,
-	              null,
-	              (0, _preact.h)(
-	                'svg',
-	                { width: '200', height: '200' },
-	                (0, _preact.h)('polyline', { points: '10,2 50,2, 32,52, 10,2', stroke: '#006600', fill: '#00cc00' })
-	              )
-	            ),
-	            (0, _preact.h)(
-	              _UXkit.UXDrag,
-	              null,
-	              (0, _preact.h)(
-	                'svg',
-	                { width: '200', height: '200' },
-	                (0, _preact.h)('line', { x1: '10', y1: '60', x2: '94', y2: '40', stroke: '#006600' })
-	              )
-	            )
+	            (0, _preact.h)(_Canvas2.default, null)
 	          )
 	        ),
 	        (0, _preact.h)(
@@ -914,21 +874,21 @@
 	  return Center;
 	}(_preact.Component);
 
-	var Canvas = function (_Component6) {
-	  _inherits(Canvas, _Component6);
+	var Main = function (_Component6) {
+	  _inherits(Main, _Component6);
 
-	  function Canvas() {
+	  function Main() {
 	    var _ref6;
 
 	    var _temp6, _this6, _ret6;
 
-	    _classCallCheck(this, Canvas);
+	    _classCallCheck(this, Main);
 
 	    for (var _len6 = arguments.length, args = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
 	      args[_key6] = arguments[_key6];
 	    }
 
-	    return _ret6 = (_temp6 = (_this6 = _possibleConstructorReturn(this, (_ref6 = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref6, [this].concat(args))), _this6), _this6.style = {
+	    return _ret6 = (_temp6 = (_this6 = _possibleConstructorReturn(this, (_ref6 = Main.__proto__ || Object.getPrototypeOf(Main)).call.apply(_ref6, [this].concat(args))), _this6), _this6.style = {
 	      width: '768px',
 	      height: '576px',
 	      top: '50%',
@@ -940,7 +900,7 @@
 	    }, _temp6), _possibleConstructorReturn(_this6, _ret6);
 	  }
 
-	  _createClass(Canvas, [{
+	  _createClass(Main, [{
 	    key: 'render',
 	    value: function render(props, state) {
 	      return (0, _preact.h)(
@@ -951,90 +911,13 @@
 	    }
 	  }]);
 
-	  return Canvas;
+	  return Main;
 	}(_preact.Component);
 
 	exports.default = Layout;
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.UXDrag = exports.UXEvent = exports.UXDom = undefined;
-
-	var _UXDom = __webpack_require__(11);
-
-	var _UXDom2 = _interopRequireDefault(_UXDom);
-
-	var _UXEvent = __webpack_require__(12);
-
-	var _UXEvent2 = _interopRequireDefault(_UXEvent);
-
-	var _UXDrag = __webpack_require__(13);
-
-	var _UXDrag2 = _interopRequireDefault(_UXDrag);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.UXDom = _UXDom2.default;
-	exports.UXEvent = _UXEvent2.default;
-	exports.UXDrag = _UXDrag2.default;
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.addEvent = addEvent;
-	exports.removeEvent = removeEvent;
-	function addEvent(el, event, handler) {
-	  if (!el) {
-	    return;
-	  };
-	  if (el.attchEvent) {
-	    el.attchEvent('on' + event, handler);
-	  } else if (el.addEventListener) {
-	    el.addEventListener(event, handler, false);
-	  } else {
-	    el['on'] = handler;
-	  }
-	}
-
-	function removeEvent(el, event, handler) {
-	  if (!el) {
-	    return;
-	  };
-	  if (el.detachEvent) {
-	    el.detachEvent('on' + event, handler);
-	  } else if (el.removeEventListener) {
-	    el.removeEventListener(event, handler, false);
-	  } else {
-	    el['on'] = null;
-	  }
-	}
-
-/***/ },
-/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1047,7 +930,107 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXDom = __webpack_require__(11);
+	var _uxkit = __webpack_require__(16);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Canvas = function (_Component) {
+	  _inherits(Canvas, _Component);
+
+	  function Canvas() {
+	    _classCallCheck(this, Canvas);
+
+	    return _possibleConstructorReturn(this, (Canvas.__proto__ || Object.getPrototypeOf(Canvas)).apply(this, arguments));
+	  }
+
+	  _createClass(Canvas, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        null,
+	        (0, _preact.h)(
+	          _uxkit.UXDrag,
+	          null,
+	          (0, _preact.h)(
+	            'svg',
+	            { width: '200', height: '200' },
+	            (0, _preact.h)('rect', { fill: '#ff0000', width: '150', height: '150', x: '20', y: '20' })
+	          )
+	        ),
+	        (0, _preact.h)(_uxkit.UXResize, null)
+	      );
+	    }
+	  }]);
+
+	  return Canvas;
+	}(_preact.Component);
+
+	exports.default = Canvas;
+
+/***/ },
+/* 5 */,
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addEvent = addEvent;
+	exports.removeEvent = removeEvent;
+	exports.prefixCssProp = prefixCssProp;
+	exports.prefixCssVal = prefixCssVal;
+	function addEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  el.addEventListener(event, handler, false);
+	}
+
+	function removeEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  el.removeEventListener(event, handler, false);
+	}
+
+	function prefixCssProp(prop) {
+	  var prefixes = ['moz', 'webkit', 'o', 'ms'];
+	  var styles = document.createElement('div').style;
+	  if (prop in styles) return prop;
+	  for (var i = 0; i < prefixes.length; i++) {
+	    var nowProp = prefixes[i] + prop.charAt(0).toUpperCase() + prop.slice(1);
+	    if (nowProp in styles) {
+	      return nowProp;
+	    }
+	  }
+	}
+
+	function prefixCssVal() {
+	  var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
+	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _preact = __webpack_require__(1);
+
+	var _UXDom = __webpack_require__(6);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1069,19 +1052,17 @@
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXEvent.__proto__ || Object.getPrototypeOf(UXEvent)).call.apply(_ref, [this].concat(args))), _this), _this.x = 0, _this.y = 0, _this.dx = 0, _this.dy = 0, _this.handleDragStart = function (e) {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXEvent.__proto__ || Object.getPrototypeOf(UXEvent)).call.apply(_ref, [this].concat(args))), _this), _this.x = 0, _this.y = 0, _this.dx = 0, _this.dy = 0, _this.darging = false, _this.handleDragStart = function (e) {
 	      var ownerDocument = document;
 
 	      _this.x = e.pageX - _this.dx;
 	      _this.y = e.pageY - _this.dy;
 
 	      (0, _UXDom.addEvent)(ownerDocument, 'mousemove', _this.handleDrag);
-	      (0, _UXDom.addEvent)(ownerDocument, 'mouseup', function () {
-	        (0, _UXDom.removeEvent)(ownerDocument, 'mousemove', _this.handleDrag);
-	        _this.handleDragStop();
-	      });
+	      (0, _UXDom.addEvent)(ownerDocument, 'mouseup', _this.handleDragStop);
 	    }, _this.handleDragStop = function (e) {
 	      var ownerDocument = document;
+	      (0, _UXDom.removeEvent)(ownerDocument, 'mousemove', _this.handleDrag);
 	    }, _this.handleDrag = function (e) {
 	      _this.dx = e.pageX - _this.x;
 	      _this.dy = e.pageY - _this.y;
@@ -1095,7 +1076,7 @@
 	      });
 	    }, _this.onMouseDown = function (e) {
 	      typeof _this.props.onMouseDown == 'function' && _this.props.onMouseDown(e);
-	      typeof _this.props.onDrag == 'function' && _this.handleDragStart(e);
+	      e.which == 1 && typeof _this.props.onDrag == 'function' && _this.handleDragStart(e);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -1117,7 +1098,7 @@
 	exports.default = UXEvent;
 
 /***/ },
-/* 13 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1132,9 +1113,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXDom = __webpack_require__(11);
+	var _UXDom = __webpack_require__(6);
 
-	var _UXEvent = __webpack_require__(12);
+	var _UXEvent = __webpack_require__(7);
 
 	var _UXEvent2 = _interopRequireDefault(_UXEvent);
 
@@ -1161,10 +1142,14 @@
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXDrag.__proto__ || Object.getPrototypeOf(UXDrag)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      transform: "translate(0px, 0px)"
+	      x: _this.props.x || 0,
+	      y: _this.props.y || 0,
+
+	      isSVGElement: false
 	    }, _this.handleDrag = function (data) {
 	      _this.setState({
-	        transform: 'translate(' + data.dx + 'px, ' + data.dy + 'px)'
+	        x: data.dx,
+	        y: data.dy
 	      });
 	    }, _this.onDrag = function (data) {
 	      _this.handleDrag(data);
@@ -1173,13 +1158,30 @@
 	  }
 
 	  _createClass(UXDrag, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.setState({
+	        isSVGElement: this.base instanceof SVGElement && !!this.base.ownerSVGElement
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render(props, state) {
+	      var style = {},
+	          svgTransform = null;
+
+	      if (state.isSVGElement) {
+	        svgTransform = 'translate(' + state.x + ' ' + state.y + ')';
+	      } else {
+	        style[(0, _UXDom.prefixCssProp)('transform')] = 'translate(' + state.x + 'px, ' + state.y + 'px)';
+	      }
+
 	      return (0, _preact.h)(
 	        _UXEvent2.default,
 	        { onDrag: this.onDrag },
 	        (0, _preact.cloneElement)(props.children[0], {
-	          style: _extends({}, state)
+	          style: _extends({}, style),
+	          transform: svgTransform
 	        })
 	      );
 	    }
@@ -1189,6 +1191,140 @@
 	}(_preact.Component);
 
 	exports.default = UXDrag;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.UXResize = exports.UXDrag = exports.UXEvent = exports.UXDom = undefined;
+
+	var _UXDom = __webpack_require__(6);
+
+	var _UXDom2 = _interopRequireDefault(_UXDom);
+
+	var _UXEvent = __webpack_require__(7);
+
+	var _UXEvent2 = _interopRequireDefault(_UXEvent);
+
+	var _UXDrag = __webpack_require__(8);
+
+	var _UXDrag2 = _interopRequireDefault(_UXDrag);
+
+	var _UXResize = __webpack_require__(17);
+
+	var _UXResize2 = _interopRequireDefault(_UXResize);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.UXDom = _UXDom2.default;
+	exports.UXEvent = _UXEvent2.default;
+	exports.UXDrag = _UXDrag2.default;
+	exports.UXResize = _UXResize2.default;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _preact = __webpack_require__(1);
+
+	var _UXDrag = __webpack_require__(8);
+
+	var _UXDrag2 = _interopRequireDefault(_UXDrag);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var UXResize = function (_Component) {
+	  _inherits(UXResize, _Component);
+
+	  function UXResize() {
+	    _classCallCheck(this, UXResize);
+
+	    return _possibleConstructorReturn(this, (UXResize.__proto__ || Object.getPrototypeOf(UXResize)).apply(this, arguments));
+	  }
+
+	  _createClass(UXResize, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      return (0, _preact.h)(
+	        'div',
+	        null,
+	        (0, _preact.h)(
+	          _UXDrag2.default,
+	          null,
+	          (0, _preact.h)(
+	            'svg',
+	            { width: '100', height: '200' },
+	            (0, _preact.h)('rect', { fill: '#ff0000', width: '100%', height: '100%', x: '0', y: '0' })
+	          )
+	        ),
+	        (0, _preact.h)(
+	          'svg',
+	          { width: '200', height: '300' },
+	          (0, _preact.h)('circle', { id: 'selectorGrip_resize_nw', fill: '#22C', r: '4', 'stroke-width': '2', 'pointer-events': 'all', cx: '20', cy: '20', style: 'cursor: nw-resize;' }),
+	          (0, _preact.h)(
+	            'g',
+	            { id: 'selectorParentGroup' },
+	            (0, _preact.h)('rect', { id: 'selectorRubberBand', fill: '#22C', 'fill-opacity': '0.15', stroke: '#22C', 'stroke-width': '0.5', display: 'none', style: 'pointer-events:none', x: '35', y: '356', width: '0', height: '0' }),
+	            (0, _preact.h)(
+	              'g',
+	              { id: 'selectorGroup0', transform: '', display: 'inline' },
+	              (0, _preact.h)('path', { id: 'selectedBox0', fill: 'none', stroke: '#22C', 'stroke-dasharray': '5,5', style: 'pointer-events:none;', d: 'M-42.86,-42.86 L42.86,-42.86 42.86,42.86 -42.86,42.86z' }),
+	              (0, _preact.h)(
+	                'g',
+	                { display: 'inline' },
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_nw', fill: '#22C', r: '4', style: 'cursor:nw-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '-42.86', cy: '-42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_n', fill: '#22C', r: '4', style: 'cursor:n-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '0', cy: '-42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_ne', fill: '#22C', r: '4', style: 'cursor:ne-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '42.86', cy: '-42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_e', fill: '#22C', r: '4', style: 'cursor:e-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '42.86', cy: '0' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_se', fill: '#22C', r: '4', style: 'cursor:se-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '42.86', cy: '42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_s', fill: '#22C', r: '4', style: 'cursor:s-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '0', cy: '42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_sw', fill: '#22C', r: '4', style: 'cursor:sw-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '-42.86', cy: '42.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_resize_w', fill: '#22C', r: '4', style: 'cursor:w-resize', 'stroke-width': '2', 'pointer-events': 'all', cx: '-42.86', cy: '0' }),
+	                (0, _preact.h)('line', { id: 'selectorGrip_rotateconnector', stroke: '#22C', x1: '0', y1: '-42.86', x2: '0', y2: '-62.86' }),
+	                (0, _preact.h)('circle', { id: 'selectorGrip_rotate', fill: 'lime', r: '4', stroke: '#22C', 'stroke-width': '2', style: 'cursor:url(images/rotate.png) 12 12, auto;', cx: '0', cy: '-62.86' })
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return UXResize;
+	}(_preact.Component);
+
+	exports.default = UXResize;
 
 /***/ }
 /******/ ]);

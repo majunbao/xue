@@ -7,6 +7,7 @@ class UXEvent extends Component {
   y = 0;
   dx = 0;
   dy = 0;
+  darging = false;
 
 
   handleDragStart = (e) => {
@@ -16,14 +17,12 @@ class UXEvent extends Component {
     this.y = e.pageY - this.dy;
 
     addEvent(ownerDocument, 'mousemove', this.handleDrag);
-    addEvent(ownerDocument, 'mouseup', () => {
-      removeEvent(ownerDocument, 'mousemove', this.handleDrag);
-      this.handleDragStop();
-    });
+    addEvent(ownerDocument, 'mouseup', this.handleDragStop);
   };
 
   handleDragStop = (e) => {
     const ownerDocument = document;
+    removeEvent(ownerDocument, 'mousemove', this.handleDrag);
   };
 
   handleDrag = (e) => {
@@ -41,7 +40,7 @@ class UXEvent extends Component {
 
   onMouseDown = (e) => {
     typeof this.props.onMouseDown == 'function' && this.props.onMouseDown(e);
-    typeof this.props.onDrag == 'function' && this.handleDragStart(e);
+    e.which == 1 && typeof this.props.onDrag == 'function' && this.handleDragStart(e);
   };
 
   render(props, state) {

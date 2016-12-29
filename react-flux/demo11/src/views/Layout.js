@@ -1,6 +1,5 @@
 import {h, render, Component, cloneElement} from 'preact';
-
-import {UXDrag} from '../uxkit/UXkit';
+import Canvas from './Canvas';
 
 class Layout extends Component {
   state = {
@@ -36,13 +35,9 @@ class Layout extends Component {
         <Top style={{height: state.top}}><div>t2op</div></Top>
         <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
         <Center style={{left: state.left, top: state.top, right: state.right}}>
-          <Canvas>
-            <UXDrag><svg width="200" height="200"><rect x="10" y="10" height="100" width="100" stroke="#006600" fill="#00cc00"></rect></svg></UXDrag>
-            <UXDrag><svg width="200" height="200"><circle cx="66" cy="60" r="54"  stroke="#006600" fill="#00cc00"></circle></svg></UXDrag>
-            <UXDrag><svg width="200" height="200"><ellipse cx="66" cy="60" rx="54" ry="40"  stroke="#006600" fill="#00cc00"></ellipse></svg></UXDrag>
-            <UXDrag><svg width="200" height="200"><polyline points="10,2 50,2, 32,52, 10,2"  stroke="#006600" fill="#00cc00" /></svg></UXDrag>
-            <UXDrag><svg width="200" height="200"><line x1="10" y1="60" x2="94" y2="40"  stroke="#006600" /></svg></UXDrag>
-          </Canvas>
+          <Main>
+            <Canvas></Canvas>
+          </Main>
         </Center>
         <Right style={{width: state.right, top: state.top}}>
           <div>
@@ -117,7 +112,7 @@ class Center extends Component {
   }
 }
 
-class Canvas extends Component {
+class Main extends Component {
   style = {
     width: '768px',
     height: '576px',

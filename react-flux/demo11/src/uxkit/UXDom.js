@@ -1,21 +1,25 @@
 export function addEvent(el, event, handler){
   if(!el){return};
-  if(el.attchEvent) {
-    el.attchEvent('on' + event, handler);
-  }else if(el.addEventListener) {
-    el.addEventListener(event, handler, false);
-  }else {
-    el['on'] = handler;
-  }
+  el.addEventListener(event, handler, false);
 }
 
 export function removeEvent(el, event, handler){
   if(!el){return};
-  if(el.detachEvent) {
-    el.detachEvent('on' + event, handler);
-  }else if(el.removeEventListener) {
-    el.removeEventListener(event, handler, false);
-  }else {
-    el['on'] = null;
+  el.removeEventListener(event, handler, false);
+}
+
+export function prefixCssProp(prop){
+  const prefixes = ['moz', 'webkit', 'o', 'ms'];
+  const styles = document.createElement('div').style;
+  if(prop in styles) return prop;
+  for(let i=0; i<prefixes.length; i++) {
+    let nowProp = prefixes[i]+prop.charAt(0).toUpperCase()+prop.slice(1);
+    if(nowProp in styles) {
+      return nowProp;
+    }
   }
+}
+
+export function prefixCssVal() {
+  const prefixes = ['Moz', 'Webkit', 'O', 'ms'];
 }

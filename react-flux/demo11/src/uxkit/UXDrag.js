@@ -1,15 +1,25 @@
 import {h, render, Component, cloneElement} from 'preact';
-import {addEvent, removeEvent} from './UXDom';
+import {addEvent, removeEvent, prefixCssProp} from './UXDom';
 import UXEvent from './UXEvent';
 
 class UXDrag extends Component {
   state = {
-    transform: "translate(0px, 0px)"
+    x: this.props.x || 0,
+    y: this.props.y || 0,
+
+    isSVGElement: false
+  }
+
+  componentDidMount() {
+    this.setState({
+      isSVGElement: this.base instanceof SVGElement && !!this.base.ownerSVGElement
+    })
   }
 
   handleDrag = (data) => {
     this.setState({
-      transform: `translate(${data.dx}px, ${data.dy}px)`
+      x: data.dx,
+      y: data.dy
     });
   }
 
@@ -19,10 +29,19 @@ class UXDrag extends Component {
   }
 
   render(props, state) {
+    let style = {}, svgTransform = null;
+
+    if(state.isSVGElement) {
+      svgTransform = `translate(${state.x} ${state.y})`
+    }else {
+      style[prefixCssProp('transform')] = `translate(${state.x}px, ${state.y}px)`
+    }
+
     return (
       <UXEvent onDrag={this.onDrag}>
         {cloneElement(props.children[0], {
-          style: {...state}
+          style: {...style},
+          transform: svgTransform
         })}
       </UXEvent>
     )
