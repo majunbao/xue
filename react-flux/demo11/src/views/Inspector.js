@@ -5,7 +5,7 @@ class Inspector extends Component {
 
   render(props, state) {
     return (
-      <div>nihao</div>
+      <div>111</div>
     )
   }
 }

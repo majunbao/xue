@@ -18,8 +18,8 @@ class UXDrag extends Component {
 
   handleDrag = (data) => {
     this.setState({
-      x: data.dx,
-      y: data.dy
+      x: data.mx,
+      y: data.my
     });
   }
 
@@ -30,6 +30,7 @@ class UXDrag extends Component {
 
   render(props, state) {
     let style = {}, svgTransform = null;
+    let childrenStyle = typeof props.children[0].attributes == 'object' ? props.children[0].attributes.style : {}
 
     if(state.isSVGElement) {
       svgTransform = `translate(${state.x} ${state.y})`
@@ -38,9 +39,10 @@ class UXDrag extends Component {
     }
 
     return (
+
       <UXEvent onDrag={this.onDrag}>
         {cloneElement(props.children[0], {
-          style: {...style},
+          style: {...childrenStyle, ...style},
           transform: svgTransform
         })}
       </UXEvent>

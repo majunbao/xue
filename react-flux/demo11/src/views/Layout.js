@@ -1,12 +1,12 @@
 import {h, render, Component, cloneElement} from 'preact';
 import Canvas from './Canvas';
+import Header from './Header';
 
 class Layout extends Component {
   state = {
-    top: this.props.style.top,
-    left: this.props.style.left,
-    right: this.props.style.right,
-    minHeight: this.props.style.minHeight
+    top: this.props.top,
+    left: this.props.left,
+    right: this.props.right
   }
 
   style = {
@@ -31,8 +31,8 @@ class Layout extends Component {
 
   render(props, state) {
     return (
-      <div className="uk-view" style={{...this.style, ...{minHeight: this.state.minHeight}}}>
-        <Top style={{height: state.top}}><div>t2op</div></Top>
+      <div className="uk-view" style={{...this.style, ...{minHeight: props.minHeight}}}>
+        <Top style={{height: state.top}}><Header /></Top>
         <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
         <Center style={{left: state.left, top: state.top, right: state.right}}>
           <Main>
