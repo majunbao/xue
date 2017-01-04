@@ -52,7 +52,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(10);
+	__webpack_require__(12);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -629,7 +629,7 @@
 
 	var _Canvas2 = _interopRequireDefault(_Canvas);
 
-	var _Header = __webpack_require__(16);
+	var _Header = __webpack_require__(11);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
@@ -925,15 +925,17 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _preact = __webpack_require__(1);
 
 	var _uxkit = __webpack_require__(5);
 
-	var _UXCircle = __webpack_require__(17);
+	var _New = __webpack_require__(18);
 
-	var _UXCircle2 = _interopRequireDefault(_UXCircle);
+	var _New2 = _interopRequireDefault(_New);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -959,9 +961,36 @@
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      canvas: [{
-	        id: 'sdjfsif',
-	        element: 'UXCircle'
+	        key: 'sdjflsdfj',
+	        type: 'UXCircle',
+	        x: '10px',
+	        y: '20px',
+	        width: '100px',
+	        height: '200px'
+	      }, {
+	        key: '2',
+	        type: 'UXCircle',
+	        x: '300px',
+	        y: '200px',
+	        width: '200px',
+	        height: '200px'
+	      }, {
+	        key: '3',
+	        type: 'UXCircle',
+	        x: '400px',
+	        y: '200px',
+	        width: '200px',
+	        height: '200px'
 	      }]
+	    }, _this.changeLayout = function () {
+	      _this.setState(Object.assign({}, _extends({}, _this.state), { canvas: [{
+	          key: '2e',
+	          type: 'UXCircle',
+	          x: '50px',
+	          y: '20px',
+	          width: '100px',
+	          height: '200px'
+	        }] }));
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -971,11 +1000,14 @@
 	      return (0, _preact.h)(
 	        'div',
 	        null,
-	        (0, _preact.cloneElement)((0, _preact.h)(
-	          'div',
-	          null,
-	          'nihao'
-	        ))
+	        state.canvas.map(function (item) {
+	          return (0, _preact.h)(_New2.default, item);
+	        }),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: this.changeLayout },
+	          'anniao'
+	        )
 	      );
 	    }
 	  }]);
@@ -1294,12 +1326,12 @@
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UXResize.__proto__ || Object.getPrototypeOf(UXResize)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      width: '100px',
-	      height: '100px',
-	      left: '120px',
+	      width: _this.props.width,
+	      height: _this.props.height,
+	      left: _this.props.x,
 	      right: 0,
 	      botton: 0,
-	      top: '120px',
+	      top: _this.props.y,
 	      cursor: 'default'
 	    }, _this.resizeStyle = {
 	      position: 'absolute',
@@ -1437,17 +1469,35 @@
 
 /***/ },
 /* 10 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	// removed by extract-text-webpack-plugin
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
+	var _UXResize = __webpack_require__(9);
+
+	var _UXResize2 = _interopRequireDefault(_UXResize);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var UXCircle = function UXCircle(_ref) {
+	  var children = _ref.children,
+	      props = _objectWithoutProperties(_ref, ['children']);
+
+	  return (0, _preact.h)(_UXResize2.default, props);
+	};
+
+	exports.default = UXCircle;
 
 /***/ },
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1497,7 +1547,18 @@
 	exports.default = Header;
 
 /***/ },
-/* 17 */
+/* 12 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1506,42 +1567,33 @@
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _preact = __webpack_require__(1);
 
-	var _UXResize = __webpack_require__(9);
+	var _UXCircle = __webpack_require__(10);
 
-	var _UXResize2 = _interopRequireDefault(_UXResize);
+	var _UXCircle2 = _interopRequireDefault(_UXCircle);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var New = function New(_ref) {
+	  var children = _ref.children,
+	      props = _objectWithoutProperties(_ref, ['children']);
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var UXCircle = function (_Component) {
-	  _inherits(UXCircle, _Component);
-
-	  function UXCircle() {
-	    _classCallCheck(this, UXCircle);
-
-	    return _possibleConstructorReturn(this, (UXCircle.__proto__ || Object.getPrototypeOf(UXCircle)).apply(this, arguments));
+	  switch (props.type) {
+	    case 'UXCircle':
+	      return (0, _preact.h)(_UXCircle2.default, props);
+	    default:
+	      return (0, _preact.h)(
+	        'a',
+	        props,
+	        children
+	      );
 	  }
+	};
 
-	  _createClass(UXCircle, [{
-	    key: 'render',
-	    value: function render(props, state) {
-	      return (0, _preact.h)(_UXResize2.default, null);
-	    }
-	  }]);
-
-	  return UXCircle;
-	}(_preact.Component);
-
-	exports.default = UXCircle;
+	exports.default = New;
 
 /***/ }
 /******/ ]);

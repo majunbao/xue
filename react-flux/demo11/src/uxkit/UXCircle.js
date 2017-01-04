@@ -1,12 +1,8 @@
-import {h, render, Component, cloneElement} from 'preact';
+import {h} from 'preact';
 import UXResize from './UXResize';
 
-class UXCircle extends Component {
-  render(props, state) {
-    return (
-      <UXResize  />
-    )
-  }
-}
+const UXCircle = ({children, ...props}) => (
+  <UXResize  {...props} />
+)
 
 export default UXCircle;

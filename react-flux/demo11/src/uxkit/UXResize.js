@@ -3,12 +3,12 @@ import UXEvent from './UXEvent';
 
 class UXResize extends Component {
   state = {
-    width: '100px',
-    height: '100px',
-    left: '120px',
+    width: this.props.width,
+    height: this.props.height,
+    left: this.props.x,
     right: 0,
     botton: 0,
-    top: '120px',
+    top: this.props.y,
     cursor: 'default'
   }
   resizeStyle = {
