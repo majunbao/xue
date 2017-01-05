@@ -1,132 +1,138 @@
 import {h, render, Component, cloneElement} from 'preact';
-import Canvas from './Canvas';
-import Header from './Header';
+import LayoutTop from './LayoutTop';
+import LayoutLeft from './LayoutLeft';
+import LayoutRight from './LayoutRight';
+import LayoutCenter from './LayoutCenter';
 
-class Layout extends Component {
-  state = {
-    top: this.props.top,
-    left: this.props.left,
-    right: this.props.right
-  }
+// class Layout extends Component {
+//   state = {
+//     top: this.props.top,
+//     left: this.props.left,
+//     right: this.props.right
+//   }
 
-  style = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  }
+//   style = {
+//     top: 0,
+//     right: 0,
+//     bottom: 0,
+//     left: 0
+//   }
 
-  Test = () => {
-    this.setState({
-      top: '10px',
-      left: '100px'
-    })
-  }
-  Test1 = () => {
-    this.setState({
-      top: '20px',
-      right: '200px'
-    })
-  }
+//   Test = () => {
+//     this.setState({
+//       top: '10px',
+//       left: '100px'
+//     })
+//   }
+//   Test1 = () => {
+//     this.setState({
+//       top: '20px',
+//       right: '200px'
+//     })
+//   }
 
-  render(props, state) {
-    return (
-      <div className="uk-view" style={{...this.style, ...{minHeight: props.minHeight}}}>
-        <Top style={{height: state.top}}><Header /></Top>
-        <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
-        <Center style={{left: state.left, top: state.top, right: state.right}}>
-          <Main>
-            <Canvas></Canvas>
-          </Main>
-        </Center>
-        <Right style={{width: state.right, top: state.top}}>
-          <div>
-            <button onClick={this.Test}>1</button>
-            <button onClick={this.Test1}>2</button>
-          </div>
-        </Right>
-      </div>
-    )
-  }
-}
+//   render(props, state) {
+//     return (
+//       <div className="uk-view" style={{...this.style, ...{minHeight: props.minHeight}}}>
+//         <Top style={{height: state.top}}><Header /></Top>
+//         <Left style={{width: state.left, top: state.top}}><div>left</div></Left>
+//         <Center style={{left: state.left, top: state.top, right: state.right}}>
+//           <Main>
+//             <Canvas></Canvas>
+//           </Main>
+//         </Center>
+//         <Right style={{width: state.right, top: state.top}}>
+//           <div>
+//             <button onClick={this.Test}>1</button>
+//             <button onClick={this.Test1}>2</button>
+//           </div>
+//         </Right>
+//       </div>
+//     )
+//   }
+// }
 
-class Top extends Component {
-  style = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    background: '#242424'
-  }
+// class Top extends Component {
+//   style = {
+//     top: 0,
+//     right: 0,
+//     bottom: 0,
+//     left: 0,
+//     background: '#242424'
+//   }
 
-  render(props, state) {
-    return (cloneElement(props.children[0], {
-      className: 'uk-view',
-      style: {...this.style, ...props.style}
-    }))
-  }
-}
+//   render(props, state) {
+//     return (cloneElement(props.children[0], {
+//       className: 'uk-view',
+//       style: {...this.style, ...props.style}
+//     }))
+//   }
+// }
 
-class Left extends Component {
-  style = {
-    bottom: 0,
-    left: 0,
-    background: '#aaacb9'
-  }
+// class Left extends Component {
+//   style = {
+//     bottom: 0,
+//     left: 0,
+//     background: '#aaacb9'
+//   }
 
-  render(props, state) {
-    return (cloneElement(props.children[0], {
-      className: 'uk-view',
-      style: {...this.style, ...props.style}
-    }))
-  }
-}
+//   render(props, state) {
+//     return (cloneElement(props.children[0], {
+//       className: 'uk-view',
+//       style: {...this.style, ...props.style}
+//     }))
+//   }
+// }
 
-class Right extends Component {
-  style = {
-    top: '60px',
-    right: 0,
-    bottom: 0,
-    background: '#F6F6F6'
-  }
+// class Right extends Component {
+//   style = {
+//     top: '60px',
+//     right: 0,
+//     bottom: 0,
+//     background: '#F6F6F6'
+//   }
 
-  render(props, state) {
-    return (cloneElement(props.children[0], {
-      className: 'uk-view',
-      style: {...this.style, ...props.style}
-    }))
-  }
-}
+//   render(props, state) {
+//     return (cloneElement(props.children[0], {
+//       className: 'uk-view',
+//       style: {...this.style, ...props.style}
+//     }))
+//   }
+// }
 
-class Center extends Component {
-  state = {
-    top: '60px',
-    right: '270px',
-    bottom: 0,
-    left: '200px',
-    background: '#57585D'
-  }
+// class Center extends Component {
+//   state = {
+//     top: '60px',
+//     right: '270px',
+//     bottom: 0,
+//     left: '200px',
+//     background: '#57585D'
+//   }
 
-  render(props, state) {
-    return <div className="uk-view" style={{...state, ...props.style}}>{props.children}</div>
-  }
-}
+//   render(props, state) {
+//     return <div className="uk-view" style={{...state, ...props.style}}>{props.children}</div>
+//   }
+// }
 
-class Main extends Component {
-  style = {
-    width: '768px',
-    height: '576px',
-    top: '50%',
-    left: '50%',
-    overflow: 'visible',
-    background: '#fff',
-    marginTop: '-288px',
-    marginLeft: '-383.5px'
-  }
+// class Main extends Component {
+//   style = {
+//     width: '768px',
+//     height: '576px',
+//     top: '50%',
+//     left: '50%',
+//     overflow: 'visible',
+//     background: '#fff',
+//     marginTop: '-288px',
+//     marginLeft: '-383.5px'
+//   }
 
-  render(props, state) {
-    return <div className="uk-view" style={{...this.style, ...props.style}}>{props.children}</div>
-  }
+//   render(props, state) {
+//     return <div className="uk-view" style={{...this.style, ...props.style}}>{props.children}</div>
+//   }
+// }
+
+const Layout = ({children, ...props}) => {
+  return {children}
 }
 
 export default Layout;
