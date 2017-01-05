@@ -1,57 +1,30 @@
 import {h, render, Component, cloneElement} from 'preact';
 import {UXDrag, UXResize} from '../uxkit/uxkit';
 import New from './New';
+import CanvasModel from '../models/CanvasModel';
 
 class Canvas extends Component {
-  state = {
-    canvas: [
-      {
-        key: 'sdjflsdfj',
-        type: 'UXCircle',
-        x: '10px',
-        y: '20px',
-        width: '100px',
-        height: '200px'
-      },
-      {
-        key: '2',
-        type: 'UXCircle',
-        x: '300px',
-        y: '200px',
-        width: '200px',
-        height: '200px'
-      },
-      {
-        key: '3',
-        type: 'UXCircle',
-        x: '400px',
-        y: '200px',
-        width: '200px',
-        height: '200px'
-      }
-    ]
-  }
+  model = new CanvasModel();
 
   changeLayout = () => {
-    this.setState(Object.assign({}, {...this.state}, {canvas: [{
-        key: '2e',
-        type: 'UXCircle',
-        x: '50px',
-        y: '20px',
-        width: '100px',
-        height: '200px'
-      },]}))
+    this.model.addCanvas();
+    this.setState(this.model.canvas)
   }
 
-  render(props, state) {
+  log = () => {
+    console.log(this.model.getModel())
+  }
+
+  render(props, {canvas = this.model.canvas}) {
     return (
       <div>
         {
-          state.canvas.map((item) => {
+          canvas.map((item) => {
             return <New {...item} />
           })
         }
         <button onClick={this.changeLayout}>anniao</button>
+        <button onClick={this.log}>log</button>
       </div>
     )
   }

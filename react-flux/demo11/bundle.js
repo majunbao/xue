@@ -52,7 +52,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(12);
+	__webpack_require__(13);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -629,7 +629,7 @@
 
 	var _Canvas2 = _interopRequireDefault(_Canvas);
 
-	var _Header = __webpack_require__(11);
+	var _Header = __webpack_require__(12);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
@@ -925,17 +925,19 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _preact = __webpack_require__(1);
 
 	var _uxkit = __webpack_require__(5);
 
-	var _New = __webpack_require__(18);
+	var _New = __webpack_require__(10);
 
 	var _New2 = _interopRequireDefault(_New);
+
+	var _CanvasModel = __webpack_require__(19);
+
+	var _CanvasModel2 = _interopRequireDefault(_CanvasModel);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -959,54 +961,35 @@
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      canvas: [{
-	        key: 'sdjflsdfj',
-	        type: 'UXCircle',
-	        x: '10px',
-	        y: '20px',
-	        width: '100px',
-	        height: '200px'
-	      }, {
-	        key: '2',
-	        type: 'UXCircle',
-	        x: '300px',
-	        y: '200px',
-	        width: '200px',
-	        height: '200px'
-	      }, {
-	        key: '3',
-	        type: 'UXCircle',
-	        x: '400px',
-	        y: '200px',
-	        width: '200px',
-	        height: '200px'
-	      }]
-	    }, _this.changeLayout = function () {
-	      _this.setState(Object.assign({}, _extends({}, _this.state), { canvas: [{
-	          key: '2e',
-	          type: 'UXCircle',
-	          x: '50px',
-	          y: '20px',
-	          width: '100px',
-	          height: '200px'
-	        }] }));
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref, [this].concat(args))), _this), _this.model = new _CanvasModel2.default(), _this.changeLayout = function () {
+	      _this.model.addCanvas();
+	      _this.setState(_this.model.canvas);
+	    }, _this.log = function () {
+	      console.log(_this.model.getModel());
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
 	  _createClass(Canvas, [{
 	    key: 'render',
-	    value: function render(props, state) {
+	    value: function render(props, _ref2) {
+	      var _ref2$canvas = _ref2.canvas,
+	          canvas = _ref2$canvas === undefined ? this.model.canvas : _ref2$canvas;
+
 	      return (0, _preact.h)(
 	        'div',
 	        null,
-	        state.canvas.map(function (item) {
+	        canvas.map(function (item) {
 	          return (0, _preact.h)(_New2.default, item);
 	        }),
 	        (0, _preact.h)(
 	          'button',
 	          { onClick: this.changeLayout },
 	          'anniao'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: this.log },
+	          'log'
 	        )
 	      );
 	    }
@@ -1479,6 +1462,44 @@
 
 	var _preact = __webpack_require__(1);
 
+	var _UXCircle = __webpack_require__(11);
+
+	var _UXCircle2 = _interopRequireDefault(_UXCircle);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var New = function New(_ref) {
+	  var children = _ref.children,
+	      props = _objectWithoutProperties(_ref, ['children']);
+
+	  switch (props.type) {
+	    case 'UXCircle':
+	      return (0, _preact.h)(_UXCircle2.default, props);
+	    default:
+	      return (0, _preact.h)(
+	        'a',
+	        props,
+	        children
+	      );
+	  }
+	};
+
+	exports.default = New;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
 	var _UXResize = __webpack_require__(9);
 
 	var _UXResize2 = _interopRequireDefault(_UXResize);
@@ -1497,7 +1518,7 @@
 	exports.default = UXCircle;
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1547,18 +1568,18 @@
 	exports.default = Header;
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 13 */,
 /* 14 */,
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */
+/* 18 */,
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1567,33 +1588,63 @@
 	  value: true
 	});
 
-	var _preact = __webpack_require__(1);
+	var _UXUtil = __webpack_require__(20);
 
-	var _UXCircle = __webpack_require__(10);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _UXCircle2 = _interopRequireDefault(_UXCircle);
+	var CanvasModel = function CanvasModel() {
+	  var _this = this;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	  _classCallCheck(this, CanvasModel);
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	  this.addCanvas = function () {
+	    _this.canvas = _this.canvas.concat({
+	      key: (0, _UXUtil.uuid)(),
+	      type: 'UXCircle',
+	      x: '150px',
+	      y: '20px',
+	      width: '100px',
+	      height: '200px'
+	    });
+	  };
 
-	var New = function New(_ref) {
-	  var children = _ref.children,
-	      props = _objectWithoutProperties(_ref, ['children']);
+	  this.getModel = function () {
+	    return _this.canvas;
+	  };
 
-	  switch (props.type) {
-	    case 'UXCircle':
-	      return (0, _preact.h)(_UXCircle2.default, props);
-	    default:
-	      return (0, _preact.h)(
-	        'a',
-	        props,
-	        children
-	      );
-	  }
+	  this.canvas = [{
+	    key: (0, _UXUtil.uuid)(),
+	    type: 'UXCircle',
+	    x: '140px',
+	    y: '20px',
+	    width: '100px',
+	    height: '200px'
+	  }];
 	};
 
-	exports.default = New;
+	exports.default = CanvasModel;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.uuid = uuid;
+	function uuid() {
+	  var uuid = '';
+	  for (var i = 0; i < 32; i++) {
+	    var random = Math.random() * 16 | 0;
+	    if (i === 8 || i === 12 || i === 16 || i === 20) {
+	      uuid += '-';
+	    }
+	    uuid += (i === 12 ? 4 : i === 16 ? random & 3 | 8 : random).toString(16);
+	  }
+	  return uuid;
+	}
 
 /***/ }
 /******/ ]);
