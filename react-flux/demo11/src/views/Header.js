@@ -1,4 +1,5 @@
 import {h, render, Component, cloneElement} from 'preact';
+import CanvasAction from '../actions/CanvasActions';
 
 class Header extends Component {
 
@@ -6,7 +7,7 @@ class Header extends Component {
     return (
       <div style={props.style} className={props.className}>
         <svg width="100%" height="100%">
-          <rect height="25" width="25" fill="#242424" x="104" y="13" stroke="#fff" stroke-width="2" />
+          <rect height="25" width="25" fill="#242424" x="104" y="13" stroke="#fff" stroke-width="2" onClick={CanvasAction.add} />
           <circle fill="#242424" stroke-width="2"  cx="200" cy="26" r="14" stroke="#ffffff"></circle>
         </svg>
       </div>

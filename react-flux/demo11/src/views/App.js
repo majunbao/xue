@@ -1,12 +1,25 @@
 import {h, render, Component} from 'preact';
 import Layout from './Layout';
+import LayoutStore from '../stores/LayoutStore';
+
 
 class App extends Component {
+  componentDidMount() {
+    LayoutStore.addChangeListener(this._onChange)
+  }
 
-  render(props, state) {
+  componentWillUnmount() {
+    LayoutStore.removeChangeListener(this._onChange)
+  }
+
+  render(props, {layoutStyle = LayoutStore.getLayout()}) {
     return (
-      <Layout><h1>nihao</h1></Layout>
+      <Layout {...layoutStyle} />
     )
+  }
+
+  _onChange = () => {
+    this.setState(LayoutStore.getLayout());
   }
 }
 

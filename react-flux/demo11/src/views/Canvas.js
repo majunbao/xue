@@ -1,21 +1,18 @@
 import {h, render, Component, cloneElement} from 'preact';
 import {UXDrag, UXResize} from '../uxkit/uxkit';
 import New from './New';
-import CanvasModel from '../models/CanvasModel';
+import CanvasStore from '../stores/CanvasStore';
 
 class Canvas extends Component {
-  model = new CanvasModel();
-
-  changeLayout = () => {
-    this.model.addCanvas();
-    this.setState(this.model.canvas)
+  componentDidMount() {
+    CanvasStore.addChangeListener(this._onChange)
   }
 
-  log = () => {
-    console.log(this.model.getModel())
+  componentWillUnmount() {
+    CanvasStore.removeChangeListener(this._onChange)
   }
 
-  render(props, {canvas = this.model.canvas}) {
+  render(props, {canvas = CanvasStore.getStore()}) {
     return (
       <div>
         {
@@ -23,10 +20,12 @@ class Canvas extends Component {
             return <New {...item} />
           })
         }
-        <button onClick={this.changeLayout}>anniao</button>
-        <button onClick={this.log}>log</button>
       </div>
     )
+  }
+  
+  _onChange = () => {
+    this.setState(CanvasStore.getStore());
   }
 }
 

@@ -3,6 +3,7 @@
     "watch": "webpack ./src/root.js ./bundle.js --watch"
   },
   "dependencies": {
+    "events": "^1.1.1",
     "preact": "^7.1.0"
   },
   "devDependencies": {

@@ -132,9 +132,7 @@ class UXResize extends Component {
           <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-4px', right: '-4px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onMove}>
-          <svg width="100%" height="100%">
-            <rect width="100%" height="100%" />
-          </svg>
+          {props.children}
         </UXEvent>
       </div>
     )
