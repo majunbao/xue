@@ -6,6 +6,7 @@ import LayoutLeft from './LayoutLeft';
 import LayoutRight from './LayoutRight';
 import LayoutCenter from './LayoutCenter';
 import LayoutMain from './LayoutMain';
+import LayoutStore from '../stores/LayoutStore';
 
 class Layout extends Component {
   style = {
@@ -15,19 +16,31 @@ class Layout extends Component {
     left: 0
   }
 
-  render(props, state) {
+  componentDidMount() {
+    LayoutStore.addChangeListener(this._onChange)
+  }
+
+  componentWillUnmount() {
+    LayoutStore.removeChangeListener(this._onChange)
+  }
+
+  render(props, {style = LayoutStore.getStore()}) {
     return (
-      <div className="uk-view" style={{...this.style, ...{minHeight: props.minHeight}}}>
-        <LayoutTop style={{height: props.top}}><Header /></LayoutTop>
-        <LayoutLeft style={{width: props.left, top: props.top}}><div>left</div></LayoutLeft>
-        <LayoutCenter style={{left: props.left, top: props.top, right: props.right}}>
+      <div className="uk-view" style={{...this.style, ...{minHeight: style.minHeight}}}>
+        <LayoutTop style={{height: style.top}}><Header /></LayoutTop>
+        <LayoutLeft style={{width: style.left, top: style.top}}><div>left</div></LayoutLeft>
+        <LayoutCenter style={{left: style.left, top: style.top, right: style.right}}>
           <LayoutMain>
-            <Canvas></Canvas>
+            <Canvas />
           </LayoutMain>
         </LayoutCenter>
-        <LayoutRight style={{width: props.right, top: props.top}}></LayoutRight>
+        <LayoutRight style={{width: style.right, top: style.top}}></LayoutRight>
       </div>
     )
+  }
+
+  _onChange = () => {
+    this.setState(LayoutStore.getStore());
   }
 }
 

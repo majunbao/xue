@@ -1,7 +1,7 @@
 import LayoutStore from '../stores/LayoutStore';
 
 const LayoutActions = {
-  getLayout: LayoutStore.getLayout,
+  getLayout: LayoutStore.getStore,
   setLayout: function(config){
     LayoutStore.setLayout(config);
   }

@@ -23,7 +23,21 @@ class UXEvent extends Component {
 
   handleDragStop = (e) => {
     const ownerDocument = document;
+
+    typeof this.props.onDragStop == 'function' && this.props.onDragStop({
+      x: e.pageX,
+      y: e.pageY,
+      mx: this.mx,
+      my: this.my,
+      dx: this.dx,
+      dy: this.dy,
+      event: e,
+      node: this.base
+    });
+    
     removeEvent(ownerDocument, 'mousemove', this.handleDrag);
+    removeEvent(ownerDocument, 'mouseup', this.handleDragStop);
+
   };
 
   handleDrag = (e) => {

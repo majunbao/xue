@@ -1,7 +1,7 @@
 import {EventEmitter} from 'events';
+import RootStore from './RootStore';
 
 const CHANGE_EVENT = 'changeLayout'
-
 const defaultLayout = {
   top: '60px',
   left: '200px',
@@ -14,25 +14,17 @@ const defaultLayout = {
 
 let _layout = defaultLayout;
 
-const LayoutStore = {
-  getLayout: function() {
+class LayoutStore extends RootStore {
+  getStore = function() {
     return _layout;
-  },
-  setLayout: function(config) {
+  };
+  
+  setLayout = function(config) {
     for(let key in config) {
       _layout[key] = config[key]
     }
-
     EventEmitter.prototype.emit(CHANGE_EVENT);
-  },
-
-  addChangeListener: function(callback) {
-    EventEmitter.prototype.on(CHANGE_EVENT, callback);
-  },
-
-  removeChangeListener: function(callback) {
-    EventEmitter.prototype.off(CHANGE_EVENT, callback);
-  },
+  };
 }
 
-export default LayoutStore;
+export default new LayoutStore(CHANGE_EVENT);

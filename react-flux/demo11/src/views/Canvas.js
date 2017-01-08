@@ -1,6 +1,5 @@
 import {h, render, Component, cloneElement} from 'preact';
-import {UXDrag, UXResize} from '../uxkit/uxkit';
-import New from './New';
+import {UXDrag, UXResize, UXNew} from '../uxkit/uxkit';
 import CanvasStore from '../stores/CanvasStore';
 
 class Canvas extends Component {
@@ -16,8 +15,8 @@ class Canvas extends Component {
     return (
       <div>
         {
-          canvas.map((item) => {
-            return <New {...item} />
+          Object.keys(canvas).map((item) => {
+            return <UXNew {...canvas[item]} />
           })
         }
       </div>

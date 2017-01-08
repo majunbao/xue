@@ -1,8 +1,8 @@
 import CanvasStore from '../stores/CanvasStore';
 
 const CanvasActions = {
-  add: (ele) => {
-    CanvasStore.addCanvas();
+  add: (canvasObj) => {
+    CanvasStore.addCanvas(canvasObj);
   }
 }
 

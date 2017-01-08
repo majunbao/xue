@@ -1,7 +1,5 @@
 import {h, render, Component, cloneElement} from 'preact';
-
-import App from './views/App';
-
+import Layout from './views/Layout';
 import './styles/app.css';
 
-render(<App />, document.body);
+render(<Layout />, document.body);

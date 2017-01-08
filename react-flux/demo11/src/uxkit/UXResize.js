@@ -14,58 +14,60 @@ class UXResize extends Component {
   resizeStyle = {
     position: 'absolute',
     width: this.state.width,
-    height: this.state.height
+    height: this.state.height,
+    border: '1px solid #95B6FF'
   }
   resizeHandleStyle = {
-    width: '8px',
-    height: '8px',
-    border: '1px solid #808080',
-    backgroundColor: '#69e0a1',
+    width: '9px',
+    height: '9px',
+    border: '1px solid #FEFEFF',
+    backgroundColor: '#0079FF',
+    borderRadius: '5px',
     position: 'absolute'
   }
 
   onTopLeft = (data) => {
     this.handleTop(data);
     this.handleLeft(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onTopCenter = (data) => {
     this.handleTop(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onTopRight = (data) => {
     this.handleTop(data);
     this.handleRight(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onCenterRight = (data) => {
     this.handleRight(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onCenterLeft = (data) => {
     this.handleLeft(data)
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onBottomLeft = (data) => {
     this.handleBottom(data);
     this.handleLeft(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onBottomCenter = (data) => {
     this.handleBottom(data)
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onBottomRight = (data) => {
     this.handleBottom(data);
     this.handleRight(data);
-    typeof this.props.onResize == 'function' && this.props.onResize(data);
+    this.handleResize(data);
   }
 
   onMove = (data) => {
@@ -104,32 +106,40 @@ class UXResize extends Component {
     });
   }
 
+  handleResize = (data) => {
+    typeof this.props.onResize == 'function' && this.props.onResize({...data, w: this.state.width, h: this.state.height});
+  }
+
+  handleResizeStop = (data) => {
+    typeof this.props.onResizeStop == 'function' && this.props.onResizeStop({...data, w: this.state.width, h: this.state.height});
+  }
+
   render(props, state) {
     return (
       <div style={{...this.resizeStyle, ...{width: state.width, height: state.height, left: state.left, top: state.top}}}>
-        <UXEvent onDrag={this.onTopLeft}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-4px', left: '-4px'}}}></div>
+        <UXEvent onDrag={this.onTopLeft} onDragStop={this.handleResizeStop}>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-6px', left: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onTopCenter}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', top: '-4px', left: '50%', marginLeft: '-5px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onTopRight}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-4px', right: '-4px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-6px', right: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onCenterLeft}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-5px', left: '-4px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onCenterRight}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-5px', right: '-4px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onBottomLeft}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-4px', left: '-4px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-6px', left: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onBottomCenter}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-4px', left: '50%', marginLeft: '-5px'}}}></div>
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onBottomRight}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-4px', right: '-4px'}}}></div>
+        <UXEvent onDrag={this.onBottomRight} onDragStop={props.onResizeStop}  >
+          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-6px', right: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onMove}>
           {props.children}
