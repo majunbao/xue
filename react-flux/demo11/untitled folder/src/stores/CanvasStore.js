@@ -21,18 +21,6 @@ class CanvasStore extends RootStore {
     };
     EventEmitter.prototype.emit(CHANGE_EVENT);
   };
-
-  update = function(id, canvasObj) {
-    // if(id in _canvas) {
-    if(true) {
-      console.log(Object.keys(canvasObj), canvasObj)
-      Object.keys(canvasObj).forEach(function(key){
-        _canvas[id][key] = canvasObj[key];
-      })
-    }
-    EventEmitter.prototype.emit(CHANGE_EVENT);
-  };
-
   getStore = function(){
     return _canvas;
   }

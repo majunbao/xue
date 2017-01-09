@@ -745,9 +745,6 @@
 	  add: function add(canvasObj) {
 	    _CanvasStore2.default.addCanvas(canvasObj);
 	  },
-	  update: function update(id, canvasObj) {
-	    _CanvasStore2.default.update(id, canvasObj);
-	  },
 	  getAll: function getAll() {
 	    return _CanvasStore2.default.getStore();
 	  }
@@ -816,15 +813,6 @@
 	        width: w + 'px',
 	        height: w + 'px'
 	      }, canvasObj);
-	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
-	    }, _this.update = function (id, canvasObj) {
-	      // if(id in _canvas) {
-	      if (true) {
-	        console.log(Object.keys(canvasObj), canvasObj);
-	        Object.keys(canvasObj).forEach(function (key) {
-	          _canvas[id][key] = canvasObj[key];
-	        });
-	      }
 	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
 	    }, _this.getStore = function () {
 	      return _canvas;
@@ -1763,37 +1751,37 @@
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onTopCenter, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onTopCenter },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onTopRight, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onTopRight },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'nesw-resize', top: '-6px', right: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onCenterLeft, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onCenterLeft },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onCenterRight, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onCenterRight },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onBottomLeft, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onBottomLeft },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'nesw-resize', bottom: '-6px', left: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onBottomCenter, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onBottomCenter },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
 	          _UXEvent2.default,
-	          { onDrag: this.onBottomRight, onDragStop: this.handleResizeStop },
+	          { onDrag: this.onBottomRight, onDragStop: props.onResizeStop },
 	          (0, _preact.h)('div', { style: _extends({}, this.resizeHandleStyle, { cursor: 'nwse-resize', bottom: '-6px', right: '-6px' }) })
 	        ),
 	        (0, _preact.h)(
@@ -1998,8 +1986,6 @@
 	        _UXResize2.default,
 	        _extends({}, props, { onResize: this.onResize, onResizeStop: function onResizeStop() {
 	            console.log(32);
-	          }, onMoveStop: function onMoveStop(data) {
-	            console.log(1);
 	          } }),
 	        (0, _preact.h)(
 	          'svg',
@@ -2176,7 +2162,7 @@
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Inspector.__proto__ || Object.getPrototypeOf(Inspector)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      log: {}
+	      log: []
 	    }, _this.add = function (canvasObj) {
 	      _CanvasActions2.default.add(canvasObj);
 	    }, _this.addNum = function (num) {
@@ -2192,8 +2178,6 @@
 	        _CanvasActions2.default.add({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 400 });
 	        _CanvasActions2.default.add({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 500 });
 	      }
-	    }, _this.update = function (id, canvasObj) {
-	      _CanvasActions2.default.update(id, canvasObj);
 	    }, _this.onLayout = function (direction, num) {
 	      _LayoutActions2.default.setLayout(_defineProperty({}, direction, _LayoutActions2.default.getLayout()[direction] == 0 ? num : 0));
 	    }, _this.log = function () {
@@ -2232,13 +2216,6 @@
 	              _this2.add({ type: 'triangle' });
 	            } },
 	          'triangle'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.update('ssd', { type: 'triangle' });
-	            } },
-	          'update'
 	        ),
 	        (0, _preact.h)(
 	          'button',

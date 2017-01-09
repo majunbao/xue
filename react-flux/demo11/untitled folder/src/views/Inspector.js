@@ -5,7 +5,7 @@ import LayoutActions from '../actions/LayoutActions';
 class Inspector extends Component {
 
   state = {
-    log: {}
+    log: []
   }
 
   add = (canvasObj) => {
@@ -23,10 +23,6 @@ class Inspector extends Component {
       CanvasActions.add({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+400});  
       CanvasActions.add({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+500});  
     }
-  }
-
-  update = (id, canvasObj) => {
-    CanvasActions.update(id, canvasObj);
   }
 
   onLayout = (direction, num) => {
@@ -48,7 +44,6 @@ class Inspector extends Component {
         <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'red'})}}>rect</button>
         <button onClick={()=>{this.add({type: 'circle'})}}>circle</button>
         <button onClick={()=>{this.add({type: 'triangle'})}}>triangle</button>
-        <button onClick={()=>{this.update('ssd', {type: 'triangle'})}}>update</button>
         <button onClick={this.add}>random</button>
         <button onClick={()=>{this.addNum(10)}}>60</button>
         <br />

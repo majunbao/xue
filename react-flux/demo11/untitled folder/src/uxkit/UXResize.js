@@ -120,25 +120,25 @@ class UXResize extends Component {
         <UXEvent onDrag={this.onTopLeft} onDragStop={this.handleResizeStop}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-6px', left: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onTopCenter} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onTopCenter}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onTopRight} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onTopRight}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-6px', right: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onCenterLeft} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onCenterLeft}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onCenterRight} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onCenterRight}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onBottomLeft} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onBottomLeft}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-6px', left: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onBottomCenter} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onBottomCenter}>
           <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
         </UXEvent>
-        <UXEvent onDrag={this.onBottomRight} onDragStop={this.handleResizeStop}>
+        <UXEvent onDrag={this.onBottomRight} onDragStop={props.onResizeStop}  >
           <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-6px', right: '-6px'}}}></div>
         </UXEvent>
         <UXEvent onDrag={this.onMove}>

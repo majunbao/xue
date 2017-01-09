@@ -17,7 +17,7 @@ class UXTriangle extends Component {
   render(props, state) {
     let points = `${state.w/2},0 ${state.w},${state.h} 0,${state.h}`;
     return (
-      <UXResize {...props} onResize={this.onResize} onResizeStop={()=>{console.log(32)}} onMoveStop={(data)=>{console.log(1)}}>
+      <UXResize {...props} onResize={this.onResize} onResizeStop={()=>{console.log(32)}}>
         <svg width="100%" height="100%">
           <polygon
             points = {points}
