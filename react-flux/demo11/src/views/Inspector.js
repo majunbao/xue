@@ -45,7 +45,7 @@ class Inspector extends Component {
     return (
       <div>
         <br />
-        <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'red'})}}>rect</button>
+        <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'red', isSelected: {true}})}}>rect</button>
         <button onClick={()=>{this.add({type: 'circle'})}}>circle</button>
         <button onClick={()=>{this.add({type: 'triangle'})}}>triangle</button>
         <button onClick={()=>{this.update('ssd', {type: 'triangle'})}}>update</button>

@@ -11,7 +11,7 @@ class CanvasStore extends RootStore {
     const w = 150, h = 150, id = uuid();
     _canvas[id] = {
       ...{
-        key: id,
+        id: id,
         type: canvasObj.type,
         x: parseInt(LayoutStore.getStore().canvasWidth)/2 - parseInt(canvasObj.width||w)/2,
         y: parseInt(LayoutStore.getStore().canvasHeight)/2 - parseInt(canvasObj.height||h)/2,
@@ -23,9 +23,7 @@ class CanvasStore extends RootStore {
   };
 
   update = function(id, canvasObj) {
-    // if(id in _canvas) {
-    if(true) {
-      console.log(Object.keys(canvasObj), canvasObj)
+    if(id) {
       Object.keys(canvasObj).forEach(function(key){
         _canvas[id][key] = canvasObj[key];
       })

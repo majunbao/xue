@@ -9,14 +9,10 @@ class UXResize extends Component {
     right: 0,
     botton: 0,
     top: this.props.y,
-    cursor: 'default'
+    cursor: 'default',
+    isSelected: this.props.isSelected
   }
-  resizeStyle = {
-    position: 'absolute',
-    width: this.state.width,
-    height: this.state.height,
-    border: '1px solid #95B6FF'
-  }
+
   resizeHandleStyle = {
     width: '9px',
     height: '9px',
@@ -75,6 +71,10 @@ class UXResize extends Component {
     typeof this.props.onMove == 'function' && this.props.onMove(data);
   }
 
+  onMouseDown = () => {
+    typeof this.props.onMouseDown == 'function' && this.props.onMouseDown(this.props.id);
+  }
+
   // Top Right Bottom Left Move handle
   handleTop = (data) => {
     this.setState({
@@ -116,34 +116,39 @@ class UXResize extends Component {
 
   render(props, state) {
     return (
-      <div style={{...this.resizeStyle, ...{width: state.width, height: state.height, left: state.left, top: state.top}}}>
-        <UXEvent onDrag={this.onTopLeft} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-6px', left: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onTopCenter} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onTopRight} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-6px', right: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onCenterLeft} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onCenterRight} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onBottomLeft} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-6px', left: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onBottomCenter} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onBottomRight} onDragStop={this.handleResizeStop}>
-          <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-6px', right: '-6px'}}}></div>
-        </UXEvent>
-        <UXEvent onDrag={this.onMove}>
+      <div id={state.id} style={{width: state.width, height: state.height, left: state.left, top: state.top, outline: state.isSelected?'1px solid #95B6FF':null, position: 'absolute'}}>
+        <UXEvent {...props} onDrag={this.onMove} onDragStop={props.onMoveStop} onMouseDown={this.onMouseDown}>
           {props.children}
         </UXEvent>
+        {state.isSelected ?
+          <div>
+            <UXEvent onDrag={this.onTopLeft} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-6px', left: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onTopCenter} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onTopRight} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-6px', right: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onCenterLeft} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onCenterRight} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onBottomLeft} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-6px', left: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onBottomCenter} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
+            </UXEvent>
+            <UXEvent onDrag={this.onBottomRight} onDragStop={this.handleResizeStop}>
+              <div style={{...this.resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-6px', right: '-6px'}}}></div>
+            </UXEvent>
+          </div>
+        : null
+        }
       </div>
     )
   }

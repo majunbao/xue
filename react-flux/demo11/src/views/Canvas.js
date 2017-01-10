@@ -1,5 +1,5 @@
 import {h, render, Component, cloneElement} from 'preact';
-import {UXDrag, UXResize, UXNew} from '../uxkit/uxkit';
+import {UXDrag, UXResize, UXShape} from '../uxkit/uxkit';
 import CanvasStore from '../stores/CanvasStore';
 
 class Canvas extends Component {
@@ -16,7 +16,7 @@ class Canvas extends Component {
       <div>
         {
           Object.keys(canvas).map((item) => {
-            return <UXNew {...canvas[item]} />
+            return <UXShape {...canvas[item]} onMouseDown={(id)=>{CanvasStore.update(id, {width: '20px'})}} />
           })
         }
       </div>

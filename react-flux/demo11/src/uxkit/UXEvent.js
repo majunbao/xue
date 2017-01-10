@@ -17,6 +17,17 @@ class UXEvent extends Component {
     this.x = e.pageX - this.mx;
     this.y = e.pageY - this.my;
 
+    typeof this.props.onMoveStart == 'function' && this.props.onMoveStart({
+      x: e.pageX,
+      y: e.pageY,
+      mx: this.mx,
+      my: this.my,
+      dx: this.dx,
+      dy: this.dy,
+      event: e,
+      node: this.base
+    });
+
     addEvent(ownerDocument, 'mousemove', this.handleDrag);
     addEvent(ownerDocument, 'mouseup', this.handleDragStop);
   };
