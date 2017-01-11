@@ -5,8 +5,7 @@ class Header extends Component {
 
   render(props, state) {
     return (
-      <div style={props.style} className={props.className}>
-      </div>
+      <div></div>
     )
   }
   

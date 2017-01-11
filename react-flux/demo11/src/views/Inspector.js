@@ -30,9 +30,9 @@ class Inspector extends Component {
   }
 
   onLayout = (direction, num) => {
-    LayoutActions.setLayout({
-      [direction]: LayoutActions.getLayout()[direction] == 0 ? num: 0
-    });
+    this.props.onUpdateLayout({
+      [direction]: this.props.layout[direction] == 0 ? num: 0
+    })
   }
 
   log = () => {
@@ -59,6 +59,7 @@ class Inspector extends Component {
         <br />
         <button onClick={()=>{this.log()}}>log</button>
         <div style={{fontSize: '12px'}}><pre>{JSON.stringify(state.log).replace(/,/g, ',\n')}</pre></div>
+        <button onClick={()=>{}}>New 1</button>
       </div>
     )
   }

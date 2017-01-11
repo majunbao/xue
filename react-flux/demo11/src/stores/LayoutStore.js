@@ -15,11 +15,11 @@ const defaultLayout = {
 let _layout = defaultLayout;
 
 class LayoutStore extends RootStore {
-  getStore = function() {
+  getState = function() {
     return _layout;
   };
   
-  setLayout = function(config) {
+  updateLayout = function(config) {
     for(let key in config) {
       _layout[key] = config[key]
     }
