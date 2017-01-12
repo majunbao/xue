@@ -1,14 +1,17 @@
 import CanvasStore from '../stores/CanvasStore';
 
 const CanvasActions = {
-  add: (canvasObj) => {
-    CanvasStore.addCanvas(canvasObj);
+  addCanvas: (newData) => {
+    CanvasStore.addCanvas(newData);
   },
-  update: (id, canvasObj) => {
-    CanvasStore.update(id, canvasObj);
+  updataCanvas: (id, updateData) => {
+    CanvasStore.updataCanvas(id, updateData);
   },
-  getAll: () => {
-    return CanvasStore.getStore();
+  deleteCanvas: (id) => {
+    CanvasStore.deleteCanvas(id);
+  },
+  selectCanvas: (id) => {
+    CanvasStore.selectCanvas(id);
   }
 }
 

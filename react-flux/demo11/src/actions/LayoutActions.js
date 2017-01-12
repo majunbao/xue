@@ -1,8 +1,8 @@
 import LayoutStore from '../stores/LayoutStore';
 
 const LayoutActions = {
-  updateLayout: function(config){
-    LayoutStore.updateLayout(config);
+  updataLayout: function(config){
+    LayoutStore.updataLayout(config);
   }
 }
 

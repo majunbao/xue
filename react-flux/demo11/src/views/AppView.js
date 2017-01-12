@@ -9,19 +9,26 @@ import CanvasActions from '../actions/CanvasActions';
 import LayoutStore from '../stores/LayoutStore';
 import CanvasStore from '../stores/CanvasStore';
 
+import Event from './base/Event';
+
 const getStores = () => {
 
 }
 
 const getState = {
   layout: LayoutStore.getState(),
+  canvas: CanvasStore.getState(),
 
-  onUpdateLayout: LayoutActions.updateLayout
+  onUpdataLayout: LayoutActions.updataLayout,
+  onUpdataCanvas: CanvasActions.updataCanvas,
+  onAddCanvas: CanvasActions.addCanvas,
+  onDeleteCanvas: CanvasActions.deleteCanvas,
+  onSelectCanvas: CanvasActions.selectCanvas,
 }
 
 class AppView extends Component {
   componentDidMount() {
-    LayoutStore.addChangeListener(this._onChange)
+    LayoutStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {

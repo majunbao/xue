@@ -1,6 +1,4 @@
 import {h, render, Component} from 'preact';
-import CanvasActions from '../actions/CanvasActions';
-import LayoutActions from '../actions/LayoutActions';
 
 class Inspector extends Component {
 
@@ -9,20 +7,24 @@ class Inspector extends Component {
   }
 
   add = (canvasObj) => {
-    CanvasActions.add(canvasObj);
+    this.props.onAddCanvas(canvasObj)
   }
 
   addNum = (num) => {
     let x = 0, y = 0, split= 768/num;
     for(let i=0; i<num; i++) {
       x = split*i;
-      CanvasActions.add({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y});  
-      CanvasActions.add({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+100});  
-      CanvasActions.add({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+200});  
-      CanvasActions.add({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y+300});  
-      CanvasActions.add({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+400});  
-      CanvasActions.add({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+500});  
+       this.props.onAddCanvas({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y});  
+       this.props.onAddCanvas({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+100});  
+       this.props.onAddCanvas({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+200});  
+       this.props.onAddCanvas({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y+300});  
+       this.props.onAddCanvas({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+400});  
+       this.props.onAddCanvas({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+500});  
     }
+  }
+
+  delete = (id) => {
+    this.props.onDeleteCanvas(id)
   }
 
   update = (id, canvasObj) => {
@@ -30,7 +32,7 @@ class Inspector extends Component {
   }
 
   onLayout = (direction, num) => {
-    this.props.onUpdateLayout({
+    this.props.onUpdataLayout({
       [direction]: this.props.layout[direction] == 0 ? num: 0
     })
   }
@@ -45,14 +47,14 @@ class Inspector extends Component {
     return (
       <div>
         <br />
-        <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'red', isSelected: {true}})}}>rect</button>
+        <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'green'})}}>rect</button>
         <button onClick={()=>{this.add({type: 'circle'})}}>circle</button>
         <button onClick={()=>{this.add({type: 'triangle'})}}>triangle</button>
         <button onClick={()=>{this.update('ssd', {type: 'triangle'})}}>update</button>
         <button onClick={this.add}>random</button>
         <button onClick={()=>{this.addNum(10)}}>60</button>
         <br />
-        <button onClick={this.add}>删除</button>
+        <button onClick={this.delete}>删除</button>
         <br />
         <button onClick={()=>{this.onLayout('left', '200px')}}>layout-left</button>
         <button onClick={()=>{this.onLayout('top', '60px')}}>layout-top</button>

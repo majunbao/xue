@@ -52,7 +52,7 @@
 
 	var _AppView2 = _interopRequireDefault(_AppView);
 
-	__webpack_require__(17);
+	__webpack_require__(26);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -572,11 +572,11 @@
 
 	var _Center2 = _interopRequireDefault(_Center);
 
-	var _Right = __webpack_require__(14);
+	var _Right = __webpack_require__(23);
 
 	var _Right2 = _interopRequireDefault(_Right);
 
-	var _LayoutActions = __webpack_require__(16);
+	var _LayoutActions = __webpack_require__(25);
 
 	var _LayoutActions2 = _interopRequireDefault(_LayoutActions);
 
@@ -592,6 +592,10 @@
 
 	var _CanvasStore2 = _interopRequireDefault(_CanvasStore);
 
+	var _Event = __webpack_require__(32);
+
+	var _Event2 = _interopRequireDefault(_Event);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -604,8 +608,13 @@
 
 	var getState = {
 	  layout: _LayoutStore2.default.getState(),
+	  canvas: _CanvasStore2.default.getState(),
 
-	  onUpdateLayout: _LayoutActions2.default.updateLayout
+	  onUpdataLayout: _LayoutActions2.default.updataLayout,
+	  onUpdataCanvas: _CanvasActions2.default.updataCanvas,
+	  onAddCanvas: _CanvasActions2.default.addCanvas,
+	  onDeleteCanvas: _CanvasActions2.default.deleteCanvas,
+	  onSelectCanvas: _CanvasActions2.default.selectCanvas
 	};
 
 	var AppView = function (_Component) {
@@ -761,14 +770,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CanvasActions = {
-	  add: function add(canvasObj) {
-	    _CanvasStore2.default.addCanvas(canvasObj);
+	  addCanvas: function addCanvas(newData) {
+	    _CanvasStore2.default.addCanvas(newData);
 	  },
-	  update: function update(id, canvasObj) {
-	    _CanvasStore2.default.update(id, canvasObj);
+	  updataCanvas: function updataCanvas(id, updateData) {
+	    _CanvasStore2.default.updataCanvas(id, updateData);
 	  },
-	  getAll: function getAll() {
-	    return _CanvasStore2.default.getStore();
+	  deleteCanvas: function deleteCanvas(id) {
+	    _CanvasStore2.default.deleteCanvas(id);
+	  },
+	  selectCanvas: function selectCanvas(id) {
+	    _CanvasStore2.default.selectCanvas(id);
 	  }
 	};
 
@@ -806,7 +818,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CHANGE_EVENT = 'changeCanvas';
+	var CHANGE_EVENT = 'change';
 	var _canvas = {};
 
 	var CanvasStore = function (_RootStore) {
@@ -823,27 +835,39 @@
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CanvasStore.__proto__ || Object.getPrototypeOf(CanvasStore)).call.apply(_ref, [this].concat(args))), _this), _this.addCanvas = function (canvasObj) {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CanvasStore.__proto__ || Object.getPrototypeOf(CanvasStore)).call.apply(_ref, [this].concat(args))), _this), _this.addCanvas = function (newData) {
 	      var w = 150,
 	          h = 150,
 	          id = (0, _UXUtil.uuid)();
 	      _canvas[id] = _extends({
 	        id: id,
-	        type: canvasObj.type,
-	        x: parseInt(_LayoutStore2.default.getStore().canvasWidth) / 2 - parseInt(canvasObj.width || w) / 2,
-	        y: parseInt(_LayoutStore2.default.getStore().canvasHeight) / 2 - parseInt(canvasObj.height || h) / 2,
+	        type: newData.type,
+	        x: parseInt(_LayoutStore2.default.getState().canvasWidth) / 2 - parseInt(newData.width || w) / 2,
+	        y: parseInt(_LayoutStore2.default.getState().canvasHeight) / 2 - parseInt(newData.height || h) / 2,
 	        width: w + 'px',
 	        height: w + 'px'
-	      }, canvasObj);
+	      }, newData);
+	      this.selectCanvas(id);
 	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
-	    }, _this.update = function (id, canvasObj) {
-	      if (id) {
-	        Object.keys(canvasObj).forEach(function (key) {
-	          _canvas[id][key] = canvasObj[key];
+	    }, _this.updataCanvas = function (id, updateData) {
+	      if (id in _canvas) {
+	        Object.keys(updateData).forEach(function (key) {
+	          _canvas[id][key] = updateData[key];
 	        });
+	        _events.EventEmitter.prototype.emit(CHANGE_EVENT);
 	      }
-	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
-	    }, _this.getStore = function () {
+	    }, _this.deleteCanvas = function (id) {
+	      if (id in _canvas) {
+	        delete _canvas[id];
+	      }
+	    }, _this.selectCanvas = function (id) {
+	      if (id in _canvas) {
+	        Object.keys(_canvas).map(function (item) {
+	          delete _canvas[item].isSelected;
+	        });
+	        _canvas[id].isSelected = true;
+	      }
+	    }, _this.getState = function () {
 	      return _canvas;
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -1237,7 +1261,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CHANGE_EVENT = 'changeLayout';
+	var CHANGE_EVENT = 'change';
 	var defaultLayout = {
 	  top: '60px',
 	  left: '200px',
@@ -1266,7 +1290,7 @@
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LayoutStore.__proto__ || Object.getPrototypeOf(LayoutStore)).call.apply(_ref, [this].concat(args))), _this), _this.getState = function () {
 	      return _layout;
-	    }, _this.updateLayout = function (config) {
+	    }, _this.updataLayout = function (config) {
 	      for (var key in config) {
 	        _layout[key] = config[key];
 	      }
@@ -1323,7 +1347,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Canvas = __webpack_require__(23);
+	var _Canvas = __webpack_require__(13);
 
 	var _Canvas2 = _interopRequireDefault(_Canvas);
 
@@ -1363,8 +1387,7 @@
 	exports.default = Center;
 
 /***/ },
-/* 13 */,
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1377,323 +1400,36 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Inspector = __webpack_require__(15);
+	var _uxkit = __webpack_require__(14);
 
-	var _Inspector2 = _interopRequireDefault(_Inspector);
+	var _Event = __webpack_require__(32);
+
+	var _Event2 = _interopRequireDefault(_Event);
+
+	var _ResizeCore = __webpack_require__(37);
+
+	var _ResizeCore2 = _interopRequireDefault(_ResizeCore);
+
+	var _Rect = __webpack_require__(35);
+
+	var _Rect2 = _interopRequireDefault(_Rect);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var style = {
-	  top: '60px',
-	  right: 0,
-	  bottom: 0,
-	  background: '#F6F6F6'
-	};
-
-	function Right(props) {
+	function Canvas(props) {
 	  return (0, _preact.h)(
 	    'div',
-	    { className: 'uk-view', style: _extends({}, style, { top: props.layout.top, width: props.layout.right }) },
-	    (0, _preact.h)(_Inspector2.default, props)
+	    null,
+	    Object.keys(props.canvas).map(function (item) {
+	      return (0, _preact.h)(_uxkit.UXShape, _extends({}, props, props.canvas[item]));
+	    })
 	  );
 	}
-
-	exports.default = Right;
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _preact = __webpack_require__(1);
-
-	var _CanvasActions = __webpack_require__(5);
-
-	var _CanvasActions2 = _interopRequireDefault(_CanvasActions);
-
-	var _LayoutActions = __webpack_require__(16);
-
-	var _LayoutActions2 = _interopRequireDefault(_LayoutActions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Inspector = function (_Component) {
-	  _inherits(Inspector, _Component);
-
-	  function Inspector() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
-	    _classCallCheck(this, Inspector);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Inspector.__proto__ || Object.getPrototypeOf(Inspector)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      log: {}
-	    }, _this.add = function (canvasObj) {
-	      _CanvasActions2.default.add(canvasObj);
-	    }, _this.addNum = function (num) {
-	      var x = 0,
-	          y = 0,
-	          split = 768 / num;
-	      for (var i = 0; i < num; i++) {
-	        x = split * i;
-	        _CanvasActions2.default.add({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y });
-	        _CanvasActions2.default.add({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 100 });
-	        _CanvasActions2.default.add({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 200 });
-	        _CanvasActions2.default.add({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 300 });
-	        _CanvasActions2.default.add({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 400 });
-	        _CanvasActions2.default.add({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 500 });
-	      }
-	    }, _this.update = function (id, canvasObj) {
-	      _CanvasActions2.default.update(id, canvasObj);
-	    }, _this.onLayout = function (direction, num) {
-	      _this.props.onUpdateLayout(_defineProperty({}, direction, _this.props.layout[direction] == 0 ? num : 0));
-	    }, _this.log = function () {
-	      _this.setState({
-	        log: _CanvasActions2.default.getAll()
-	      });
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-
-	  _createClass(Inspector, [{
-	    key: 'render',
-	    value: function render(props, state) {
-	      var _this2 = this;
-
-	      return (0, _preact.h)(
-	        'div',
-	        null,
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.add({ type: 'rect', width: '300px', height: '100px', fill: 'red', isSelected: { true: true } });
-	            } },
-	          'rect'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.add({ type: 'circle' });
-	            } },
-	          'circle'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.add({ type: 'triangle' });
-	            } },
-	          'triangle'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.update('ssd', { type: 'triangle' });
-	            } },
-	          'update'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: this.add },
-	          'random'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.addNum(10);
-	            } },
-	          '60'
-	        ),
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: this.add },
-	          '\u5220\u9664'
-	        ),
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.onLayout('left', '200px');
-	            } },
-	          'layout-left'
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.onLayout('top', '60px');
-	            } },
-	          'layout-top'
-	        ),
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              _this2.log();
-	            } },
-	          'log'
-	        ),
-	        (0, _preact.h)(
-	          'div',
-	          { style: { fontSize: '12px' } },
-	          (0, _preact.h)(
-	            'pre',
-	            null,
-	            JSON.stringify(state.log).replace(/,/g, ',\n')
-	          )
-	        ),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {} },
-	          'New 1'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Inspector;
-	}(_preact.Component);
-
-	exports.default = Inspector;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _LayoutStore = __webpack_require__(10);
-
-	var _LayoutStore2 = _interopRequireDefault(_LayoutStore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var LayoutActions = {
-	  updateLayout: function updateLayout(config) {
-	    _LayoutStore2.default.updateLayout(config);
-	  }
-	};
-
-	exports.default = LayoutActions;
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _preact = __webpack_require__(1);
-
-	var _uxkit = __webpack_require__(24);
-
-	var _CanvasStore = __webpack_require__(6);
-
-	var _CanvasStore2 = _interopRequireDefault(_CanvasStore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Canvas = function (_Component) {
-	  _inherits(Canvas, _Component);
-
-	  function Canvas() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
-	    _classCallCheck(this, Canvas);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Canvas.__proto__ || Object.getPrototypeOf(Canvas)).call.apply(_ref, [this].concat(args))), _this), _this._onChange = function () {
-	      _this.setState(_CanvasStore2.default.getStore());
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-
-	  _createClass(Canvas, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      _CanvasStore2.default.addChangeListener(this._onChange);
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      _CanvasStore2.default.removeChangeListener(this._onChange);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render(props, _ref2) {
-	      var _ref2$canvas = _ref2.canvas,
-	          canvas = _ref2$canvas === undefined ? _CanvasStore2.default.getStore() : _ref2$canvas;
-
-	      return (0, _preact.h)(
-	        'div',
-	        null,
-	        Object.keys(canvas).map(function (item) {
-	          return (0, _preact.h)(_uxkit.UXShape, _extends({}, canvas[item], { onMouseDown: function onMouseDown(id) {
-	              _CanvasStore2.default.update(id, { width: '20px' });
-	            } }));
-	        })
-	      );
-	    }
-	  }]);
-
-	  return Canvas;
-	}(_preact.Component);
 
 	exports.default = Canvas;
 
 /***/ },
-/* 24 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1703,23 +1439,23 @@
 	});
 	exports.UXShape = exports.UXResize = exports.UXDrag = exports.UXEvent = exports.UXDom = undefined;
 
-	var _UXDom = __webpack_require__(25);
+	var _UXDom = __webpack_require__(15);
 
 	var _UXDom2 = _interopRequireDefault(_UXDom);
 
-	var _UXEvent = __webpack_require__(26);
+	var _UXEvent = __webpack_require__(16);
 
 	var _UXEvent2 = _interopRequireDefault(_UXEvent);
 
-	var _UXDrag = __webpack_require__(27);
+	var _UXDrag = __webpack_require__(17);
 
 	var _UXDrag2 = _interopRequireDefault(_UXDrag);
 
-	var _UXResize = __webpack_require__(28);
+	var _UXResize = __webpack_require__(18);
 
 	var _UXResize2 = _interopRequireDefault(_UXResize);
 
-	var _UXShape = __webpack_require__(29);
+	var _UXShape = __webpack_require__(19);
 
 	var _UXShape2 = _interopRequireDefault(_UXShape);
 
@@ -1732,7 +1468,7 @@
 	exports.UXShape = _UXShape2.default;
 
 /***/ },
-/* 25 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1775,7 +1511,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1790,7 +1526,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXDom = __webpack_require__(25);
+	var _UXDom = __webpack_require__(15);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1890,7 +1626,7 @@
 	exports.default = UXEvent;
 
 /***/ },
-/* 27 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1907,9 +1643,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXDom = __webpack_require__(25);
+	var _UXDom = __webpack_require__(15);
 
-	var _UXEvent = __webpack_require__(26);
+	var _UXEvent = __webpack_require__(16);
 
 	var _UXEvent2 = _interopRequireDefault(_UXEvent);
 
@@ -1988,7 +1724,7 @@
 	exports.default = UXDrag;
 
 /***/ },
-/* 28 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2003,7 +1739,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXEvent = __webpack_require__(26);
+	var _UXEvent = __webpack_require__(16);
 
 	var _UXEvent2 = _interopRequireDefault(_UXEvent);
 
@@ -2116,7 +1852,7 @@
 	    value: function render(props, state) {
 	      return (0, _preact.h)(
 	        'div',
-	        { style: { width: state.width, height: state.height, left: state.left, top: state.top, outline: state.isSelected ? '1px solid #95B6FF' : null, position: 'absolute' } },
+	        { id: props.id, style: { width: state.width, height: state.height, left: state.left, top: state.top, outline: state.isSelected ? '1px solid #95B6FF' : null, position: 'absolute' } },
 	        (0, _preact.h)(
 	          _UXEvent2.default,
 	          _extends({}, props, { onDrag: this.onMove, onDragStop: props.onMoveStop, onMouseDown: this.onMouseDown }),
@@ -2176,7 +1912,7 @@
 	exports.default = UXResize;
 
 /***/ },
-/* 29 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2187,17 +1923,21 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXCircle = __webpack_require__(30);
+	var _UXCircle = __webpack_require__(20);
 
 	var _UXCircle2 = _interopRequireDefault(_UXCircle);
 
-	var _UXRect = __webpack_require__(31);
+	var _UXRect = __webpack_require__(21);
 
 	var _UXRect2 = _interopRequireDefault(_UXRect);
 
-	var _UXTriangle = __webpack_require__(32);
+	var _UXTriangle = __webpack_require__(22);
 
 	var _UXTriangle2 = _interopRequireDefault(_UXTriangle);
+
+	var _Rect = __webpack_require__(35);
+
+	var _Rect2 = _interopRequireDefault(_Rect);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2210,7 +1950,7 @@
 	  switch (props.type) {
 	    case 'UXRect':
 	    case 'rect':
-	      return (0, _preact.h)(_UXRect2.default, props);
+	      return (0, _preact.h)(_Rect2.default, props);
 	    case 'UXCircle':
 	    case 'circle':
 	      return (0, _preact.h)(_UXCircle2.default, props);
@@ -2229,7 +1969,7 @@
 	exports.default = UXShape;
 
 /***/ },
-/* 30 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2240,7 +1980,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXResize = __webpack_require__(28);
+	var _UXResize = __webpack_require__(18);
 
 	var _UXResize2 = _interopRequireDefault(_UXResize);
 
@@ -2266,7 +2006,7 @@
 	exports.default = UXCircle;
 
 /***/ },
-/* 31 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2277,7 +2017,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXResize = __webpack_require__(28);
+	var _UXResize = __webpack_require__(18);
 
 	var _UXResize2 = _interopRequireDefault(_UXResize);
 
@@ -2303,7 +2043,7 @@
 	exports.default = UXCircle;
 
 /***/ },
-/* 32 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2316,7 +2056,7 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _UXResize = __webpack_require__(28);
+	var _UXResize = __webpack_require__(18);
 
 	var _UXResize2 = _interopRequireDefault(_UXResize);
 
@@ -2380,6 +2120,656 @@
 	}(_preact.Component);
 
 	exports.default = UXTriangle;
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _preact = __webpack_require__(1);
+
+	var _Inspector = __webpack_require__(24);
+
+	var _Inspector2 = _interopRequireDefault(_Inspector);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var style = {
+	  top: '60px',
+	  right: 0,
+	  bottom: 0,
+	  background: '#F6F6F6'
+	};
+
+	function Right(props) {
+	  return (0, _preact.h)(
+	    'div',
+	    { className: 'uk-view', style: _extends({}, style, { top: props.layout.top, width: props.layout.right }) },
+	    (0, _preact.h)(_Inspector2.default, props)
+	  );
+	}
+
+	exports.default = Right;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _preact = __webpack_require__(1);
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Inspector = function (_Component) {
+	  _inherits(Inspector, _Component);
+
+	  function Inspector() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Inspector);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Inspector.__proto__ || Object.getPrototypeOf(Inspector)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	      log: {}
+	    }, _this.add = function (canvasObj) {
+	      _this.props.onAddCanvas(canvasObj);
+	    }, _this.addNum = function (num) {
+	      var x = 0,
+	          y = 0,
+	          split = 768 / num;
+	      for (var i = 0; i < num; i++) {
+	        x = split * i;
+	        _this.props.onAddCanvas({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y });
+	        _this.props.onAddCanvas({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 100 });
+	        _this.props.onAddCanvas({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 200 });
+	        _this.props.onAddCanvas({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 300 });
+	        _this.props.onAddCanvas({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 400 });
+	        _this.props.onAddCanvas({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 500 });
+	      }
+	    }, _this.delete = function (id) {
+	      _this.props.onDeleteCanvas(id);
+	    }, _this.update = function (id, canvasObj) {
+	      CanvasActions.update(id, canvasObj);
+	    }, _this.onLayout = function (direction, num) {
+	      _this.props.onUpdataLayout(_defineProperty({}, direction, _this.props.layout[direction] == 0 ? num : 0));
+	    }, _this.log = function () {
+	      _this.setState({
+	        log: CanvasActions.getAll()
+	      });
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(Inspector, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      var _this2 = this;
+
+	      return (0, _preact.h)(
+	        'div',
+	        null,
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.add({ type: 'rect', width: '300px', height: '100px', fill: 'green' });
+	            } },
+	          'rect'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.add({ type: 'circle' });
+	            } },
+	          'circle'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.add({ type: 'triangle' });
+	            } },
+	          'triangle'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.update('ssd', { type: 'triangle' });
+	            } },
+	          'update'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: this.add },
+	          'random'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.addNum(10);
+	            } },
+	          '60'
+	        ),
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: this.delete },
+	          '\u5220\u9664'
+	        ),
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.onLayout('left', '200px');
+	            } },
+	          'layout-left'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.onLayout('top', '60px');
+	            } },
+	          'layout-top'
+	        ),
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              _this2.log();
+	            } },
+	          'log'
+	        ),
+	        (0, _preact.h)(
+	          'div',
+	          { style: { fontSize: '12px' } },
+	          (0, _preact.h)(
+	            'pre',
+	            null,
+	            JSON.stringify(state.log).replace(/,/g, ',\n')
+	          )
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {} },
+	          'New 1'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Inspector;
+	}(_preact.Component);
+
+	exports.default = Inspector;
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _LayoutStore = __webpack_require__(10);
+
+	var _LayoutStore2 = _interopRequireDefault(_LayoutStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LayoutActions = {
+	  updataLayout: function updataLayout(config) {
+	    _LayoutStore2.default.updataLayout(config);
+	  }
+	};
+
+	exports.default = LayoutActions;
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
+	function Event(props) {
+	  return (0, _preact.cloneElement)(props.children[0], props);
+	}
+
+	exports.default = Event;
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addEvent = addEvent;
+	exports.removeEvent = removeEvent;
+	exports.prefixCssProp = prefixCssProp;
+	exports.prefixCssVal = prefixCssVal;
+	function addEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  el.addEventListener(event, handler, false);
+	}
+
+	function removeEvent(el, event, handler) {
+	  if (!el) {
+	    return;
+	  };
+	  el.removeEventListener(event, handler, false);
+	}
+
+	function prefixCssProp(prop) {
+	  var prefixes = ['moz', 'webkit', 'o', 'ms'];
+	  var styles = document.createElement('div').style;
+	  if (prop in styles) return prop;
+	  for (var i = 0; i < prefixes.length; i++) {
+	    var nowProp = prefixes[i] + prop.charAt(0).toUpperCase() + prop.slice(1);
+	    if (nowProp in styles) {
+	      return nowProp;
+	    }
+	  }
+	}
+
+	function prefixCssVal() {
+	  var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
+	}
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
+	var _Dom = __webpack_require__(33);
+
+	var _Event = __webpack_require__(32);
+
+	function DragCore(props) {
+	  var x = 0;
+	  var y = 0;
+	  var mx = 0;
+	  var my = 0;
+	  var dx = 0;
+	  var dy = 0;
+	  var darging = false;
+
+	  var data = {
+	    x: null,
+	    y: null,
+	    mx: null,
+	    my: null,
+	    dx: null,
+	    dy: null,
+	    event: null,
+	    node: null
+	  };
+
+	  var returnData = function returnData(e) {
+	    return {
+	      x: e.pageX,
+	      y: e.pageY,
+	      mx: mx,
+	      my: my,
+	      dx: dx,
+	      dy: dy,
+	      event: e,
+	      node: e.target
+	    };
+	  };
+
+	  var handleDragStart = function handleDragStart(e) {
+	    var ownerDocument = document;
+
+	    x = e.pageX - mx;
+	    y = e.pageY - my;
+
+	    typeof props.onDragStart == 'function' && props.onDragStart(returnData(e));
+
+	    (0, _Dom.addEvent)(ownerDocument, 'mousemove', handleDrag);
+	    (0, _Dom.addEvent)(ownerDocument, 'mouseup', handleDragStop);
+	  };
+
+	  var handleDragStop = function handleDragStop(e) {
+	    var ownerDocument = document;
+
+	    typeof props.onDragStop == 'function' && props.onDragStop(returnData(e));
+
+	    (0, _Dom.removeEvent)(ownerDocument, 'mousemove', handleDrag);
+	    (0, _Dom.removeEvent)(ownerDocument, 'mouseup', handleDragStop);
+	  };
+
+	  var handleDrag = function handleDrag(e) {
+	    dx = mx;
+	    dy = my;
+	    mx = e.pageX - x;
+	    my = e.pageY - y;
+	    dx = mx - dx;
+	    dy = my - dy;
+	    typeof props.onDrag == 'function' && props.onDrag(returnData(e));
+	  };
+
+	  var onDragStart = function onDragStart(e) {
+	    e.which == 1 && handleDragStart(e);
+	  };
+
+	  return (0, _preact.cloneElement)(props.children[0], {
+	    onMouseDown: onDragStart
+	  });
+	}
+
+	exports.default = DragCore;
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _preact = __webpack_require__(1);
+
+	var _DragCore = __webpack_require__(34);
+
+	var _DragCore2 = _interopRequireDefault(_DragCore);
+
+	var _ResizeCore = __webpack_require__(37);
+
+	var _ResizeCore2 = _interopRequireDefault(_ResizeCore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Rect(props) {
+
+	  var onDragStart = function onDragStart(data) {
+	    props.onSelectCanvas(props.id);
+	    props.onUpdataCanvas(props.id, {});
+	  };
+
+	  var onDrag = function onDrag(data) {
+	    props.onUpdataCanvas(props.id, { x: props.x + data.mx, y: props.y + data.my });
+	  };
+
+	  var onResize = function onResize(data) {
+	    var width = data.width,
+	        height = data.height,
+	        x = data.x,
+	        y = data.y;
+
+	    if (width < 0) {
+	      x = x + width;
+	      width = width * -1;
+	    }
+	    if (height < 0) {
+	      y = y + height;
+	      height = height * -1;
+	    }
+	    props.onUpdataCanvas(props.id, { x: x, y: y, width: width, height: height });
+	  };
+
+	  return (0, _preact.h)(
+	    'div',
+	    null,
+	    (0, _preact.h)(_ResizeCore2.default, _extends({}, props, { onResize: onResize })),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onDrag, onDragStart: onDragStart },
+	      (0, _preact.h)(
+	        'svg',
+	        { width: props.width, height: props.height, style: { left: props.x, top: props.y, position: 'absolute' } },
+	        (0, _preact.h)('rect', { width: '100%', height: '100%', fill: props.fill })
+	      )
+	    )
+	  );
+	}
+
+	exports.default = Rect;
+
+/***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _preact = __webpack_require__(1);
+
+	var _DragCore = __webpack_require__(34);
+
+	var _DragCore2 = _interopRequireDefault(_DragCore);
+
+	var _Event = __webpack_require__(32);
+
+	var _Event2 = _interopRequireDefault(_Event);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ResizeCore(props) {
+
+	  var style = {
+	    left: props.x,
+	    top: props.y,
+	    width: props.width,
+	    height: props.height,
+	    position: 'absolute',
+	    outline: '1px solid #95B6FF'
+	  };
+
+	  var resizeHandleStyle = {
+	    width: '9px',
+	    height: '9px',
+	    border: '1px solid #FEFEFF',
+	    backgroundColor: '#0079FF',
+	    borderRadius: '5px',
+	    position: 'absolute',
+	    zIndex: 1
+	  };
+
+	  var returnData = {
+	    width: parseInt(props.width),
+	    height: parseInt(props.height),
+	    x: props.x,
+	    y: props.y
+	  };
+
+	  var onResizeStart = function onResizeStart(data) {};
+
+	  var onResize = function onResize(data) {
+	    typeof props.onResize == 'function' && props.onResize(data);
+	  };
+
+	  var onTopLeft = function onTopLeft(data) {
+	    handleTop(data);
+	    handleLeft(data);
+	    handleResize(data);
+	  };
+
+	  var onTopCenter = function onTopCenter(data) {
+	    handleTop(data);
+	    handleResize(data);
+	  };
+
+	  var onTopRight = function onTopRight(data) {
+	    handleTop(data);
+	    handleRight(data);
+	    handleResize(data);
+	  };
+
+	  var onCenterRight = function onCenterRight(data) {
+	    handleRight(data);
+	    handleResize(data);
+	  };
+
+	  var onCenterLeft = function onCenterLeft(data) {
+	    handleLeft(data);
+	    handleResize(data);
+	  };
+
+	  var onBottomLeft = function onBottomLeft(data) {
+	    handleBottom(data);
+	    handleLeft(data);
+	    handleResize(data);
+	  };
+
+	  var onBottomCenter = function onBottomCenter(data) {
+	    handleBottom(data);
+	    handleResize(data);
+	  };
+
+	  var onBottomRight = function onBottomRight(data) {
+	    handleBottom(data);
+	    handleRight(data);
+	    handleResize(data);
+	  };
+
+	  var onMove = function onMove(data) {
+	    handleMove(data);
+	    typeof props.onMove == 'function' && props.onMove(data);
+	  };
+
+	  var onMouseDown = function onMouseDown() {
+	    typeof props.onMouseDown == 'function' && props.onMouseDown(props.id);
+	  };
+
+	  // Top Right Bottom Left Move handle
+	  var handleTop = function handleTop(data) {
+	    returnData.height = returnData.height - data.dy;
+	    returnData.y = returnData.y + data.dy;
+	  };
+	  var handleRight = function handleRight(data) {
+	    returnData.width = returnData.width + data.dx;
+	  };
+	  var handleBottom = function handleBottom(data) {
+	    returnData.height = returnData.height + data.dy;
+	  };
+	  var handleLeft = function handleLeft(data) {
+	    returnData.width = returnData.width - data.dx;
+	    returnData.x = returnData.x + data.dx;
+	  };
+
+	  var handleMove = function handleMove(data) {
+	    returnData.x = returnData.x + data.dx;
+	    returnData.y = returnData.y + data.dy;
+	  };
+
+	  var handleResize = function handleResize(data) {
+	    typeof props.onResize == 'function' && props.onResize(returnData);
+	  };
+
+	  var handleResizeStop = function handleResizeStop(data) {
+	    typeof props.onResizeStop == 'function' && props.onResizeStop(returnData);
+	  };
+
+	  return props.isSelected ? (0, _preact.h)(
+	    'div',
+	    { style: style },
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onTopLeft, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'nwse-resize', top: '-6px', left: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onTopCenter, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onTopRight, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'nesw-resize', top: '-6px', right: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onCenterLeft, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onCenterRight, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onBottomLeft, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'nesw-resize', bottom: '-6px', left: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onBottomCenter, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px' }) })
+	    ),
+	    (0, _preact.h)(
+	      _DragCore2.default,
+	      { onDrag: onBottomRight, onDragStop: handleResizeStop },
+	      (0, _preact.h)('div', { style: _extends({}, resizeHandleStyle, { cursor: 'nwse-resize', bottom: '-6px', right: '-6px' }) })
+	    )
+	  ) : null;
+	}
+
+	exports.default = ResizeCore;
 
 /***/ }
 /******/ ]);

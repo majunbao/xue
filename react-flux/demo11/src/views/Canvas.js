@@ -1,31 +1,20 @@
-import {h, render, Component, cloneElement} from 'preact';
+import {h} from 'preact';
 import {UXDrag, UXResize, UXShape} from '../uxkit/uxkit';
-import CanvasStore from '../stores/CanvasStore';
+import Event from './base/Event';
+import ResizeCore from './base/ResizeCore';
+import Rect from './shape/Rect.js';
 
-class Canvas extends Component {
-  componentDidMount() {
-    CanvasStore.addChangeListener(this._onChange)
-  }
-
-  componentWillUnmount() {
-    CanvasStore.removeChangeListener(this._onChange)
-  }
-
-  render(props, {canvas = CanvasStore.getStore()}) {
-    return (
-      <div>
-        {
-          Object.keys(canvas).map((item) => {
-            return <UXShape {...canvas[item]} onMouseDown={(id)=>{CanvasStore.update(id, {width: '20px'})}} />
-          })
-        }
-      </div>
-    )
-  }
-  
-  _onChange = () => {
-    this.setState(CanvasStore.getStore());
-  }
+function Canvas(props) {
+  return (
+    <div>
+      {
+        Object.keys(props.canvas).map((item) => {
+          return <UXShape {...props} {...props.canvas[item]} />
+        })
+      }
+    </div>
+  )
 }
 
-export default Canvas;  
+export default Canvas;
+

@@ -116,7 +116,7 @@ class UXResize extends Component {
 
   render(props, state) {
     return (
-      <div style={{width: state.width, height: state.height, left: state.left, top: state.top, outline: state.isSelected?'1px solid #95B6FF':null, position: 'absolute'}}>
+      <div id={props.id} style={{width: state.width, height: state.height, left: state.left, top: state.top, outline: state.isSelected?'1px solid #95B6FF':null, position: 'absolute'}}>
         <UXEvent {...props} onDrag={this.onMove} onDragStop={props.onMoveStop} onMouseDown={this.onMouseDown}>
           {props.children}
         </UXEvent>
