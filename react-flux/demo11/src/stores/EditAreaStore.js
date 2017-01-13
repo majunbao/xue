@@ -1,9 +1,8 @@
-import {uuid} from '../uxkit/UXUtil';
+import {uuid} from '../views/base/Util';
 import {EventEmitter} from 'events';
 import RootStore from './RootStore';
 import LayoutStore from './LayoutStore';
 
-const CHANGE_EVENT = 'change'
 let _canvas = {};
 
 // 确保传入参数是数字
@@ -12,7 +11,7 @@ let someToNumber = function(obj) {
   obj.y && (obj.y = parseInt(obj.y));
 };
 
-class CanvasStore extends RootStore {
+class EditAreaStore extends RootStore {
   addCanvas = function(newData){
     // 处理参数，x、y处理成数字
     someToNumber(newData);
@@ -31,7 +30,7 @@ class CanvasStore extends RootStore {
     };
 
     this.selectCanvas(id);
-    EventEmitter.prototype.emit(CHANGE_EVENT);
+    this.emit();
   };
 
   updataCanvas = function(id, updateData) {
@@ -40,7 +39,7 @@ class CanvasStore extends RootStore {
       Object.keys(updateData).forEach(function(key){
         _canvas[id][key] = updateData[key];
       });
-      EventEmitter.prototype.emit(CHANGE_EVENT);
+      this.emit();
     }
   };
 
@@ -56,9 +55,16 @@ class CanvasStore extends RootStore {
         _canvas[item].isSelected = false
       });
       _canvas[id].isSelected = true;
-      EventEmitter.prototype.emit(CHANGE_EVENT);
+      this.emit();
     }
   };
+
+  cancelSelected = function() {
+    Object.keys(_canvas).forEach((item) => {
+      _canvas[item].isSelected = false
+    });
+    this.emit();
+  }
 
   // 返回选中的第一个组件id
   getCanvasBySelected = function() {
@@ -76,4 +82,4 @@ class CanvasStore extends RootStore {
   };
 }
 
-export default new CanvasStore(CHANGE_EVENT);
+export default new EditAreaStore();

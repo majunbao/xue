@@ -5,12 +5,12 @@ import Event from './Event';
 function ResizeCore(props) {
   
   let style = {
-    left: parseInt(props.x),
-    top: parseInt(props.y),
+    left: parseInt(props.x) -1,
+    top: parseInt(props.y) -1,
     width: parseInt(props.width) + 'px',
     height: parseInt(props.height) + 'px',
     position: 'absolute',
-    outline: '1px solid #95B6FF'
+    border: '1px solid #95B6FF'
   }
 
   let resizeHandleStyle = {

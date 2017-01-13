@@ -1,7 +1,6 @@
 import {EventEmitter} from 'events';
 import RootStore from './RootStore';
 
-const CHANGE_EVENT = 'change'
 const defaultLayout = {
   top: '60px',
   left: '200px',
@@ -23,8 +22,8 @@ class LayoutStore extends RootStore {
     for(let key in config) {
       _layout[key] = config[key]
     }
-    EventEmitter.prototype.emit(CHANGE_EVENT);
+    this.emit();
   };
 }
 
-export default new LayoutStore(CHANGE_EVENT);
+export default new LayoutStore();

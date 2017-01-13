@@ -6,7 +6,7 @@ import Rect from './shape/Rect.js';
 
 function Canvas(props) {
   return (
-    <div>
+    <div className="d">
       {
         Object.keys(props.canvas).map((item) => {
           return <UXShape {...props} {...props.canvas[item]} />

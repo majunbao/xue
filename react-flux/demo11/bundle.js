@@ -48,15 +48,15 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _AppView = __webpack_require__(2);
+	var _MainView = __webpack_require__(38);
 
-	var _AppView2 = _interopRequireDefault(_AppView);
+	var _MainView2 = _interopRequireDefault(_MainView);
 
 	__webpack_require__(32);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _preact.render)((0, _preact.h)(_AppView2.default, null), document.body);
+	(0, _preact.render)((0, _preact.h)(_MainView2.default, null), document.body);
 
 /***/ },
 /* 1 */
@@ -547,131 +547,7 @@
 	//# sourceMappingURL=preact.js.map
 
 /***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _preact = __webpack_require__(1);
-
-	var _top = __webpack_require__(3);
-
-	var _top2 = _interopRequireDefault(_top);
-
-	var _Left = __webpack_require__(5);
-
-	var _Left2 = _interopRequireDefault(_Left);
-
-	var _Center = __webpack_require__(7);
-
-	var _Center2 = _interopRequireDefault(_Center);
-
-	var _Right = __webpack_require__(23);
-
-	var _Right2 = _interopRequireDefault(_Right);
-
-	var _LayoutActions = __webpack_require__(25);
-
-	var _LayoutActions2 = _interopRequireDefault(_LayoutActions);
-
-	var _CanvasActions = __webpack_require__(29);
-
-	var _CanvasActions2 = _interopRequireDefault(_CanvasActions);
-
-	var _LayoutStore = __webpack_require__(26);
-
-	var _LayoutStore2 = _interopRequireDefault(_LayoutStore);
-
-	var _CanvasStore = __webpack_require__(30);
-
-	var _CanvasStore2 = _interopRequireDefault(_CanvasStore);
-
-	var _Event = __webpack_require__(21);
-
-	var _Event2 = _interopRequireDefault(_Event);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var getStores = function getStores() {};
-
-	var getState = {
-	  layout: _LayoutStore2.default.getState(), // 界面布局数据
-	  canvas: _CanvasStore2.default.getState(), // 画布数据
-
-	  getCanvasById: null, //根据id获取组件，类似于getElementById
-	  getCanvasBySelected: _CanvasStore2.default.getCanvasBySelected, //获取选中的第一个组件组件，返回id字符串
-	  getAllCanvasBySelected: null, //获取选中的全部组件，返回id数组
-
-	  onUpdataLayout: _LayoutActions2.default.updataLayout, //更新页面布局
-	  onUpdataCanvas: _CanvasActions2.default.updataCanvas, //更新一个组件
-	  onAddCanvas: _CanvasActions2.default.addCanvas, //添加一个组件
-	  onDeleteCanvas: _CanvasActions2.default.deleteCanvas, //删除一个组件
-	  onSelectCanvas: _CanvasActions2.default.selectCanvas };
-
-	var AppView = function (_Component) {
-	  _inherits(AppView, _Component);
-
-	  function AppView() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
-	    _classCallCheck(this, AppView);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AppView.__proto__ || Object.getPrototypeOf(AppView)).call.apply(_ref, [this].concat(args))), _this), _this._onChange = function () {
-	      _this.setState(getState);
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-
-	  _createClass(AppView, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      _LayoutStore2.default.addChangeListener(this._onChange);
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      _LayoutStore2.default.removeChangeListener(this._onChange);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render(_ref2) {
-	      var _ref2$props = _ref2.props,
-	          props = _ref2$props === undefined ? getState : _ref2$props;
-
-	      return (0, _preact.h)(
-	        'div',
-	        null,
-	        (0, _preact.h)(_top2.default, props),
-	        (0, _preact.h)(_Left2.default, props),
-	        (0, _preact.h)(_Center2.default, props),
-	        (0, _preact.h)(_Right2.default, props)
-	      );
-	    }
-	  }]);
-
-	  return AppView;
-	}(_preact.Component);
-
-	exports.default = AppView;
-
-/***/ },
+/* 2 */,
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -685,9 +561,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Header = __webpack_require__(4);
+	var _HeaderPage = __webpack_require__(40);
 
-	var _Header2 = _interopRequireDefault(_Header);
+	var _HeaderPage2 = _interopRequireDefault(_HeaderPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -703,54 +579,14 @@
 	  return (0, _preact.h)(
 	    'div',
 	    { className: 'uk-view', style: _extends({}, style, { height: props.layout.top }) },
-	    (0, _preact.h)(_Header2.default, props)
+	    (0, _preact.h)(_HeaderPage2.default, props)
 	  );
 	}
 
 	exports.default = Top;
 
 /***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _preact = __webpack_require__(1);
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function Header(props) {
-	  var onLayout = function onLayout(direction, num) {
-	    props.onUpdataLayout(_defineProperty({}, direction, props.layout[direction] == 0 ? num : 0));
-	  };
-
-	  return (0, _preact.h)(
-	    'div',
-	    null,
-	    (0, _preact.h)(
-	      'button',
-	      { onClick: function onClick() {
-	          props.onAddCanvas({ type: 'rect' });
-	        } },
-	      '\u6B63\u65B9\u5F62'
-	    ),
-	    (0, _preact.h)(
-	      'button',
-	      { onClick: function onClick() {
-	          onLayout('left', 200);
-	        } },
-	      '\u5207\u6362\u5BFC\u822A'
-	    )
-	  );
-	}
-
-	exports.default = Header;
-
-/***/ },
+/* 4 */,
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -764,9 +600,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Navigator = __webpack_require__(6);
+	var _NavPage = __webpack_require__(41);
 
-	var _Navigator2 = _interopRequireDefault(_Navigator);
+	var _NavPage2 = _interopRequireDefault(_NavPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -780,39 +616,14 @@
 	  return (0, _preact.h)(
 	    'div',
 	    { className: 'uk-view', style: _extends({}, style, { width: props.layout.left, top: props.layout.top }) },
-	    (0, _preact.h)(_Navigator2.default, props)
+	    (0, _preact.h)(_NavPage2.default, props)
 	  );
 	}
 
 	exports.default = Left;
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _preact = __webpack_require__(1);
-
-	function Navigator(props) {
-	  return (0, _preact.h)(
-	    'div',
-	    null,
-	    (0, _preact.h)(
-	      'pre',
-	      null,
-	      JSON.stringify(props.canvas).replace(/,/g, ',\n')
-	    )
-	  );
-	}
-
-	exports.default = Navigator;
-
-/***/ },
+/* 6 */,
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -826,9 +637,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Canvas = __webpack_require__(8);
+	var _EditAreaPage = __webpack_require__(39);
 
-	var _Canvas2 = _interopRequireDefault(_Canvas);
+	var _EditAreaPage2 = _interopRequireDefault(_EditAreaPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -854,11 +665,13 @@
 
 	  return (0, _preact.h)(
 	    'div',
-	    { className: 'uk-view', style: mainStyle },
+	    { className: 'uk-view', style: mainStyle, onMouseDown: function onMouseDown(e) {
+	        e.which == 1 && props.onCancelSelected();
+	      } },
 	    (0, _preact.h)(
 	      'div',
-	      { className: 'uk-view', style: _extends({}, canvasStyle) },
-	      (0, _preact.h)(_Canvas2.default, props)
+	      { className: 'uk-view dd', style: _extends({}, canvasStyle) },
+	      (0, _preact.h)(_EditAreaPage2.default, props)
 	    )
 	  );
 	}
@@ -866,48 +679,7 @@
 	exports.default = Center;
 
 /***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _preact = __webpack_require__(1);
-
-	var _uxkit = __webpack_require__(9);
-
-	var _Event = __webpack_require__(21);
-
-	var _Event2 = _interopRequireDefault(_Event);
-
-	var _ResizeCore = __webpack_require__(22);
-
-	var _ResizeCore2 = _interopRequireDefault(_ResizeCore);
-
-	var _Rect = __webpack_require__(18);
-
-	var _Rect2 = _interopRequireDefault(_Rect);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function Canvas(props) {
-	  return (0, _preact.h)(
-	    'div',
-	    null,
-	    Object.keys(props.canvas).map(function (item) {
-	      return (0, _preact.h)(_uxkit.UXShape, _extends({}, props, props.canvas[item]));
-	    })
-	  );
-	}
-
-	exports.default = Canvas;
-
-/***/ },
+/* 8 */,
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1628,7 +1400,6 @@
 
 	  var onDragStart = function onDragStart(data) {
 	    props.onSelectCanvas(props.id);
-	    // props.onUpdataCanvas(props.id, {});
 	  };
 
 	  var onDrag = function onDrag(data) {
@@ -1751,6 +1522,7 @@
 	  };
 
 	  var onDragStart = function onDragStart(e) {
+	    e.stopPropagation();
 	    e.which == 1 && handleDragStart(e);
 	  };
 
@@ -1849,12 +1621,12 @@
 	function ResizeCore(props) {
 
 	  var style = {
-	    left: parseInt(props.x),
-	    top: parseInt(props.y),
+	    left: parseInt(props.x) - 1,
+	    top: parseInt(props.y) - 1,
 	    width: parseInt(props.width) + 'px',
 	    height: parseInt(props.height) + 'px',
 	    position: 'absolute',
-	    outline: '1px solid #95B6FF'
+	    border: '1px solid #95B6FF'
 	  };
 
 	  var resizeHandleStyle = {
@@ -2023,9 +1795,9 @@
 
 	var _preact = __webpack_require__(1);
 
-	var _Inspector = __webpack_require__(24);
+	var _AttrPage = __webpack_require__(42);
 
-	var _Inspector2 = _interopRequireDefault(_Inspector);
+	var _AttrPage2 = _interopRequireDefault(_AttrPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2040,180 +1812,14 @@
 	  return (0, _preact.h)(
 	    'div',
 	    { className: 'uk-view', style: _extends({}, style, { top: props.layout.top, width: props.layout.right }) },
-	    (0, _preact.h)(_Inspector2.default, props)
+	    (0, _preact.h)(_AttrPage2.default, props)
 	  );
 	}
 
 	exports.default = Right;
 
 /***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _preact = __webpack_require__(1);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Inspector = function (_Component) {
-	  _inherits(Inspector, _Component);
-
-	  function Inspector() {
-	    var _ref;
-
-	    var _temp, _this, _ret;
-
-	    _classCallCheck(this, Inspector);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Inspector.__proto__ || Object.getPrototypeOf(Inspector)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      log: {}
-	    }, _this.add = function (canvasObj) {
-	      _this.props.onAddCanvas(canvasObj);
-	    }, _this.addNum = function (num) {
-	      var x = 0,
-	          y = 0,
-	          split = 768 / num;
-	      for (var i = 0; i < num; i++) {
-	        x = split * i;
-	        _this.props.onAddCanvas({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y });
-	        _this.props.onAddCanvas({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 100 });
-	        _this.props.onAddCanvas({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 200 });
-	        _this.props.onAddCanvas({ type: 'rect', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 300 });
-	        _this.props.onAddCanvas({ type: 'circle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 400 });
-	        _this.props.onAddCanvas({ type: 'triangle', width: split - 4 + 'px', height: split - 4 + 'px', x: x, y: y + 500 });
-	      }
-	    }, _this.delete = function (id) {
-	      _this.props.onDeleteCanvas(id);
-	    }, _this.updata = function (canvasObj) {
-	      _this.props.onUpdataCanvas(_this.props.getCanvasBySelected(), canvasObj);
-	    }, _this.log = function () {
-	      _this.setState({
-	        log: CanvasActions.getAll()
-	      });
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-
-	  _createClass(Inspector, [{
-	    key: 'render',
-	    value: function render(props, state) {
-	      var _this2 = this;
-
-	      var style = { fontSize: '12px' };
-	      var selectedCanvasId = props.getCanvasBySelected();
-	      return (0, _preact.h)(
-	        'div',
-	        { style: style },
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)(
-	          'button',
-	          { onClick: function onClick() {
-	              alert('\u60A8\u5F53\u524D\u9009\u4E2D\u7684\u662F\uFF1A' + props.getCanvasBySelected());
-	            } },
-	          'getCanvasBySelected'
-	        ),
-	        (0, _preact.h)('br', null),
-	        (0, _preact.h)('br', null),
-	        selectedCanvasId ? (0, _preact.h)(
-	          'div',
-	          null,
-	          (0, _preact.h)(
-	            'span',
-	            null,
-	            '\u5C5E\u6027'
-	          ),
-	          (0, _preact.h)(
-	            'ul',
-	            null,
-	            (0, _preact.h)(
-	              'li',
-	              null,
-	              '\u5BBD\u5EA6\uFF1A',
-	              (0, _preact.h)('input', {
-	                type: 'number',
-	                value: props.canvas[selectedCanvasId].width,
-	                onInput: function onInput(e) {
-	                  _this2.updata({ width: e.target.value });
-	                }
-	              }),
-	              ' px'
-	            ),
-	            (0, _preact.h)(
-	              'li',
-	              null,
-	              '\u9AD8\u5EA6\uFF1A',
-	              (0, _preact.h)('input', {
-	                type: 'number',
-	                value: props.canvas[selectedCanvasId].height,
-	                onInput: function onInput(e) {
-	                  _this2.updata({ height: e.target.value });
-	                }
-	              }),
-	              ' px'
-	            ),
-	            (0, _preact.h)(
-	              'li',
-	              null,
-	              'X\uFF1A',
-	              (0, _preact.h)('input', {
-	                type: 'number',
-	                value: props.canvas[selectedCanvasId].x,
-	                onInput: function onInput(e) {
-	                  _this2.updata({ x: e.target.value });
-	                }
-	              }),
-	              ' px'
-	            ),
-	            (0, _preact.h)(
-	              'li',
-	              null,
-	              'Y\uFF1A',
-	              (0, _preact.h)('input', {
-	                type: 'number',
-	                value: props.canvas[selectedCanvasId].y,
-	                onInput: function onInput(e) {
-	                  _this2.updata({ y: e.target.value });
-	                }
-	              }),
-	              ' px'
-	            ),
-	            (0, _preact.h)(
-	              'li',
-	              null,
-	              '\u586B\u5145\uFF1A',
-	              (0, _preact.h)('input', { type: 'color',
-	                value: props.canvas[selectedCanvasId].fill,
-	                onChange: function onChange(e) {
-	                  _this2.updata({ fill: e.target.value });
-	                }
-	              })
-	            )
-	          )
-	        ) : null
-	      );
-	    }
-	  }]);
-
-	  return Inspector;
-	}(_preact.Component);
-
-	exports.default = Inspector;
-
-/***/ },
+/* 24 */,
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2261,7 +1867,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CHANGE_EVENT = 'change';
 	var defaultLayout = {
 	  top: '60px',
 	  left: '200px',
@@ -2294,14 +1899,14 @@
 	      for (var key in config) {
 	        _layout[key] = config[key];
 	      }
-	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
+	      this.emit();
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
 	  return LayoutStore;
 	}(_RootStore3.default);
 
-	exports.default = new LayoutStore(CHANGE_EVENT);
+	exports.default = new LayoutStore();
 
 /***/ },
 /* 27 */
@@ -2625,7 +2230,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Store = function Store(eventType) {
+	var Store = function Store() {
 	  _classCallCheck(this, Store);
 
 	  this.addChangeListener = function (callback) {
@@ -2636,13 +2241,31 @@
 	    _events.EventEmitter.prototype.off(this.eventType, callback);
 	  };
 
-	  this.eventType = eventType;
+	  this.emit = function () {
+	    _events.EventEmitter.prototype.emit(this.eventType);
+	  };
+
+	  this.eventType = 'change';
 	};
 
 	exports.default = Store;
 
 /***/ },
-/* 29 */
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2651,31 +2274,126 @@
 	  value: true
 	});
 
-	var _CanvasStore = __webpack_require__(30);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _CanvasStore2 = _interopRequireDefault(_CanvasStore);
+	var _preact = __webpack_require__(1);
+
+	var _top = __webpack_require__(3);
+
+	var _top2 = _interopRequireDefault(_top);
+
+	var _Left = __webpack_require__(5);
+
+	var _Left2 = _interopRequireDefault(_Left);
+
+	var _Center = __webpack_require__(7);
+
+	var _Center2 = _interopRequireDefault(_Center);
+
+	var _Right = __webpack_require__(23);
+
+	var _Right2 = _interopRequireDefault(_Right);
+
+	var _LayoutActions = __webpack_require__(25);
+
+	var _LayoutActions2 = _interopRequireDefault(_LayoutActions);
+
+	var _EditAreaActions = __webpack_require__(44);
+
+	var _EditAreaActions2 = _interopRequireDefault(_EditAreaActions);
+
+	var _LayoutStore = __webpack_require__(26);
+
+	var _LayoutStore2 = _interopRequireDefault(_LayoutStore);
+
+	var _EditAreaStore = __webpack_require__(43);
+
+	var _EditAreaStore2 = _interopRequireDefault(_EditAreaStore);
+
+	var _Event = __webpack_require__(21);
+
+	var _Event2 = _interopRequireDefault(_Event);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var CanvasActions = {
-	  addCanvas: function addCanvas(newData) {
-	    _CanvasStore2.default.addCanvas(newData);
-	  },
-	  updataCanvas: function updataCanvas(id, updateData) {
-	    _CanvasStore2.default.updataCanvas(id, updateData);
-	  },
-	  deleteCanvas: function deleteCanvas(id) {
-	    _CanvasStore2.default.deleteCanvas(id);
-	  },
-	  selectCanvas: function selectCanvas(id) {
-	    _CanvasStore2.default.selectCanvas(id);
-	  }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var getStores = function getStores() {};
+
+	var getState = {
+	  layout: _LayoutStore2.default.getState(), // 界面布局数据
+	  canvas: _EditAreaStore2.default.getState(), // 画布数据
+
+	  getCanvasById: null, //根据id获取组件，类似于getElementById
+	  getCanvasBySelected: _EditAreaStore2.default.getCanvasBySelected, //获取选中的第一个组件组件，返回id字符串
+	  getAllCanvasBySelected: null, //获取选中的全部组件，返回id数组
+
+	  onUpdataLayout: _LayoutActions2.default.updataLayout, //更新页面布局
+	  onUpdataCanvas: _EditAreaActions2.default.updataCanvas, //更新一个组件
+	  onAddCanvas: _EditAreaActions2.default.addCanvas, //添加一个组件
+	  onDeleteCanvas: _EditAreaActions2.default.deleteCanvas, //删除一个组件
+	  onSelectCanvas: _EditAreaActions2.default.selectCanvas, //选中一个组件
+	  onCancelSelected: _EditAreaActions2.default.cancelSelected // 取消选中的组件
+
 	};
 
-	exports.default = CanvasActions;
+	var AppView = function (_Component) {
+	  _inherits(AppView, _Component);
+
+	  function AppView() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, AppView);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AppView.__proto__ || Object.getPrototypeOf(AppView)).call.apply(_ref, [this].concat(args))), _this), _this._onChange = function () {
+	      _this.setState(getState);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(AppView, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      _LayoutStore2.default.addChangeListener(this._onChange);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      _LayoutStore2.default.removeChangeListener(this._onChange);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render(_ref2) {
+	      var _ref2$props = _ref2.props,
+	          props = _ref2$props === undefined ? getState : _ref2$props;
+
+	      return (0, _preact.h)(
+	        'div',
+	        null,
+	        (0, _preact.h)(_top2.default, props),
+	        (0, _preact.h)(_Left2.default, props),
+	        (0, _preact.h)(_Center2.default, props),
+	        (0, _preact.h)(_Right2.default, props)
+	      );
+	    }
+	  }]);
+
+	  return AppView;
+	}(_preact.Component);
+
+	exports.default = AppView;
 
 /***/ },
-/* 30 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2686,7 +2404,267 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _UXUtil = __webpack_require__(31);
+	var _preact = __webpack_require__(1);
+
+	var _uxkit = __webpack_require__(9);
+
+	var _Event = __webpack_require__(21);
+
+	var _Event2 = _interopRequireDefault(_Event);
+
+	var _ResizeCore = __webpack_require__(22);
+
+	var _ResizeCore2 = _interopRequireDefault(_ResizeCore);
+
+	var _Rect = __webpack_require__(18);
+
+	var _Rect2 = _interopRequireDefault(_Rect);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Canvas(props) {
+	  return (0, _preact.h)(
+	    'div',
+	    { className: 'd' },
+	    Object.keys(props.canvas).map(function (item) {
+	      return (0, _preact.h)(_uxkit.UXShape, _extends({}, props, props.canvas[item]));
+	    })
+	  );
+	}
+
+	exports.default = Canvas;
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function Header(props) {
+	  var onLayout = function onLayout(direction, num) {
+	    props.onUpdataLayout(_defineProperty({}, direction, props.layout[direction] == 0 ? num : 0));
+	  };
+
+	  return (0, _preact.h)(
+	    'div',
+	    null,
+	    (0, _preact.h)(
+	      'button',
+	      { onClick: function onClick() {
+	          props.onAddCanvas({ type: 'rect' });
+	        } },
+	      '\u6B63\u65B9\u5F62'
+	    ),
+	    (0, _preact.h)(
+	      'button',
+	      { onClick: function onClick() {
+	          onLayout('left', 200);
+	        } },
+	      '\u5207\u6362\u5BFC\u822A'
+	    )
+	  );
+	}
+
+	exports.default = Header;
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _preact = __webpack_require__(1);
+
+	function Navigator(props) {
+	  return (0, _preact.h)(
+	    'div',
+	    null,
+	    (0, _preact.h)(
+	      'pre',
+	      null,
+	      JSON.stringify(props.canvas).replace(/,/g, ',\n')
+	    )
+	  );
+	}
+
+	exports.default = Navigator;
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _preact = __webpack_require__(1);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Inspector = function (_Component) {
+	  _inherits(Inspector, _Component);
+
+	  function Inspector() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, Inspector);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Inspector.__proto__ || Object.getPrototypeOf(Inspector)).call.apply(_ref, [this].concat(args))), _this), _this.updata = function (canvasObj) {
+	      _this.props.onUpdataCanvas(_this.props.getCanvasBySelected(), canvasObj);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(Inspector, [{
+	    key: 'render',
+	    value: function render(props, state) {
+	      var _this2 = this;
+
+	      var style = { fontSize: '12px' };
+	      var selectedCanvasId = props.getCanvasBySelected();
+	      return (0, _preact.h)(
+	        'div',
+	        { style: style },
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              alert('\u60A8\u5F53\u524D\u9009\u4E2D\u7684\u662F\uFF1A' + props.getCanvasBySelected());
+	            } },
+	          'getCanvasBySelected'
+	        ),
+	        (0, _preact.h)(
+	          'button',
+	          { onClick: function onClick() {
+	              props.onCancelSelected();
+	            } },
+	          'onCancelSelected'
+	        ),
+	        (0, _preact.h)('br', null),
+	        (0, _preact.h)('br', null),
+	        selectedCanvasId ? (0, _preact.h)(
+	          'div',
+	          null,
+	          (0, _preact.h)(
+	            'span',
+	            null,
+	            '\u5C5E\u6027'
+	          ),
+	          (0, _preact.h)(
+	            'ul',
+	            null,
+	            (0, _preact.h)(
+	              'li',
+	              null,
+	              '\u5BBD\u5EA6\uFF1A',
+	              (0, _preact.h)('input', {
+	                type: 'number',
+	                value: props.canvas[selectedCanvasId].width,
+	                onInput: function onInput(e) {
+	                  _this2.updata({ width: e.target.value });
+	                }
+	              }),
+	              ' px'
+	            ),
+	            (0, _preact.h)(
+	              'li',
+	              null,
+	              '\u9AD8\u5EA6\uFF1A',
+	              (0, _preact.h)('input', {
+	                type: 'number',
+	                value: props.canvas[selectedCanvasId].height,
+	                onInput: function onInput(e) {
+	                  _this2.updata({ height: e.target.value });
+	                }
+	              }),
+	              ' px'
+	            ),
+	            (0, _preact.h)(
+	              'li',
+	              null,
+	              'X\uFF1A',
+	              (0, _preact.h)('input', {
+	                type: 'number',
+	                value: props.canvas[selectedCanvasId].x,
+	                onInput: function onInput(e) {
+	                  _this2.updata({ x: e.target.value });
+	                }
+	              }),
+	              ' px'
+	            ),
+	            (0, _preact.h)(
+	              'li',
+	              null,
+	              'Y\uFF1A',
+	              (0, _preact.h)('input', {
+	                type: 'number',
+	                value: props.canvas[selectedCanvasId].y,
+	                onInput: function onInput(e) {
+	                  _this2.updata({ y: e.target.value });
+	                }
+	              }),
+	              ' px'
+	            ),
+	            (0, _preact.h)(
+	              'li',
+	              null,
+	              '\u586B\u5145\uFF1A',
+	              (0, _preact.h)('input', { type: 'color',
+	                value: props.canvas[selectedCanvasId].fill,
+	                onChange: function onChange(e) {
+	                  _this2.updata({ fill: e.target.value });
+	                }
+	              })
+	            )
+	          )
+	        ) : null
+	      );
+	    }
+	  }]);
+
+	  return Inspector;
+	}(_preact.Component);
+
+	exports.default = Inspector;
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _Util = __webpack_require__(45);
 
 	var _events = __webpack_require__(27);
 
@@ -2706,7 +2684,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var CHANGE_EVENT = 'change';
 	var _canvas = {};
 
 	// 确保传入参数是数字
@@ -2715,27 +2692,27 @@
 	  obj.y && (obj.y = parseInt(obj.y));
 	};
 
-	var CanvasStore = function (_RootStore) {
-	  _inherits(CanvasStore, _RootStore);
+	var EditAreaStore = function (_RootStore) {
+	  _inherits(EditAreaStore, _RootStore);
 
-	  function CanvasStore() {
+	  function EditAreaStore() {
 	    var _ref;
 
 	    var _temp, _this, _ret;
 
-	    _classCallCheck(this, CanvasStore);
+	    _classCallCheck(this, EditAreaStore);
 
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CanvasStore.__proto__ || Object.getPrototypeOf(CanvasStore)).call.apply(_ref, [this].concat(args))), _this), _this.addCanvas = function (newData) {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditAreaStore.__proto__ || Object.getPrototypeOf(EditAreaStore)).call.apply(_ref, [this].concat(args))), _this), _this.addCanvas = function (newData) {
 	      // 处理参数，x、y处理成数字
 	      someToNumber(newData);
 	      // 生成组件对象
 	      var w = 150,
 	          h = 150,
-	          id = (0, _UXUtil.uuid)();
+	          id = (0, _Util.uuid)();
 	      _canvas[id] = _extends({
 	        id: id,
 	        type: newData.type,
@@ -2747,14 +2724,14 @@
 	      }, newData);
 
 	      this.selectCanvas(id);
-	      _events.EventEmitter.prototype.emit(CHANGE_EVENT);
+	      this.emit();
 	    }, _this.updataCanvas = function (id, updateData) {
 	      someToNumber(updateData);
 	      if (id in _canvas) {
 	        Object.keys(updateData).forEach(function (key) {
 	          _canvas[id][key] = updateData[key];
 	        });
-	        _events.EventEmitter.prototype.emit(CHANGE_EVENT);
+	        this.emit();
 	      }
 	    }, _this.deleteCanvas = function (id) {
 	      if (id in _canvas) {
@@ -2766,8 +2743,13 @@
 	          _canvas[item].isSelected = false;
 	        });
 	        _canvas[id].isSelected = true;
-	        _events.EventEmitter.prototype.emit(CHANGE_EVENT);
+	        this.emit();
 	      }
+	    }, _this.cancelSelected = function () {
+	      Object.keys(_canvas).forEach(function (item) {
+	        _canvas[item].isSelected = false;
+	      });
+	      this.emit();
 	    }, _this.getCanvasBySelected = function () {
 	      var selectCanvasId = null;
 	      Object.keys(_canvas).forEach(function (item) {
@@ -2784,13 +2766,49 @@
 	  // 返回选中的第一个组件id
 
 
-	  return CanvasStore;
+	  return EditAreaStore;
 	}(_RootStore3.default);
 
-	exports.default = new CanvasStore(CHANGE_EVENT);
+	exports.default = new EditAreaStore();
 
 /***/ },
-/* 31 */
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _EditAreaStore = __webpack_require__(43);
+
+	var _EditAreaStore2 = _interopRequireDefault(_EditAreaStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var EditAreaActions = {
+	  addCanvas: function addCanvas(newData) {
+	    _EditAreaStore2.default.addCanvas(newData);
+	  },
+	  updataCanvas: function updataCanvas(id, updateData) {
+	    _EditAreaStore2.default.updataCanvas(id, updateData);
+	  },
+	  deleteCanvas: function deleteCanvas(id) {
+	    _EditAreaStore2.default.deleteCanvas(id);
+	  },
+	  selectCanvas: function selectCanvas(id) {
+	    _EditAreaStore2.default.selectCanvas(id);
+	  },
+	  cancelSelected: function cancelSelected() {
+	    _EditAreaStore2.default.cancelSelected();
+	  }
+	};
+
+	exports.default = EditAreaActions;
+
+/***/ },
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2810,12 +2828,6 @@
 	  }
 	  return uuid;
 	}
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

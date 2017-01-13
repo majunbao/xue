@@ -1,5 +1,5 @@
 import {h} from 'preact';
-import Inspector from '../Inspector';
+import AttrPage from '../AttrPage';
 
 const style = {
   top: '60px',
@@ -11,7 +11,7 @@ const style = {
 function Right(props) {
   return (
     <div className="uk-view" style={{...style, top: props.layout.top, width: props.layout.right}}>
-      <Inspector {...props} />
+      <AttrPage {...props} />
     </div>
   )
 }

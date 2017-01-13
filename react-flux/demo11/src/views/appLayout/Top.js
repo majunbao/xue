@@ -1,5 +1,5 @@
 import {h, cloneElement} from 'preact';
-import Header from '../Header';
+import HeaderPage from '../HeaderPage';
 
 const style = {
   top: 0,
@@ -12,7 +12,7 @@ const style = {
 function Top(props) {
   return (
     <div className="uk-view" style={{...style, height: props.layout.top}}>
-      <Header {...props} />
+      <HeaderPage {...props} />
     </div>
   )
 }

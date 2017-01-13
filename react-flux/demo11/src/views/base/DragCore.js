@@ -68,7 +68,8 @@ function DragCore(props) {
   };
 
   let onDragStart = (e) => {
-    e.which == 1 && handleDragStart(e)
+    e.stopPropagation();
+    e.which == 1 && handleDragStart(e);
   }
 
   return (

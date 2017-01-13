@@ -2,40 +2,8 @@ import {h, render, Component} from 'preact';
 
 class Inspector extends Component {
 
-  state = {
-    log: {}
-  }
-
-  add = (canvasObj) => {
-    this.props.onAddCanvas(canvasObj)
-  }
-
-  addNum = (num) => {
-    let x = 0, y = 0, split= 768/num;
-    for(let i=0; i<num; i++) {
-      x = split*i;
-       this.props.onAddCanvas({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y});  
-       this.props.onAddCanvas({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+100});  
-       this.props.onAddCanvas({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+200});  
-       this.props.onAddCanvas({type: 'rect',width: split-4+'px', height: split-4+'px',x: x, y: y+300});  
-       this.props.onAddCanvas({type: 'circle',width: split-4+'px', height: split-4+'px',x: x, y: y+400});  
-       this.props.onAddCanvas({type: 'triangle',width: split-4+'px', height: split-4+'px',x: x, y: y+500});  
-    }
-  }
-
-  delete = (id) => {
-    this.props.onDeleteCanvas(id)
-  }
-
   updata = (canvasObj) => {
     this.props.onUpdataCanvas(this.props.getCanvasBySelected(), canvasObj)
-  }
-
-  
-  log = () => {
-    this.setState({
-      log: CanvasActions.getAll()
-    })
   }
 
   render(props, state) {
@@ -45,8 +13,8 @@ class Inspector extends Component {
       <div style={style}>
         <br />
         <button onClick={()=>{alert(`您当前选中的是：${props.getCanvasBySelected()}`)}}>getCanvasBySelected</button>
+        <button onClick={()=>{props.onCancelSelected()}}>onCancelSelected</button>
         <br />
-        
         <br />
         {selectedCanvasId?
           <div>

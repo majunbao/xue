@@ -1,8 +1,8 @@
 import {EventEmitter} from 'events';
 
 export default class Store {
-  constructor(eventType) {
-    this.eventType = eventType
+  constructor() {
+    this.eventType = 'change'
   }
   
   addChangeListener = function(callback) {
@@ -11,5 +11,9 @@ export default class Store {
 
   removeChangeListener = function(callback) {
     EventEmitter.prototype.off(this.eventType, callback);
+  }
+
+  emit = function() {
+    EventEmitter.prototype.emit(this.eventType)
   }
 }

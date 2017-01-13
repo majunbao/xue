@@ -1,7 +1,5 @@
 import {h} from 'preact';
-import Canvas from '../Canvas';
-
-
+import EditAreaPage from '../EditAreaPage';
 
 const canvasStyle = {
   width: '768px',
@@ -24,9 +22,9 @@ function Center(props) {
   }
 
   return (
-    <div className="uk-view" style={mainStyle}>
-      <div className="uk-view" style={{...canvasStyle}}>
-        <Canvas {...props}/>
+    <div className="uk-view" style={mainStyle} onMouseDown={(e)=>{e.which == 1 && props.onCancelSelected()}}>
+      <div className="uk-view dd" style={{...canvasStyle}} >
+        <EditAreaPage {...props} />
       </div>
     </div>
   )
