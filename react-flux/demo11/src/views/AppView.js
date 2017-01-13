@@ -16,14 +16,19 @@ const getStores = () => {
 }
 
 const getState = {
-  layout: LayoutStore.getState(),
-  canvas: CanvasStore.getState(),
+  layout: LayoutStore.getState(), // 界面布局数据
+  canvas: CanvasStore.getState(), // 画布数据
 
-  onUpdataLayout: LayoutActions.updataLayout,
-  onUpdataCanvas: CanvasActions.updataCanvas,
-  onAddCanvas: CanvasActions.addCanvas,
-  onDeleteCanvas: CanvasActions.deleteCanvas,
-  onSelectCanvas: CanvasActions.selectCanvas,
+  getCanvasById: null, //根据id获取组件，类似于getElementById
+  getCanvasBySelected: CanvasStore.getCanvasBySelected, //获取选中的第一个组件组件，返回id字符串
+  getAllCanvasBySelected: null, //获取选中的全部组件，返回id数组
+
+  onUpdataLayout: LayoutActions.updataLayout,  //更新页面布局
+  onUpdataCanvas: CanvasActions.updataCanvas,  //更新一个组件
+  onAddCanvas: CanvasActions.addCanvas,        //添加一个组件
+  onDeleteCanvas: CanvasActions.deleteCanvas,  //删除一个组件
+  onSelectCanvas: CanvasActions.selectCanvas,  //选中一个组件
+  
 }
 
 class AppView extends Component {

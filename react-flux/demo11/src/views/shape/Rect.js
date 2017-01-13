@@ -6,7 +6,7 @@ function Rect(props) {
 
   let onDragStart = (data) => {
     props.onSelectCanvas(props.id);
-    props.onUpdataCanvas(props.id, {});
+    // props.onUpdataCanvas(props.id, {});
 
   }
 

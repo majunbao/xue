@@ -5,20 +5,19 @@ import Event from './Event';
 function ResizeCore(props) {
   
   let style = {
-    left: props.x,
-    top: props.y,
-    width: props.width,
-    height: props.height,
+    left: parseInt(props.x),
+    top: parseInt(props.y),
+    width: parseInt(props.width) + 'px',
+    height: parseInt(props.height) + 'px',
     position: 'absolute',
     outline: '1px solid #95B6FF'
   }
 
   let resizeHandleStyle = {
-    width: '9px',
-    height: '9px',
-    border: '1px solid #FEFEFF',
-    backgroundColor: '#0079FF',
-    borderRadius: '5px',
+    width: '5px',
+    height: '5px',
+    border: '1px solid #0079FF',
+    backgroundColor: '#FEFEFF',
     position: 'absolute',
     zIndex: 1
   }
@@ -31,7 +30,6 @@ function ResizeCore(props) {
   }
 
   let onResizeStart = (data) => {
-    
   }
 
   let onResize = (data) => {
@@ -126,28 +124,28 @@ function ResizeCore(props) {
     props.isSelected ?
       <div style={style}>
         <DragCore onDrag={onTopLeft} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-6px', left: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'nwse-resize', top: '-3px', left: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onTopCenter} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'ns-resize', top: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'ns-resize', top: '-3px', left: '50%', marginLeft: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onTopRight} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-6px', right: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'nesw-resize', top: '-3px', right: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onCenterLeft} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', left: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-3px', left: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onCenterRight} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-6px', right: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'ew-resize', top: '50%', marginTop: '-3px', right: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onBottomLeft} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-6px', left: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'nesw-resize', bottom: '-3px', left: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onBottomCenter} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-6px', left: '50%', marginLeft: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'ns-resize', bottom: '-3px', left: '50%', marginLeft: '-3px'}}}></div>
         </DragCore>
         <DragCore onDrag={onBottomRight} onDragStop={handleResizeStop}>
-          <div style={{...resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-6px', right: '-6px'}}}></div>
+          <div style={{...resizeHandleStyle, ...{cursor: 'nwse-resize', bottom: '-3px', right: '-3px'}}}></div>
         </DragCore>
       </div>
     : null

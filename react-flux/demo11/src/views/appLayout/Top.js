@@ -12,7 +12,7 @@ const style = {
 function Top(props) {
   return (
     <div className="uk-view" style={{...style, height: props.layout.top}}>
-      <Header  />
+      <Header {...props} />
     </div>
   )
 }

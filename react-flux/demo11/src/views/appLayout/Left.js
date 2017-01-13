@@ -1,4 +1,5 @@
 import {h} from 'preact';
+import Navigator from '../Navigator';
 
 const style = {
   bottom: 0,
@@ -8,7 +9,9 @@ const style = {
   
 function Left(props) {
   return (
-    <div className="uk-view" style={{...style, width: props.layout.left, top: props.layout.top}}>Left</div>
+    <div className="uk-view" style={{...style, width: props.layout.left, top: props.layout.top}}>
+      <Navigator {...props} />
+    </div>
   )
 }
 

@@ -27,16 +27,11 @@ class Inspector extends Component {
     this.props.onDeleteCanvas(id)
   }
 
-  update = (id, canvasObj) => {
-    CanvasActions.update(id, canvasObj);
+  updata = (canvasObj) => {
+    this.props.onUpdataCanvas(this.props.getCanvasBySelected(), canvasObj)
   }
 
-  onLayout = (direction, num) => {
-    this.props.onUpdataLayout({
-      [direction]: this.props.layout[direction] == 0 ? num: 0
-    })
-  }
-
+  
   log = () => {
     this.setState({
       log: CanvasActions.getAll()
@@ -44,24 +39,56 @@ class Inspector extends Component {
   }
 
   render(props, state) {
+    let style = {fontSize: '12px'};
+    let selectedCanvasId = props.getCanvasBySelected();
     return (
-      <div>
+      <div style={style}>
         <br />
-        <button onClick={()=>{this.add({type: 'rect',width: '300px', height: '100px', fill: 'green'})}}>rect</button>
-        <button onClick={()=>{this.add({type: 'circle'})}}>circle</button>
-        <button onClick={()=>{this.add({type: 'triangle'})}}>triangle</button>
-        <button onClick={()=>{this.update('ssd', {type: 'triangle'})}}>update</button>
-        <button onClick={this.add}>random</button>
-        <button onClick={()=>{this.addNum(10)}}>60</button>
+        <button onClick={()=>{alert(`您当前选中的是：${props.getCanvasBySelected()}`)}}>getCanvasBySelected</button>
         <br />
-        <button onClick={this.delete}>删除</button>
+        
         <br />
-        <button onClick={()=>{this.onLayout('left', '200px')}}>layout-left</button>
-        <button onClick={()=>{this.onLayout('top', '60px')}}>layout-top</button>
-        <br />
-        <button onClick={()=>{this.log()}}>log</button>
-        <div style={{fontSize: '12px'}}><pre>{JSON.stringify(state.log).replace(/,/g, ',\n')}</pre></div>
-        <button onClick={()=>{}}>New 1</button>
+        {selectedCanvasId?
+          <div>
+            <span>属性</span>
+            <ul>
+              <li>宽度：
+                <input
+                  type="number"
+                  value={props.canvas[selectedCanvasId].width}
+                  onInput={(e)=>{this.updata({width: e.target.value})}}
+                 /> px
+              </li>
+              <li>高度：
+                <input
+                  type="number"
+                  value={props.canvas[selectedCanvasId].height}
+                  onInput={(e)=>{this.updata({height: e.target.value})}}
+                 /> px
+              </li>
+              <li>X：
+                <input
+                  type="number"
+                  value={props.canvas[selectedCanvasId].x}
+                  onInput={(e)=>{this.updata({x: e.target.value})}}
+                 /> px
+              </li>
+              <li>Y：
+                <input
+                  type="number"
+                  value={props.canvas[selectedCanvasId].y}
+                  onInput={(e)=>{this.updata({y: e.target.value})}}
+                 /> px
+              </li>
+              <li>填充：
+                <input type="color" 
+                  value={props.canvas[selectedCanvasId].fill}
+                  onChange={(e)=>{this.updata({fill: e.target.value})}}
+                />
+              </li>
+            </ul>
+          </div>:null
+        }
       </div>
     )
   }
