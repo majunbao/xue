@@ -1,0 +1,20 @@
+{
+  "name": "demo01",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack -w ./src/root.ts ./bundle.js",
+    "build": "webpack -p ./src/root.js ./bundle.min.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inferno": "^1.2.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.0.0",
+    "typescript": "^2.1.5",
+    "webpack": "^2.2.1"
+  }
+}
