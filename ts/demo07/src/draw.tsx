@@ -1,5 +1,5 @@
 let XY = (e) => {
-  console.log(e.offsetX, e.layerX);
+  console.log(e.screenX);
 }
 
 let style = {
@@ -22,7 +22,6 @@ let spanStyle = {
 
 let spanEvent = (e) => {
   e.stopPropagation();
-  console.log(e.offsetX, e.layerX);
 }
 
 function Canvas() {
