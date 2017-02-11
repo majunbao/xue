@@ -68,11 +68,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
+throw new Error("Module parse failed: /Users/majunbao/Documents/Xue/ts/demo04/node_modules/awesome-typescript-loader/dist/entry.js!/Users/majunbao/Documents/Xue/ts/demo04/src/root.tsx Unexpected token (4:11)\nYou may need an appropriate loader to handle this file type.\n| var container = document.getElementById('app');\r\n| function MyComponent() {\r\n|     return <div>Hello</div>;\r\n| }\r\n| render(<MyComponent />, container);\r");
 
 /***/ })
 /******/ ]);
