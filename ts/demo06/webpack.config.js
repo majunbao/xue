@@ -1,7 +1,7 @@
 module.exports = {
   entry: "./src/root",
   output: {
-    path: './dist',
+    path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   resolve: {
@@ -15,5 +15,8 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+  devServer: {
+    contentBase: 'dist'
   }
 }

@@ -87,7 +87,8 @@ Object.defineProperty(exports, "__esModule", {
 var _inferno = __webpack_require__(0);
 
 var XY = function XY(e) {
-    console.log(e.screenX);
+    console.log(e.pageX);
+    console.log(e.target);
 };
 var style = {
     width: 600,
@@ -105,11 +106,10 @@ var spanStyle = {
     left: 0,
     top: 50
 };
-var spanEvent = function spanEvent(e) {
-    e.stopPropagation();
-};
+var spanEvent = function spanEvent(e) {};
 function Canvas() {
     return (0, _inferno.createVNode)(2, 'div', {
+        'id': 'canvas',
         'style': style
     }, (0, _inferno.createVNode)(2, 'span', {
         'style': spanStyle

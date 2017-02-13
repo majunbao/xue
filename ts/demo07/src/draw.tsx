@@ -1,5 +1,6 @@
 let XY = (e) => {
-  console.log(e.screenX);
+  console.log(e.pageX);
+  console.log(e.target)
 }
 
 let style = {
@@ -21,11 +22,11 @@ let spanStyle = {
 }
 
 let spanEvent = (e) => {
-  e.stopPropagation();
+  
 }
 
 function Canvas() {
-  return <div style={style} onMouseDown={XY}>
+  return <div id="canvas" style={style} onMouseDown={XY}>
     <span style={spanStyle} onMouseDown={spanEvent}>nihao</span>
   </div>
 }

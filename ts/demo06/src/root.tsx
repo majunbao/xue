@@ -1,10 +1,6 @@
 import {render, version} from 'inferno';
-
+import MainView from './views/MainView';
 
 const container = document.getElementById('root');
 
-function MyComponent() {
-  return <div>Hello {version}</div>
-}
-
-render(<MyComponent />, container);
+render(<MainView />, container);
