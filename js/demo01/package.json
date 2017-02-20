@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "webpack ./src/root.js ./dist/bundle.js --watch"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "webpack": "^2.2.1"
+  }
+}
