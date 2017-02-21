@@ -1,18 +1,22 @@
-class View {
-  name = "xiaoma";
-  static sayHello = (name) => {
-    console.log(View.name)
+let _name = '';
+
+class Person {
+  constructor(name) {
+    _name = name;
+  }
+
+  get name() {
+    return _name;
+  }
+
+  set name(newName) {
+    _name = newName;
+  }
+
+  walk() {
+    console.log(this._name + ' is walking.');
   }
 }
 
-class ButtonView extends View {
-  sayHello = () => {
-    console.log(View)
-  }
-}
-
-View.sayHello('nihao');
-
-const button = new ButtonView();
-
-button.sayHello();
+let person1 = new Person('xio');
+console.log(person1);

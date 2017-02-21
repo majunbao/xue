@@ -23,7 +23,7 @@ function Center(props) {
 
   return (
     <div className="uk-view" style={mainStyle} onMouseDown={(e)=>{e.which == 1 && props.onCancelSelected()}}>
-      <div className="uk-view dd" style={{...canvasStyle}} >
+      <div className="uk-view" style={{...canvasStyle}} >
         <EditAreaPage {...props} />
       </div>
     </div>

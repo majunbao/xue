@@ -97,7 +97,7 @@ function ResizeCore(props) {
       returnData.y = returnData.y + data.dy
   }
   let handleRight = (data) => {
-      returnData.width = returnData.width + data.dx
+      returnData.width = returnData.width + data.dx;
   }
   let handleBottom = (data) => {
       returnData.height = returnData.height + data.dy
