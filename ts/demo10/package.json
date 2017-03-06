@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "tsc src/root"
+  },
+  "devDependencies": {
+    "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "inferno": "^1.2.2"
+  }
+}
