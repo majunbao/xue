@@ -73,6 +73,8 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shape__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Marquee__ = __webpack_require__(3);
+
 
 class Editor {
     constructor(argument) {
@@ -108,6 +110,7 @@ class Editor {
     }
 }
 new __WEBPACK_IMPORTED_MODULE_0__shape__["a" /* default */]();
+new __WEBPACK_IMPORTED_MODULE_1__Marquee__["a" /* default */]();
 
 
 /***/ }),
@@ -118,13 +121,89 @@ new __WEBPACK_IMPORTED_MODULE_0__shape__["a" /* default */]();
 "use strict";
 class Rect {
     constructor() {
+        this.onMouseDown = () => {
+            this.hide();
+        };
         this.render();
+        this.bind();
+        this.layout();
+        this.show();
     }
     render() {
-        console.log(2);
+        this.domElement = document.createElement('div');
+    }
+    bind() {
+        this.domElement.addEventListener('mousedown', this.onMouseDown);
+    }
+    layout() {
+        this.domElement.setAttribute('style', 'width:50px;height:50px;background-color:red;');
+    }
+    show() {
+        this.domElement.removeAttribute('hidden');
+        document.body.appendChild(this.domElement);
+    }
+    hide() {
+        this.domElement.setAttribute('hidden', 'hidden');
+        this.domElement.classList.remove('visible');
+    }
+    destroy() {
+        this.domElement.removeEventListener('mousedown', this.onMouseDown);
+        this.domElement.remove();
     }
 }
 /* harmony default export */ __webpack_exports__["a"] = Rect;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Marquee {
+    constructor() {
+        this.onMouseDown = (e) => {
+            document.addEventListener('mousemove', this.onMouseMove);
+            document.addEventListener('mouseup', this.onMouseUp);
+        };
+        this.onMouseMove = (e) => {
+            console.log(2);
+        };
+        this.onMouseUp = (e) => {
+            document.removeEventListener('mousemove', this.onMouseMove);
+            document.removeEventListener('mouseup', this.onMouseUp);
+        };
+        this.state = {
+            w: 0,
+            h: 0,
+            x: 0,
+            y: 0
+        };
+        this.render();
+        this.bind();
+        this.layout();
+    }
+    render() {
+        this.domElement = document.createElement('div');
+    }
+    bind() {
+        document.addEventListener('mousedown', this.onMouseDown);
+    }
+    layout() {
+        this.domElement.setAttribute('style', `
+      width: ${this.state.w}px;
+      height: ${this.state.h}px;
+      left: ${this.state.x}px;
+      top: ${this.state.y}px;
+    `);
+    }
+    show() {
+    }
+    hide() {
+    }
+    destroy() {
+    }
+}
+/* harmony default export */ __webpack_exports__["a"] = Marquee;
 
 
 /***/ })
