@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import Shapre from './shape';
 
 class Editor {
 
@@ -8,7 +9,8 @@ class Editor {
   render(s: SVGPolygonElement) {
     let n = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     n.setAttribute('width', '500');
-    n.setAttribute('height', '300');
+    n.setAttribute('height', '400');
+    n.setAttribute('style', 'background-color: red');
     n.appendChild(s);
     document.body.appendChild(n);
   }
@@ -33,6 +35,4 @@ class Editor {
   }
 }
 
-let editor = new Editor('d');
-let v = editor.layout(500, 300, 4);
-editor.render(v);
+new Shapre();

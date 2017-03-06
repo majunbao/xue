@@ -68,7 +68,11 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shape__ = __webpack_require__(2);
 
 class Editor {
     constructor(argument) {
@@ -77,7 +81,8 @@ class Editor {
     render(s) {
         let n = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         n.setAttribute('width', '500');
-        n.setAttribute('height', '300');
+        n.setAttribute('height', '400');
+        n.setAttribute('style', 'background-color: red');
         n.appendChild(s);
         document.body.appendChild(n);
     }
@@ -102,9 +107,24 @@ class Editor {
         return n.setAttribute('points', this.pointsToPolygon(s)), n;
     }
 }
-let editor = new Editor('d');
-let v = editor.layout(500, 300, 4);
-editor.render(v);
+new __WEBPACK_IMPORTED_MODULE_0__shape__["a" /* default */]();
+
+
+/***/ }),
+/* 1 */,
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Rect {
+    constructor() {
+        this.render();
+    }
+    render() {
+        console.log(2);
+    }
+}
+/* harmony default export */ __webpack_exports__["a"] = Rect;
 
 
 /***/ })
