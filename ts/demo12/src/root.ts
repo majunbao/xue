@@ -1,5 +1,6 @@
 import * as $ from 'jquery';
 import Shapre from './shape';
+import Marquee from './Marquee';
 
 class Editor {
 
@@ -29,10 +30,11 @@ class Editor {
       s.push(l);
       s.push(c)
 
-      console.log(l,c)
+      console.log(l, c)
     };
     return n.setAttribute('points', this.pointsToPolygon(s)), n;
   }
 }
 
 new Shapre();
+new Marquee();
