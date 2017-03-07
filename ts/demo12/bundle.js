@@ -63,121 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Rect {
-    constructor() {
-        this.render();
-    }
-    render() {
-        console.log(2);
-    }
-}
-/* harmony default export */ __webpack_exports__["a"] = Rect;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shape__ = __webpack_require__(0);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shape__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Marquee__ = __webpack_require__(3);
-
->>>>>>> 8b60cab631ffe961f3ae08948aab6b3d24547d37
-
-class Editor {
-    constructor(argument) {
-        // code...
-    }
-    render(s) {
-        let n = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        n.setAttribute('width', '500');
-        n.setAttribute('height', '400');
-        n.setAttribute('style', 'background-color: red');
-        n.appendChild(s);
-        document.body.appendChild(n);
-    }
-    pointsToPolygon(t) {
-        for (var e = []; t.length >= 2;)
-            e.push(t.shift() + "," + t.shift());
-        return e.join(" ");
-    }
-    layout(t, e, i) {
-        let n = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        let s = [];
-        for (var o = t / 2, a = e / 2, r = 0; i > r; r++) {
-            var l = o + o * Math.cos(2 * Math.PI * r / i);
-            var c = a + a * Math.sin(2 * Math.PI * r / i);
-            l = Math.round(10 * l) / 10;
-            c = Math.round(10 * c) / 10;
-            s.push(l);
-            s.push(c);
-            console.log(l, c);
-        }
-        ;
-        return n.setAttribute('points', this.pointsToPolygon(s)), n;
-    }
-}
-new __WEBPACK_IMPORTED_MODULE_0__shape__["a" /* default */]();
-new __WEBPACK_IMPORTED_MODULE_1__Marquee__["a" /* default */]();
-
-
-<<<<<<< HEAD
-=======
-/***/ }),
-/* 1 */,
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Rect {
-    constructor() {
-        this.onMouseDown = () => {
-            this.hide();
-        };
-        this.render();
-        this.bind();
-        this.layout();
-        this.show();
-    }
-    render() {
-        this.domElement = document.createElement('div');
-    }
-    bind() {
-        this.domElement.addEventListener('mousedown', this.onMouseDown);
-    }
-    layout() {
-        this.domElement.setAttribute('style', 'width:50px;height:50px;background-color:red;');
-    }
-    show() {
-        this.domElement.removeAttribute('hidden');
-        document.body.appendChild(this.domElement);
-    }
-    hide() {
-        this.domElement.setAttribute('hidden', 'hidden');
-        this.domElement.classList.remove('visible');
-    }
-    destroy() {
-        this.domElement.removeEventListener('mousedown', this.onMouseDown);
-        this.domElement.remove();
-    }
-}
-/* harmony default export */ __webpack_exports__["a"] = Rect;
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -228,6 +118,113 @@ class Marquee {
 /* harmony default export */ __webpack_exports__["a"] = Marquee;
 
 
->>>>>>> 8b60cab631ffe961f3ae08948aab6b3d24547d37
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Rect {
+    constructor() {
+        this.onMouseDown = () => {
+            this.hide();
+        };
+        this.render();
+        this.bind();
+        this.layout();
+        this.show();
+    }
+    render() {
+        this.domElement = document.createElement('div');
+    }
+    bind() {
+        this.domElement.addEventListener('mousedown', this.onMouseDown);
+    }
+    layout() {
+        this.domElement.setAttribute('style', 'width:50px;height:50px;background-color:red;');
+    }
+    show() {
+        this.domElement.removeAttribute('hidden');
+        document.body.appendChild(this.domElement);
+    }
+    hide() {
+        this.domElement.setAttribute('hidden', 'hidden');
+        this.domElement.classList.remove('visible');
+    }
+    destroy() {
+        this.domElement.removeEventListener('mousedown', this.onMouseDown);
+        this.domElement.remove();
+    }
+}
+/* harmony default export */ __webpack_exports__["a"] = Rect;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shape__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Marquee__ = __webpack_require__(0);
+
+
+class Editor {
+    constructor(argument) {
+        // code...
+    }
+    render(s) {
+        let n = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        n.setAttribute('width', '500');
+        n.setAttribute('height', '400');
+        n.setAttribute('style', 'background-color: red');
+        n.appendChild(s);
+        document.body.appendChild(n);
+    }
+    pointsToPolygon(t) {
+        for (var e = []; t.length >= 2;)
+            e.push(t.shift() + "," + t.shift());
+        return e.join(" ");
+    }
+    layout(t, e, i) {
+        let n = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        let s = [];
+        for (var o = t / 2, a = e / 2, r = 0; i > r; r++) {
+            var l = o + o * Math.cos(2 * Math.PI * r / i);
+            var c = a + a * Math.sin(2 * Math.PI * r / i);
+            l = Math.round(10 * l) / 10;
+            c = Math.round(10 * c) / 10;
+            s.push(l);
+            s.push(c);
+            console.log(l, c);
+        }
+        ;
+        return n.setAttribute('points', this.pointsToPolygon(s)), n;
+    }
+}
+// class Test {
+//   private a = 2;
+//   protected b = 3;
+//   public c = '4';
+// }
+// class Test2 extends Test {
+//   constructor() {
+//     super();
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//   }
+// }
+// let test = new Test();
+// test.a;
+// test.b;
+// test.c;
+// let test2 = new Test();
+// test.a;
+// test.b;
+// test.c;
+new __WEBPACK_IMPORTED_MODULE_0__shape__["a" /* default */]();
+new __WEBPACK_IMPORTED_MODULE_1__Marquee__["a" /* default */]();
+
+
 /***/ })
 /******/ ]);

@@ -36,5 +36,32 @@ class Editor {
   }
 }
 
+// class Test {
+  
+//   private a = 2;
+//   protected b = 3;
+//   public c = '4';
+// }
+
+// class Test2 extends Test {
+  
+//   constructor() {
+//     super();
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//   }
+// }
+
+// let test = new Test();
+// test.a;
+// test.b;
+// test.c;
+
+// let test2 = new Test();
+// test.a;
+// test.b;
+// test.c;
+
 new Shapre();
 new Marquee();
