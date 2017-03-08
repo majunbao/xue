@@ -2,14 +2,11 @@
   "scripts": {
     "start": "webpack ./src/root ./bundle.js --watch"
   },
-  "dependencies": {
-    "graphicsjs": "^1.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^7.0.0-alpha.1",
     "babel-loader": "^7.0.0-alpha.3",
-    "babel-polyfill": "^7.0.0-alpha.1",
     "babel-preset-env": "^2.0.0-alpha.1",
-    "webpack": "^2.2.0"
+    "webpack": "^2.2.1"
   }
 }

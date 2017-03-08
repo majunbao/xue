@@ -2,8 +2,10 @@
   "presets": [
     ["env", {
       "targets": {
-        "ie": 12
-      }
+        "browsers": ["last 2 versions", "ie >= 9"]
+      },
+      "useBuiltIns": true,
+      "debug": true
     }]
   ]
 }
