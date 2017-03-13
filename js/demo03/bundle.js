@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,31 +73,11 @@
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _ColorPicker = __webpack_require__(1);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _ColorPicker2 = _interopRequireDefault(_ColorPicker);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var List = function () {
-  function List() {
-    _classCallCheck(this, List);
-
-    var list = Object.create(Object);
-    list.size = 22;
-  }
-
-  _createClass(List, [{
-    key: "push2",
-    value: function push2() {}
-  }]);
-
-  return List;
-}();
-
-exports.default = List;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 /* 1 */
@@ -106,14 +86,49 @@ exports.default = List;
 "use strict";
 
 
-var _List = __webpack_require__(0);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _List2 = _interopRequireDefault(_List);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var ColorPicker = function () {
+  function ColorPicker() {
+    _classCallCheck(this, ColorPicker);
+  }
 
-var alist = new _List2.default();
-console.log(alist);
+  _createClass(ColorPicker, [{
+    key: "render",
+    value: function render() {}
+  }, {
+    key: "bind",
+    value: function bind() {}
+  }, {
+    key: "layout",
+    value: function layout() {}
+  }, {
+    key: "show",
+    value: function show() {}
+  }, {
+    key: "hide",
+    value: function hide() {}
+  }, {
+    key: "destroy",
+    value: function destroy() {}
+  }, {
+    key: "refresh",
+    value: function refresh() {}
+  }, {
+    key: "onMouseDown",
+    value: function onMouseDown() {}
+  }, {
+    key: "onMouseMove",
+    value: function onMouseMove() {}
+  }, {
+    key: "onMouseUp",
+    value: function onMouseUp() {}
+  }]);
+
+  return ColorPicker;
+}();
 
 /***/ })
 /******/ ]);
