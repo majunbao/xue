@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,11 +73,97 @@
 "use strict";
 
 
-var _ColorPicker = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var _ColorPicker2 = _interopRequireDefault(_ColorPicker);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var List = function () {
+  function List() {
+    _classCallCheck(this, List);
+
+    this.listSize = 0;
+    this.dataStore = []; // 初始化一个空数组来保存列表元素
+  }
+
+  _createClass(List, [{
+    key: "clear",
+    value: function clear() {}
+  }, {
+    key: "find",
+    value: function find(element) {
+      for (var i = 0; i < this.dataStore.length; i++) {
+        if (this.dataStore[i] === element) {
+          return i;
+        }
+      }
+      return -1;
+    }
+  }, {
+    key: "toString",
+    value: function toString() {
+      return this.dataStore;
+    }
+  }, {
+    key: "insert",
+    value: function insert() {}
+  }, {
+    key: "append",
+    value: function append(element) {
+      this.dataStore[this.listSize++] = element;
+    }
+  }, {
+    key: "remove",
+    value: function remove(element) {
+      var foundAt = this.find(element);
+      if (foundAt > -1) {
+        this.dataStore.splice(foundAt, 1);
+        this.listSize--;
+        return true;
+      }
+      return false;
+    }
+  }, {
+    key: "front",
+    value: function front() {}
+  }, {
+    key: "end",
+    value: function end() {}
+  }, {
+    key: "prev",
+    value: function prev() {}
+  }, {
+    key: "next",
+    value: function next() {}
+  }, {
+    key: "length",
+    value: function length() {}
+  }, {
+    key: "currPos",
+    value: function currPos() {}
+  }, {
+    key: "moveTo",
+    value: function moveTo() {}
+  }, {
+    key: "getElement",
+    value: function getElement() {}
+  }, {
+    key: "length",
+    value: function length() {
+      return this.listSize;
+    }
+  }, {
+    key: "contains",
+    value: function contains() {}
+  }]);
+
+  return List;
+}();
+
+exports.default = List;
 
 /***/ }),
 /* 1 */
@@ -86,49 +172,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _List = __webpack_require__(0);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _List2 = _interopRequireDefault(_List);
 
-var ColorPicker = function () {
-  function ColorPicker() {
-    _classCallCheck(this, ColorPicker);
-  }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  _createClass(ColorPicker, [{
-    key: "render",
-    value: function render() {}
-  }, {
-    key: "bind",
-    value: function bind() {}
-  }, {
-    key: "layout",
-    value: function layout() {}
-  }, {
-    key: "show",
-    value: function show() {}
-  }, {
-    key: "hide",
-    value: function hide() {}
-  }, {
-    key: "destroy",
-    value: function destroy() {}
-  }, {
-    key: "refresh",
-    value: function refresh() {}
-  }, {
-    key: "onMouseDown",
-    value: function onMouseDown() {}
-  }, {
-    key: "onMouseMove",
-    value: function onMouseMove() {}
-  }, {
-    key: "onMouseUp",
-    value: function onMouseUp() {}
-  }]);
+var list = new _List2.default();
+list.append(2);
+list.append(3);
+list.append(5);
+list.remove(3);
 
-  return ColorPicker;
-}();
+console.log(list.toString());
 
 /***/ })
 /******/ ]);

@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "webpack --watch",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "babel-core": "^7.0.0-alpha.3",
+    "babel-loader": "^7.0.0-beta.1",
+    "babel-plugin-inferno": "^2.1.0",
+    "babel-preset-env": "^2.0.0-alpha.3",
+    "inferno": "^1.4.2",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.0-dev.20170324",
+    "webpack": "^2.3.1"
+  },
+  "dependencies": {
+    "inferno": "^1.4.2-alpha.9a8a49c6"
+  }
+}
