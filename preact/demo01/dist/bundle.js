@@ -484,10 +484,55 @@ var _preact = __webpack_require__(0);
   "div",
   { id: "foo" },
   (0, _preact.h)(
-    "span",
-    null,
-    "Hello, world!"
-  )
+    "div",
+    { id: "doc" },
+    (0, _preact.h)(
+      "h3",
+      null,
+      "States"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "save"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "index"
+    ),
+    (0, _preact.h)(
+      "h3",
+      null,
+      "Navigation"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "back"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "next"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "go"
+    ),
+    (0, _preact.h)(
+      "h3",
+      null,
+      "Event"
+    ),
+    (0, _preact.h)(
+      "button",
+      null,
+      "change"
+    )
+  ),
+  (0, _preact.h)("div", { id: "cont" })
 ), document.body);
 
 /***/ })

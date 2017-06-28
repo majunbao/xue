@@ -9755,7 +9755,7 @@ var ReactDOM = __webpack_require__(98);
 ReactDOM.render(React.createElement(
   'h1',
   null,
-  'nihao'
+  'ni2ha3o'
 ), document.getElementById('renderer'));
 
 /***/ }),

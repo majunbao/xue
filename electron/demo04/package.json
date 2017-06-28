@@ -1,7 +1,7 @@
 {
   "main": "main.js",
   "scripts": {
-    "start": "webpack --watch & electron ."
+    "start": "electron . | webpack --watch"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
