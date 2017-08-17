@@ -1,11 +1,24 @@
-const { app, BrowserWindow } = require('electron')
+let { app, BrowserWindow, ipcMain } = require('electron')
+
+let welcomeWin = null
 
 createWindow = () => {
-  let win = new BrowserWindow({ width: 600, height: 400 })
-  win.loadURL(`file://${__dirname}/index.html`)
-
-  // 打开开发工具 开发时候使用
-  win.webContents.openDevTools()
+  welcomeWin = new BrowserWindow({ width: 600, height: 400 })
+  welcomeWin.loadURL(`file://${__dirname}/welcome.html`)
 }
+
+createDocument = () => {
+  let win = new BrowserWindow({ width: 600, height: 400 })
+  win.maximize()
+  win.loadURL(`file://${__dirname}/index.html`)
+  welcomeWin.close()
+}
+
+ipcMain.on('Application#newDocument', () => {
+  createDocument()
+})
+
+
+
 
 app.on('ready', createWindow)

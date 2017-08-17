@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  target: 'electron-renderer',
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [path.resolve(__dirname, "renderer"), "node_modules"]

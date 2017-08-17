@@ -7,7 +7,7 @@ export class Page extends Layer {
     super()
   }
 
-  isPage() {
+  get isPage() {
     return false
   }
 }

@@ -9,12 +9,16 @@ import { Document } from './Document'
 import { Page } from './Page'
 import { Text } from './Text'
 
+
+
 export class Application extends WrappedObject {
   constructor(content) {
     super(content)
   }
 
-  newDocument() { }
+  newDocument() {
+    alert(2)
+  }
 
   selectedDocument() {
     return new Document
