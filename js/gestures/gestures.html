@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="touch-robot.min.js"></script>
+    <script src="01.js"></script>
+    <style>
+        html,body {
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+        }
+        body {
+          overflow: auto;
+        }
+        #line {
+          float: right;
+          margin-right: 100px;
+        }
+        ul,li {list-style: none;margin:0;padding:0}
+        #app {
+          display: flex;
+          font-size: 12px;
+          overflow: hidden;
+          height: 200px;
+        }
+        #canvas {
+          border: 1px solid #333;
+          width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <ul id="line"></ul>
+    <ul id="force"></ul>
+    <div id="app">
+      <div style="width: 45%;">
+        <h2>坐标</h2>
+        <ul id="xy"></ul>
+      </div>
+      <div style="width: 50%;">
+        <h2>k和b</h2>
+        <ul id="kb"></ul>
+      </div>
+    </div>
+</body>
+</html>
