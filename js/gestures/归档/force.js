@@ -67,8 +67,6 @@ document.addEventListener('DOMContentLoaded', function(ev){
     var li = document.createElement('li');
     li.innerText = ' force: ' + touche.force + 
                    ' rotationAngle: ' +  touche.rotationAngle  + 
-                   ' screenX: ' +  touche.screenX  + 
-                   ' screenY: ' +  touche.screenY  + 
                    ' radiusX: ' +  touche.radiusX  + 
                    ' radiusY: ' +  touche.radiusY + '\n\n'
                    ;
@@ -85,6 +83,4 @@ document.addEventListener('DOMContentLoaded', function(ev){
     _Lineul.insertBefore(li, _Lineul.firstChild);
   }
 
-  var robot = new touchRobot(document.body);
-  robot.touchLeft();
 })

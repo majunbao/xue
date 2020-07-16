@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {margin:0;padding: 0;text-align: center;}
+    html,body {
+      height: 100vh;
+      width: 100vw;
+    }
+    body{
+      background-color: #fff;
+    }
+    header {
+      background: no-repeat center;
+      background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594791308062&di=a24fd01d61bf14f2b03d1e965083433e&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic%2Fcover%2F00%2F19%2F32%2F57ba60487a6f1_610.jpg);
+      width: 100vw;
+      height: 200px;
+      color: #FFF;
+      position: fixed;
+    }
+    h1{font-size: 30px;margin-bottom: 1vh;margin-top:6vh;font-weight: normal;}
+    p {margin-bottom: 1vh;}
+    article {}
+    section {
+      background-color: #fff;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 200px;
+    }
+    li {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>折叠效果</h1>
+
+    <article>
+      <p>搭配CoordinatorLayout使用</p>
+      <p>https://github.com/getActivity/TitleBar</p>
+    </article>
+  </header>
+  <section>
+    <ul>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+      <li>带文本的标题栏</li>
+    </ul>
+  </section>
+   
+  <script>
+
+    // function move(e) {
+    //   console.log(e)
+    // }
+
+    // document.addEventListener('DOMContentLoaded', ()=> {
+    //   var section = document.getElementsByTagName('section')[0];
+
+    //   section.addEventListener('touchstart', (e) => {
+
+    //     section.addEventListener('touchmove', move);
+
+    //   })
+
+    // })
+    var header = document.getElementsByTagName('header')[0];
+    var section = document.getElementsByTagName('section')[0];
+    var h1 = document.getElementsByTagName('h1')[0];
+    var p = document.getElementsByTagName('p')[0];
+    var p1 = document.getElementsByTagName('p')[1];
+
+    document.addEventListener('scroll', scroll, false)
+
+    function scroll(e) {
+      var stop = section.getBoundingClientRect().top;
+      header.style.height = stop + 'px';
+      var fontS = stop/200 < 0.7 ? 0.7 : stop/200;
+      var transY = -(200 - stop) * 0.4;
+      var transPY = -(200 - stop) * 0.3;
+      h1.style.transform = 'scale('+ fontS +')' + 'translateY(' + transY + 'px)' ;
+      p.style.transform = 'translateY(' + transPY + 'px)' ;
+      p1.style.transform = 'translateY(' + transPY + 'px)' ;
+
+      if(stop <= 40) {
+        window.scrollTo(0 ,200-40)
+        // document.removeEventListener('scroll', scroll)
+      }
+    }
+
+  </script>
+</body>
+</html>
