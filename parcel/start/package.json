@@ -1,0 +1,8 @@
+{
+  "name": "start",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "less": "^3.12.0"
+  }
+}
