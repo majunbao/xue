@@ -1,12 +1,19 @@
 <html>
-  <body>
-    <ul>
-      <li>abc</li>
-      <li>def</li>
-      <li id="gcc">gcc</li>
-      <li>okd</li>
-      <li>gjh</li>
-    </ul>
-    <script src="./src/zepto.js"></script>
-  </body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+  <ul>
+    <li>abc</li>
+    <li>def</li>
+    <li id="gcc">gcc</li>
+    <li>okd</li>
+    <li>gjh</li>
+  </ul>
+  <img width="100" src="https://fanyi-cdn.cdn.bcebos.com/static/translation/img/header/logo_40c4f13.svg" alt="">
+  <script src="./src/003.zepto.js"></script>
+  <script>
+    $('ul').append('<li>beforeEnd</li>').prepend('<li>afterBegin</li>');
+  </script>
+</body>
+
 </html>
